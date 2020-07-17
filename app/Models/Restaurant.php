@@ -10,6 +10,15 @@ class Restaurant extends Model
     //protected $primaryKey = 'restaurant_id';
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -17,4 +26,8 @@ class Restaurant extends Model
     protected $fillable = [
         'name','nit'
     ];
+
+    public function branches(){
+        return $this->hasMany(Branch::class);
+    }
 }

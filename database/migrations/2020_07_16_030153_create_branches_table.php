@@ -16,7 +16,7 @@ class CreateBranchesTable extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name', 32);
+            $table->string('location', 32);
             $table->unsignedBigInteger('restaurant_id');//foreign
         });
     }

@@ -20,6 +20,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('name', 32);
             $table->unsignedInteger('nit');
             $table->String('logo')->default('default-logo.png');
+            $table->String('slug',64)->unique();/*field use for personalized URL*/
             $table->softDeletes();
         });
     }

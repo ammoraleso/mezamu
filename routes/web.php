@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/restaurantes/{branch}', 'MenuController@show')->name('menu');
+Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');

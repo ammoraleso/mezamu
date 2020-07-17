@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
+use App\Models\Restaurant;
 use Illuminate\Routing\Controller as BaseController;
 
 class MenuController extends BaseController
 {
 
-    public function show(Branch $branch){
+    public function show(Restaurant $restaurant, $branchName){
+        $branch = $restaurant->branches()->where('location',$branchName)->first();
+        if(is_null($branch)){
+            abort(404);
+        }
         $dishes = $branch->dishes;
         $categories = $this->loadCategories($dishes);
         return view('menu', compact('dishes', 'categories'));
