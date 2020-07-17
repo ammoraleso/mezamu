@@ -17,4 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/login', function () {
+    return view('register/login');
+})->name('login');
+
+Route::get('/signup', function () {
+    return view('register/signup');
+})->name('signup');
+
+
 Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');

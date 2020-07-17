@@ -1,0 +1,46 @@
+login.blade.php.register::after {
+    content: "";
+    background: url("../images/login.jpg") no-repeat center center fixed;
+    background-size: cover;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+}
+
+body{
+    content: "";
+    background: url("../images/login.jpg") no-repeat center center fixed;
+    background-size: cover;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+}
+
+.button_login {
+    color: #fff;
+    background-color: #007bff;
+    transition-duration: 0.4s;
+}
+
+.button_login:hover {
+    background-color: #4CAF50; /* Green */
+}
+
+.btn-link:hover {
+    background-color:transparent; /* Green */
+    color: #4CAF50;
+}
+
+.loginDiv{
+    position: relative;
+    height: 100%;
+    padding-top: 10%;
+}
