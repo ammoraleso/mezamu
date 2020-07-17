@@ -24,17 +24,36 @@
             <!-- Latest compiled JavaScript -->
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
         <!-- End bootstrap -->
+
+        <link rel="stylesheet" href="{{asset('css/menu.css')}}">
+
+        <link rel="stylesheet" href="{{asset('css/ellipsis.css')}}">
     </head>
     <body>
-    @foreach($categories as $category)
-        <p>{{$category->description}}</p>
-        @foreach($dishes as $dish)
-            <div style="background: #636b6f">
-            @if($dish->category == $category)
-                {{$dish->name}}
-            @endif
-            </div>
+    <div class="p-2">
+        @foreach($categories as $category)
+            <h5 style="font-weight: bolder">{{$category->description}}</h5>
+            @foreach($dishes as $dish)
+                @if($dish->category == $category)
+                    <div class="d-flex p-3">
+                        <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
+                        <div class="ml-3 w-100 d-flex flex-column">
+                            <strong><p class="mb-0">{{$dish->name}}</p></strong>
+                            <small><p class="ellipsis menu-description m-0">{{$dish->description}}</p></small>
+                            <div class="d-flex flex-column-reverse h-100">
+                                <div class="d-flex w-100" style="justify-content: space-between">
+                                    <div class="price-container">
+                                    <span>${{$dish->price}}</span>
+                                    </div>
+                                    <button class="btn">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                @endif
+            @endforeach
         @endforeach
-    @endforeach
+    </div>
     </body>
 </html>
