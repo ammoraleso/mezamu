@@ -46,7 +46,7 @@
                                         {{ __('Iniciar Sesión') }}
                                     </button>
 
-                                    <a class="btn btn-link" href="">
+                                    <a class="btn btn-link" href="{{ route('reset_password') }}">
                                         {{ __('Olvidaste Tu Contraseña?') }}
                                     </a>
                                 </div>
