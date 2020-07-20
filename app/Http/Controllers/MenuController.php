@@ -15,7 +15,8 @@ class MenuController extends BaseController
         }
         $dishes = $branch->dishes;
         $categories = $this->loadCategories($dishes);
-        return view('menu', compact('dishes', 'categories'));
+        $branchDishes = $branch->branchDishes;
+        return view('menu', compact('branchDishes', 'categories'));
     }
 
     public function loadCategories($dishes){

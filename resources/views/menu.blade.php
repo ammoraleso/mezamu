@@ -33,19 +33,30 @@
     <div class="p-2">
         @foreach($categories as $category)
             <h5 style="font-weight: bolder">{{$category->description}}</h5>
-            @foreach($dishes as $dish)
+            @foreach($branchDishes as $branchDish)
+                @php($dish = $branchDish->dish)
                 @if($dish->category == $category)
                     <div class="d-flex p-3">
                         <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
                         <div class="ml-3 w-100 d-flex flex-column">
-                            <strong><p class="mb-0">{{$dish->name}}</p></strong>
+                            <div>
+                                <strong><p class="mb-0 d-inline-block">{{$dish->name}}
+                                    @if($branchDish->promotion)
+                                        <span class="badge badge-danger discount-badge">{{$branchDish->discountPercentage()}}%</span>
+                                    @endif
+                                </p></strong>
+
+                            </div>
                             <small><p class="ellipsis menu-description m-0">{{$dish->description}}</p></small>
                             <div class="d-flex flex-column-reverse h-100">
                                 <div class="d-flex w-100" style="justify-content: space-between">
                                     <div class="price-container">
-                                    <span>${{$dish->price}}</span>
+                                        @if($branchDish->promotion)
+                                            <strong class="mr-2">${{number_format($branchDish->discountPrice(), 0, '.', ',')}}</strong>
+                                        @endif
+                                    <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
                                     </div>
-                                    <button class="btn">Add</button>
+                                    <button class="btn btn-success">Add</button>
                                 </div>
                             </div>
                         </div>
