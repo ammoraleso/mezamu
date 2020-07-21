@@ -49,10 +49,11 @@
                                     <button  type="submit" class="btn button_app" >
                                         {{ __('Iniciar Sesión') }}
                                     </button>
-
-                                    <button class="btn button_app" href="{{ route('password.request') }}">
-                                        {{ __('Olvidaste Tu Contraseña?') }}
-                                    </button>
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            {{ __('Olvidaste tu Contraseña?') }}
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </form>
