@@ -1,0 +1,26 @@
+login.blade.php.register::after {
+    content: "";
+    background: url("../images/login.jpg") no-repeat center center fixed;
+    background-size: cover;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+}
+
+body{
+    content: "";
+    background: url("../images/register.jpg") no-repeat center center fixed;
+    background-size: cover;
+    opacity: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+}
+

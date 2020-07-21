@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page_title')
-    {{ "Iniciar Sesión" }}
+    {{ "Iniciar Sesión | MeZamÜ" }}
 @endsection
 
 

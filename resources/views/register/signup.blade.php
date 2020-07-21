@@ -7,7 +7,7 @@
             <div class="floating-card form">
                 <div class="card-body">
 
-                    <form method="POST" action="{{ route('signup') }}" aria-label="{{ __('SignUp') }}">
+                    <form method="POST"  action="{{ route('register') }}"aria-label="{{ __('Registro') }}">
                         @csrf
 
                         <div class="form-group row">
