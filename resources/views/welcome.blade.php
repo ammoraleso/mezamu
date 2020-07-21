@@ -1,100 +1,153 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Laravel</title>
+@section('page_title')
+    {{ "MeZamÜ | Home" }}
+@endsection
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('content')
 
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
+    <link rel="stylesheet" href="{{asset('css/footer/footer-distributed-with-address-and-phones.css')}}">
+    <link rel="stylesheet" href="{{asset('css/carousel.css')}}">
+    <link rel="stylesheet" href="{{asset('css/utils.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        .full-height {
-            height: 100vh;
-        }
+    <div id="welcome" class="flex-center position-ref full-height">
+        <div class="content">
+            <div class="title mb-3">
+                Bienvenido a MeZamü​
+            </div>
+            <div>
+                <div>
+                    <h4 >MeZamÜ facilita los protocolos de bioseguridad alineados a los estándares de atención
+                        y satisfacción al cliente, junto con el mejoramiento de los estándares de servicio y optimización
+                        de costos al enfocarse en una tendencia virtual y digitalizada.</h4>
+                </div>
+            </div>
 
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
-</head>
-<body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-        <div class="title m-b-md">
-            Laravel
-        </div>
-
-        <div class="links">
-            <a href="https://laravel.com/docs">Docs</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://blog.laravel.com">Blog</a>
-            <a href="https://nova.laravel.com">Nova</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://vapor.laravel.com">Vapor</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
+            <button class="btn button_app" style="font-size: 20px;" href="/">
+                Conocenos
+            </button>
         </div>
     </div>
-</div>
-</body>
-</html>
+
+
+    <footer style="margin: 0" class="footer-distributed">
+
+        <div class="footer-left">
+
+            <h3><span>M</span>eZamÜ</h3>
+            <p class="footer-company-name mt-4">Todos los Derechos Reservados &copy; 2020</p>
+        </div>
+
+        <div class="footer-center">
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>322 243 42 96</p>
+            </div>
+
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:soporte@intraning.com.co">mezamucorporativo@gmail.com</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-right">
+
+            <p class="footer-company-about">
+
+            </p>
+
+            <div class="footer-icons">
+
+                <!--<a href="#"><i class="fab fa-facebook"></i></a>-->
+                <a href="/"><i class="fa fa-instagram"></i></a>
+
+            </div>
+
+        </div>
+
+    </footer>
+    <script>
+        $(document).ready(function() {
+            var itemsPerSlide = 3;
+            var totalItems = $(".carousel-item").length;
+            if(itemsPerSlide >= totalItems){//se ocultan las flechas de mover el carrousel cuando tiene 3 o menos items para mostrar
+                $("a[class^='carousel-control-']").css('display', 'none');
+            }
+
+            $("#myCarousel").on("slide.bs.carousel", function(e) {
+
+                if(itemsPerSlide >= totalItems) {//solo se mueve el carousel cuando hay más de 3 cards
+                    return false
+                }
+
+                var $e = $(e.relatedTarget);
+                var idx = $e.index();
+                console.log('indice: '+idx);
+                if (idx >= totalItems - (itemsPerSlide - 1)) {
+                    var it = itemsPerSlide - (totalItems - idx);
+                    console.log('otro: '+it);
+                    for (var i = 0; i < it; i++) {
+                        // append slides to end
+                        if (e.direction == "left") {
+                            $(".carousel-item")
+                                .eq(i)
+                                .appendTo(".carousel-inner");
+                        } else {
+                            $(".carousel-item")
+                                .eq(0)
+                                .appendTo(".carousel-inner");
+                        }
+                    }
+                    /*$(".media-slider").css('width', '100');*/
+                }
+
+
+            });
+            /*$("#myCarousel").on("slid.bs.carousel", function(e) {
+                $(".media-slider").css('width', '100%');
+            });*/
+        });
+    </script>
+
+    <!--subscribers-->
+    <script type="text/javascript">
+        var subscribersSiteId = 'cd602984-8642-4484-8a8b-431d84a5faf0';
+    </script>
+    <script type="text/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>
+
+    <!--google analytics-->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-128937544-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!--chat de soporte-->
+    <!--Para que se dragable pero que no muestre el chat al finalizar el drag-->
+    <script>
+        $(function() {
+            $( ".draggable" ).draggable({
+                stop: function(event, ui) {
+                    $('.purechat-expanded').attr('style', 'display: none!important');
+                }
+            });
+            $( ".draggable" ).click(function(){
+                $('.purechat-expanded').attr('style', 'display: ');
+            });
+        });
+    </script>
+    <!--<script src="https://code.jquery.com/jquery-1.9.1.js"></script> Si se deja se daña el slider y al parecer ya está en otro lugar o no se necesita porque se quita y aún así funciona correctamente el draggable.-->
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!--fin Para que se dragable pero que no muestre el chat al finalizar el drag-->
+
+    <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '1e110dc0-e024-4b2b-a871-4e07f3dec0d3', f: true }); done = true; } }; })();</script>
+    <!--fin chat de soporte-->
+
+@endsection

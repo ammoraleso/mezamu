@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('page_title')
+    {{ "Iniciar Sesión" }}
+@endsection
+
+
 @section('content')
     <link rel="stylesheet" href="{{asset('css/login.css')}}">
 
@@ -12,7 +17,7 @@
                             <!--el novalidate evita los mensaje de validación del navegador-->
                             @csrf
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right"><b>{{ __('E-Mail') }}</b></label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -41,13 +46,13 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button  type="submit" class="btn button_login" >
+                                    <button  type="submit" class="btn button_app" >
                                         {{ __('Iniciar Sesión') }}
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ route('reset_password') }}">
+                                    <button class="btn button_app" href="{{ route('password.request') }}">
                                         {{ __('Olvidaste Tu Contraseña?') }}
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </form>

@@ -34,3 +34,6 @@ Route::get('/reset_password_email', function () {
 })->name('reset_password_email');
 
 Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

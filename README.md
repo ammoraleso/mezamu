@@ -8,6 +8,8 @@
     
  - Correr el siguiente comando para instalar dependencias
     composer install 
+ 
+ - php artisan migrate:fresh
      
  - php artisan serve
  
@@ -18,3 +20,12 @@
     
  - Ejecute el siguiente comando php artisan migrate:fresh
     
+## Instalacion AUTH
+
+Modulo que se utiliza para la instalación de toda la parte de login y registro del framework.
+(https://www.youtube.com/watch?v=ikmfpJLvpjI)
+
+ - composer require laravel/ui
+ - php artisan ui vue --auth
+ - npm i
+ - npm run dev
