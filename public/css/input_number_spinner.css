@@ -1,0 +1,94 @@
+:root{
+    --button-width: 28px;
+    --input-width: calc(2*var(--button-width));
+}
+.quantity {
+    position: relative;
+    display: inline-flex;
+    margin-left: var(--button-width);
+    margin-right: var(--button-width);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]
+{
+    -moz-appearance: textfield;
+}
+
+.quantity input {
+    text-align: center;
+    width: var(--input-width);
+    height: 42px;
+    line-height: 1.65;
+    float: left;
+    display: block;
+    margin: 0;
+    border: 1px solid #eee;
+}
+
+.quantity input:focus {
+    outline: 0;
+}
+
+.quantity-nav {
+    float: left;
+    position: relative;
+    height: 42px;
+}
+
+.quantity-button {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    /*background: lightgrey;*/
+    border: 1px solid #eee;
+    color: #333;
+    cursor: pointer;
+    width: var(--button-width);
+    text-align: center;
+    font-size: 13px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+    line-height: 1.7;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.quantity-button.quantity-up {
+    margin-left: var(--button-width);
+    border-radius: 0 var(--button-width) var(--button-width) 0;
+}
+
+.quantity-button.quantity-down {
+    margin-left: calc(-1 * var(--input-width));
+    border-radius: var(--button-width) 0 0 var(--button-width);
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    height: 5em;
+    background: #ccc;
+}
+.wrapper > .left
+{
+    background: #fcc;
+}
+.wrapper > .right
+{
+    background: #ccf;
+    flex: 1;
+}
