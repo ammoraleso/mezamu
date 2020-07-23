@@ -13,6 +13,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{asset('js/home.js')}}"></script>
+    <script src="{{ asset('js/reload_cart_icon.js') }}" type="text/javascript"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -29,6 +31,7 @@
     @stack('stylesAndScripts')
 </head>
 <body>
+    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark navbar-laravel" style="background: rgba(0,0,0,.7);">
             <div class="container">

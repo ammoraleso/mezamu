@@ -1,20 +1,48 @@
-.product-img{
+.product-img {
     height: 13vh;
     width: 13vh;
 }
-.price-container{
+.price-container {
     height: min-content;
     margin: auto 0;
 }
-.menu-description{
-    max-height: 3em;/* We use max-height instead of height because if we use the last one the ellipsis points will always be shown*/
+.menu-description {
+    max-height: 3em; /* We use max-height instead of height because if we use the last one the ellipsis points will always be shown*/
 }
-.discount-badge{
+.discount-badge {
     position: relative;
     bottom: 0.5em;
     border-radius: 10px;
 }
-.before-price{
+.before-price {
     text-decoration: line-through;
     color: gray;
+}
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.active,
+.collapsible:hover {
+    background-color: #555;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+.addItems {
+    display: inline-grid;
 }

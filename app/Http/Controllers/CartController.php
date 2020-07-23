@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
+use App\Models\Dish;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 
@@ -16,10 +16,13 @@ class CartController extends Controller
     }
 
     /*This method is called by ajax*/
-    public function addItem(Item $item){
+    public function addItem(){
+       
         $this->cart = Session::get('cart');//get the cart stored in session to add quantities of a same product.
 
         $quantity = request('quantity');
+        $itemID = request('itemID');
+        $item = Dish::find($itemID);
 
         if($this->cart){
             if(array_key_exists($item->id, $this->cart)) {
