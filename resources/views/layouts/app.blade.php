@@ -39,14 +39,14 @@
                     <h3 class="d-inline-block brand-name"><span><i>M</i>ezam<i>Ü</i></span></h3>
                 </a>
                 <div  class="row">
-                    <div id="cartIcon column" class="mr-3">
+                    <div id="cartIcon" class="mr-3">
                         @if(Session::has('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
                             <a  href="{{route('cart')}}">
                                 <img class="icon" alt="user" src="{{asset('images/full_cart_icon.png')}}">
                             </a>
                             <span id="cartBadge">
-                                    <div  class="icon-badge badge-danger">{{\Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity')}}</div>
-                                </span>
+                                <div  class="icon-badge badge-danger">{{\Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity')}}</div>
+                            </span>
                         @else
                             <a href="{{route('cart')}}">
                                 <img class="icon" width="100%" height="100%" alt="user" src="{{asset('images/empty_cart_icon.png')}}">
