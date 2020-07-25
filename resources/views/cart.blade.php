@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="{{asset('css/input_number_spinner.css')}}">
     <link rel="stylesheet" href="{{asset('css/cart.css')}}">
     <link rel="stylesheet" href="{{asset('css/menu.css')}}">
-    <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
     <!--Script for change and remove items from the cart-->
     <script>
         var changeQuantityUrl = '{{route('changeQuantity')}}';
@@ -26,27 +26,43 @@
                         @foreach(Session::get('cart') as $cartItem)
                             @if(data_get($cartItem, 'item'))
                                 @php
-                                    $item = data_get($cartItem, 'item');
+                                    $itemComplete = data_get($cartItem, 'item');
+                                    $dish = $itemComplete[0];
+                                    $branchDish = $itemComplete[1];
                                 @endphp
-                            <span id="cartItem{{$item['id']}}">
-                                <div class="d-flex mb-3">
-                                    <img alt="{{$item->name}}"  class="product-img" src="/images/{{$item->photo}}">
-                                    <div class="d-flex flex-column flex-md-row justify-content-between w-100 flex-wrap position-relative">
-                                        <p><strong>{{$item['name']}}</strong></p>
-                                        <div class="quantity">
-                                            <input onchange="changeQuantity({{$item}}, this.value);" id="quantity" name="quantity" type="number" min="1" max="100" step="1" value="{{data_get($cartItem, 'quantity')}}" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
-                                        </div>
-                                        <p class="mt-2 mt-md-0 mb-0">$ {{$item['formatedPrice']}} c/u</p>
-
-                                        <div class="d-md-none">
-                                            <a onclick="removeItem({{$item}});" href="#" style="color: currentColor"><u>{{__('general.Delete')}}</u></a>
-                                        </div>
-                                        <div class="d-none d-sm-block position-absolute mt-3">
-                                            <a onclick="removeItem({{$item}});" href="#" style="color: currentColor"><u>{{__('general.Delete')}}</u></a>
+                                <span id="cartItem{{$dish['id']}}">
+                                    <div class="d-flex p-3 ">
+                                        <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
+                                        <div class="ml-3 w-100 d-flex flex-column">
+                                            <div>
+                                                <strong>
+                                                    <p class="mb-0 d-inline-block">{{$dish->name}}
+                                                        @if($branchDish->promotion)
+                                                            <span class="badge badge-danger discount-badge">{{$branchDish->discountPercentage()}}%</span>
+                                                        @endif
+                                                    </p>
+                                                </strong>
+                                            </div>
+                                            <small><p class="ellipsis menu-description m-0">{{$dish->description}}</p></small>
+                                            <div class="d-flex flex-column-reverse h-100">
+                                                <div class="d-flex w-100" style="justify-content: space-between">
+                                                    <div class="price-container">
+                                                        @if($branchDish->promotion)
+                                                            <strong class="mr-2">${{number_format($branchDish->discountPrice(), 0, '.', ',')}}</strong>
+                                                        @endif
+                                                        <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
+                                                        <strong class="mt-2 mt-md-0 mb-0">$ {{$dish['formatedPrice']}} c/u</strong>
+                                                    </div>
+                                                    <div class="addItems" style="inline-grid">
+                                                        <div class="quantity mb-3">
+                                                            <input onchange="changeQuantity({{$dish}}, this.value);" id="quantity" name="quantity" type="number" min="1" max="100" step="1" value="{{data_get($cartItem, 'quantity')}}" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </span>
+                                </span>
                             @endif
                         @endforeach
                     </div>
@@ -62,8 +78,11 @@
                             @foreach(Session::get('cart') as $cartItem)
                                 @if(data_get($cartItem, 'item'))
                                     @php
-                                        $item = data_get($cartItem, 'item');
+                                        $itemComplete = data_get($cartItem, 'item');
+                                        $item = $itemComplete[0];
+                                        $dishBranch = $itemComplete[1];
                                         $itemQuantity = data_get($cartItem, 'quantity');
+                                        //TODO traer el precio de promocion
                                         $totalItemPrice = $itemQuantity*$item['price'];
                                         $totalPrice += $totalItemPrice;
                                     @endphp
@@ -87,8 +106,4 @@
             @endif
         </span>
     </div>
-
-    
-
-
 @endsection

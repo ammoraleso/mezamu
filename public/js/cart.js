@@ -1,4 +1,24 @@
-const TIME_FADE = "50";
+async function addItem(dish, branchDish) {
+    let itemsCounter;
+    try {
+        itemsCounter = await $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            url: addItemUrl,
+            method: "POST",
+            data: {
+                itemID: dish.id,
+                quantity: document.getElementById("quantity" + dish.id).value,
+                branchID: branchDish.branch_id
+            }
+        });
+    } catch (error) {
+        console.log("Error adding item " + error);
+        return;
+    }
+    await reloadCartIcon(itemsCounter, true); //always has to reload only the badge
+}
 
 async function changeQuantity(item, quantity) {
     try {
@@ -39,7 +59,7 @@ async function removeItem(item) {
         await $("#cartContainer").fadeIn("slow");
     } else {
         await $("#cartItem" + item["id"]).fadeOut();
-        await reloadSummary();
+        reloadSummary();
     }
     reloadCartIcon(totalCartQuantity, false);
 }

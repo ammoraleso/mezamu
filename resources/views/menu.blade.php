@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/menu.css')}}">
     <link rel="stylesheet" href="{{asset('css/input_number_spinner.css')}}">
     <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/menu.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
     <script>
         //Route used in menu.js to call the post method addItem.
         var addItemUrl = '{{ route('addItem') }}';
@@ -116,7 +116,7 @@
                                                                 <input id="quantity{{$dish->id}}" name="quantity{{$dish->id}}" type="number" min="1" max="100" step="1" value="1" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
                                                             </div>                                       
                                                             
-                                                            <button type="submit" class="btn btn-success" onclick="addItem({{$dish}});">
+                                                            <button type="submit" class="btn btn-success" onclick="addItem({{$dish}},{{$branchDish}});">
                                                                 {{__('general.Add_to_cart')}}
                                                             </button>
                                                         </div>

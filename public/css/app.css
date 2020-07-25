@@ -11002,3 +11002,8 @@ a.text-dark:focus {
     padding: 0 5px;
     border-radius: 20px;
 }
+
+.custom-logo {
+    max-height: 70px;
+    width: auto;
+}

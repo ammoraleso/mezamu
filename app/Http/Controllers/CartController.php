@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\DishBranch;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 
@@ -23,21 +24,27 @@ class CartController extends Controller
         $quantity = request('quantity');
         $itemID = request('itemID');
         $item = Dish::find($itemID);
-
+        $banchID = request('branchID');
+        $dishBranch = DishBranch::where('branch_id', '=',$banchID)->where('dish_id', '=', $itemID)->get()->first();
+        
         if($this->cart){
             if(array_key_exists($item->id, $this->cart)) {
                 Arr::set($this->cart, $item->id . '.quantity', Arr::get($this->cart, $item->id . '.quantity') + $quantity);
                 Arr::set($this->cart, 'totalQuantity', Arr::get($this->cart, 'totalQuantity') + $quantity);
             }else{
-                $this->cart = Arr::add($this->cart, $item->id, ['item' => $item, 'quantity' => $quantity]);
+                $this->cart = Arr::add($this->cart, $item->id, ['item' => [$item,$dishBranch], 'quantity' => $quantity]);
                 Arr::set($this->cart, 'totalQuantity', Arr::get($this->cart, 'totalQuantity') + $quantity);
             }
         }else{
-            $this->cart = [$item->id => ['item' => $item, 'quantity' => $quantity],
+            $this->cart = [$item->id => ['item' => [$item,$dishBranch], 'quantity' => $quantity],
                             'totalQuantity' => $quantity];
         }
+        // $this->cart ="";
         Session::put('cart', $this->cart);
         Session::save();
+        $cart =Session::get('cart');
+        $dishItem = $cart[4];
+        $dishDish = $dishItem["item"][1];
         return  Arr::get(Session::get('cart'),'totalQuantity');//Needed to reload the cart icon*/
     }
 

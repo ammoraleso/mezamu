@@ -36,7 +36,7 @@
         <nav class="navbar navbar-expand-md navbar-dark navbar-laravel" style="background: rgba(0,0,0,.7);">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <h3 class="d-inline-block brand-name"><span><i>M</i>ezam<i>Ü</i></span></h3>
+                    <img alt="Mezamu Logo" class="custom-logo" src="/images/logo_blanco_sin_fondo.png">
                 </a>
                 <div  class="row">
                     <div id="cartIcon" class="mr-3">
