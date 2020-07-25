@@ -22,49 +22,64 @@
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
                 <div class="grid">
-                    <div class="w-100 mt-3 mr-md-5">
-                        @foreach(Session::get('cart') as $cartItem)
-                            @if(data_get($cartItem, 'item'))
-                                @php
-                                    $itemComplete = data_get($cartItem, 'item');
-                                    $dish = $itemComplete[0];
-                                    $branchDish = $itemComplete[1];
-                                @endphp
-                                <span id="cartItem{{$dish['id']}}">
-                                    <div class="d-flex p-3 ">
-                                        <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
-                                        <div class="ml-3 w-100 d-flex flex-column">
-                                            <div>
-                                                <strong>
-                                                    <p class="mb-0 d-inline-block">{{$dish->name}}
-                                                        @if($branchDish->promotion)
-                                                            <span class="badge badge-danger discount-badge">{{$branchDish->discountPercentage()}}%</span>
-                                                        @endif
-                                                    </p>
-                                                </strong>
-                                            </div>
-                                            <small><p class="ellipsis menu-description m-0">{{$dish->description}}</p></small>
-                                            <div class="d-flex flex-column-reverse h-100">
-                                                <div class="d-flex w-100" style="justify-content: space-between">
-                                                    <div class="price-container">
-                                                        @if($branchDish->promotion)
-                                                            <strong class="mr-2">${{number_format($branchDish->discountPrice(), 0, '.', ',')}}</strong>
-                                                        @endif
-                                                        <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
-                                                        <strong class="mt-2 mt-md-0 mb-0">$ {{$dish['formatedPrice']}} c/u</strong>
-                                                    </div>
-                                                    <div class="addItems" style="inline-grid">
-                                                        <div class="quantity mb-3">
-                                                            <input onchange="changeQuantity({{$dish}}, this.value);" id="quantity" name="quantity" type="number" min="1" max="100" step="1" value="{{data_get($cartItem, 'quantity')}}" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseProd" aria-expanded="false" aria-controls="collapseTwo">
+                                    {{__('general.Products')}} 
+                                </button>
+                                </h5>
+                            </div>
+                            <div id="collapseProd" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="w-100 mt-3 mr-md-5">
+                                        @foreach(Session::get('cart') as $cartItem)
+                                            @if(data_get($cartItem, 'item'))
+                                                @php
+                                                    $itemComplete = data_get($cartItem, 'item');
+                                                    $dish = $itemComplete[0];
+                                                    $branchDish = $itemComplete[1];
+                                                @endphp
+                                                <span id="cartItem{{$dish['id']}}">
+                                                    <div class="d-flex p-3 ">
+                                                        <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
+                                                        <div class="ml-3 w-100 d-flex flex-column">
+                                                            <div>
+                                                                <strong>
+                                                                    <p class="mb-0 d-inline-block">{{$dish->name}}
+                                                                        @if($branchDish->promotion)
+                                                                            <span class="badge badge-danger discount-badge">{{$branchDish->discountPercentage()}}%</span>
+                                                                        @endif
+                                                                    </p>
+                                                                </strong>
+                                                            </div>
+                                                            <small><p class="ellipsis menu-description m-0">{{$dish->description}}</p></small>
+                                                            <div class="d-flex flex-column-reverse h-100">
+                                                                <div class="d-flex w-100" style="justify-content: space-between">
+                                                                    <div class="price-container">
+                                                                        @if($branchDish->promotion)
+                                                                            <strong class="mr-2">${{number_format($branchDish->discountPrice(), 0, '.', ',')}}</strong>
+                                                                        @endif
+                                                                        <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
+                                                                        <strong class="mt-2 mt-md-0 mb-0">$ {{$dish['formatedPrice']}} c/u</strong>
+                                                                    </div>
+                                                                    <div class="addItems" style="inline-grid">
+                                                                        <div class="quantity mb-3">
+                                                                            <input onchange="changeQuantity({{$dish}}, this.value);" id="quantity" name="quantity" type="number" min="1" max="100" step="1" value="{{data_get($cartItem, 'quantity')}}" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </span>
+                                            @endif
+                                        @endforeach
                                     </div>
-                                </span>
-                            @endif
-                        @endforeach
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <hr>
@@ -104,6 +119,10 @@
                 <h3 class="m-4">{{__('general.empty_cart_message')}}</h3>
                 <a class="bg-base btn ml-4" href="/">{{__('general.Continue_shopping')}}</a>
             @endif
+            <hr>
+            <div id="back" class="pt-3"style="justify-content: center; display: flex; padding-bottom: 1%;">
+                <input type="button" onclick="history.back()" name="volver" class="btn btn-success" value="volver">
+            </div>
         </span>
     </div>
 @endsection
