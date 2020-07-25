@@ -41,5 +41,7 @@ return [
     'IMMEDIATE_DELIVERY' => 'ENTREGA INMEDIATA',
     'Delivery_Name' => 'Nombre de quien recibe',
     'Categories' => 'Categorias',
+    'Quantity' => 'Cantidad',
+    'Cost' => 'Valor',
 
 ];

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('page_title')
+    {{ "MeZamÜ | Shopping" }}
+@endsection
+
 @section('title') {{ __('general.My_Cart')}} @endsection
 
 @push('stylesAndScripts')
@@ -13,6 +17,27 @@
         var changeQuantityUrl = '{{route('changeQuantity')}}';
         var removeItemUrl = '{{route('removeItem')}}';
     </script>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: center;
+          padding: 8px;
+        }
+
+        .no-align{
+            text-align: left;
+        }
+        
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -68,6 +93,9 @@
                                                                         <div class="quantity mb-3">
                                                                             <input onchange="changeQuantity({{$dish}}, this.value);" id="quantity" name="quantity" type="number" min="1" max="100" step="1" value="{{data_get($cartItem, 'quantity')}}" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
                                                                         </div>
+                                                                        <div class="quantity mb-3">
+                                                                            <a onclick="removeItem({{$dish}});" href="#" style="color: currentColor"><u>{{__('general.Delete')}}</u></a>
+                                                                        </div>    
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -86,31 +114,47 @@
                     <div class="w-md-40 px-md-3 pt-md-3 mt-4 mt-md-0 card-md rounded-20px" style="height: fit-content">
                         <h3><strong>{{__('general.Summary')}}</strong></h3>
                         <div id="summary" class="pt-3">
-                            <h4>{{Session::get('cart')['totalQuantity']}} {{__('general.Products')}} </h4>
                             @php
                                 $totalPrice = 0;
                             @endphp
-                            @foreach(Session::get('cart') as $cartItem)
-                                @if(data_get($cartItem, 'item'))
-                                    @php
-                                        $itemComplete = data_get($cartItem, 'item');
-                                        $item = $itemComplete[0];
-                                        $dishBranch = $itemComplete[1];
-                                        $itemQuantity = data_get($cartItem, 'quantity');
-                                        //TODO traer el precio de promocion
-                                        $totalItemPrice = $itemQuantity*$item['price'];
-                                        $totalPrice += $totalItemPrice;
-                                    @endphp
-                                    <div class="d-flex justify-content-between">
-                                        <p class="overflow-hidden ml-3" style="max-width: 40%">{{$item['name']}}</p>
-                                        <p>X {{$itemQuantity}}</p>
-                                        <p>$ {{number_format($totalItemPrice, 0, '.', ',')}}</p>
-                                    </div>
-                                @endif
-                            @endforeach
-                            <div class="d-flex justify-content-between">
-                                <h4><strong>{{__('general.Total')}}</strong></h4>
-                                <h4><strong>$ {{number_format($totalPrice, 0, '.', ',')}}</strong></h4>
+                            <div style="justify-content: center; display: flex;">
+                                <table>
+                                    <tr>
+                                        <th class="no-align"><i><h5><strong>{{__('general.Products')}} ({{Session::get('cart')['totalQuantity']}})</strong></h5></i></th>
+                                        <th><i><h5><strong>{{__('general.Quantity')}}</strong></h5></i></th>
+                                        <th><i><h5><strong>{{__('general.Cost')}}</strong></h5></i></th>
+                                    </tr>
+                                    @foreach(Session::get('cart') as $cartItem)
+                                        @if(data_get($cartItem, 'item'))
+                                            @php
+                                                $itemComplete = data_get($cartItem, 'item');
+                                                $item = $itemComplete[0];
+                                                $dishBranch = $itemComplete[1];
+                                                $itemQuantity = data_get($cartItem, 'quantity');
+                                                $itemPrice = $item['price'];
+                                                if($dishBranch->promotion)
+                                                {
+                                                    $itemPrice = $dishBranch->discountPrice();
+                                                }
+                                                //Calcular el impuesto al consumo.
+                                                $totalItemPrice = $itemQuantity*$itemPrice;
+                                                $totalPrice += $totalItemPrice;
+                                            @endphp
+                                            
+                                            <tr>
+                                            <td class="no-align">{{$item['name']}}</td>
+                                            <td>X {{$itemQuantity}}</td>
+                                            <td>$ {{number_format($totalItemPrice, 0, '.', ',')}}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                    <tr>
+                                        <td></td>
+                                        <td><h4><strong>{{__('general.Total')}}</strong></h4></td>
+                                        <td><h4><strong>$ {{number_format($totalPrice, 0, '.', ',')}}</strong></h4></td>
+                                        
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
