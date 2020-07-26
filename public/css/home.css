@@ -1,4 +1,9 @@
 /* The side navigation menu */
+.py-4 {
+    /*to delete the padding between nav and content*/
+    padding: 0px !important;
+}
+
 .sidebar {
     margin: 0;
     padding: 0;
@@ -9,8 +14,7 @@
     overflow: auto;
 }
 
-.main{
-
+.main {
 }
 
 /* Sidebar links */
@@ -23,7 +27,7 @@
 
 /* Active/current link */
 .sidebar a.active {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
 }
 
@@ -47,8 +51,12 @@ div.content {
         height: auto;
         position: relative;
     }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
+    .sidebar a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
