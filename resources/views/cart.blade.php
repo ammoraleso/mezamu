@@ -16,28 +16,8 @@
     <script>
         var changeQuantityUrl = '{{route('changeQuantity')}}';
         var removeItemUrl = '{{route('removeItem')}}';
+        var sendOrderUrl = '{{route('sendOrder')}}';
     </script>
-    <style>
-        table {
-          font-family: arial, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
-        }
-        
-        td, th {
-          border: 1px solid #dddddd;
-          text-align: center;
-          padding: 8px;
-        }
-
-        .no-align{
-            text-align: left;
-        }
-        
-        tr:nth-child(even) {
-          background-color: #dddddd;
-        }
-    </style>
 @endpush
 
 @section('content')
@@ -164,8 +144,11 @@
                 <a class="bg-base btn ml-4" href="/">{{__('general.Continue_shopping')}}</a>
             @endif
             <hr>
-            <div id="back" class="pt-3"style="justify-content: center; display: flex; padding-bottom: 1%;">
-                <input type="button" onclick="history.back()" name="volver" class="btn btn-success" value="volver">
+            <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
+                <input type="button" onclick="history.back()" name="volver" class="btn btn-back" value="volver">
+                @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
+                    <a href="{{route('sendOrder')}}"class="btn btn-success">Ordenar</a>
+                @endif
             </div>
         </span>
     </div>
