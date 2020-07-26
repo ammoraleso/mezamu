@@ -3,20 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
+use App\Utils\Utils;
 use Illuminate\Routing\Controller as BaseController;
 
 class MenuController extends BaseController
 {
 
-    public function show(Restaurant $restaurant, $branchName){
-        $branch = $restaurant->branches()->where('location',$branchName)->first();
-        if(is_null($branch)){
-            abort(404);
+    public function show(Restaurant $restaurant, $branchName)
+    {
+        $branch = Utils::verifyBranch($restaurant, $branchName);
+        $dishes = $branch->dishes;
+        $categories = $this->loadCategories($dishes);
+        $branchDishes = $branch->branchDishes;
+        $allowAdd = false;
+        return view('menu', compact('branchDishes', 'categories', 'allowAdd'));
+    }
+
+    public function menuWithToken(Restaurant $restaurant, $branchName, $table, $token){
+        $branch = Utils::verifyBranch($restaurant, $branchName);
+        if(!Utils::isTokenValid($token)){
+            return view('invalidToken');
         }
         $dishes = $branch->dishes;
         $categories = $this->loadCategories($dishes);
         $branchDishes = $branch->branchDishes;
-        return view('menu', compact('branchDishes', 'categories'));
+        $allowAdd = true;
+        return view('menu', compact('branchDishes', 'categories', 'allowAdd'));
     }
 
     public function sort_objects_by_id($a, $b) {

@@ -31,4 +31,6 @@ class DishBranch extends Model
         throw new Exception('Wrong data for promotion');
     }
 
+
+
 }

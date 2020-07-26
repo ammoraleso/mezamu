@@ -18,7 +18,7 @@ class CartController extends Controller
 
     /*This method is called by ajax*/
     public function addItem(){
-       
+
         $this->cart = Session::get('cart');//get the cart stored in session to add quantities of a same product.
 
         $quantity = request('quantity');
@@ -26,7 +26,7 @@ class CartController extends Controller
         $item = Dish::find($itemID);
         $banchID = request('branchID');
         $dishBranch = DishBranch::where('branch_id', '=',$banchID)->where('dish_id', '=', $itemID)->get()->first();
-        
+
         if($this->cart){
             if(array_key_exists($item->id, $this->cart)) {
                 Arr::set($this->cart, $item->id . '.quantity', Arr::get($this->cart, $item->id . '.quantity') + $quantity);
@@ -42,9 +42,6 @@ class CartController extends Controller
         // $this->cart ="";
         Session::put('cart', $this->cart);
         Session::save();
-        $cart =Session::get('cart');
-        $dishItem = $cart[4];
-        $dishDish = $dishItem["item"][1];
         return  Arr::get(Session::get('cart'),'totalQuantity');//Needed to reload the cart icon*/
     }
 

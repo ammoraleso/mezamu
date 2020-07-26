@@ -34,7 +34,7 @@
                                 @foreach($branchDishes as $branchDish)
                                     @php($dish = $branchDish->dish)
                                     @if($dish->category ==$categories[$i])
-                                        
+
                                         <div class="d-flex p-3 ">
                                             <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
                                             <div class="ml-3 w-100 d-flex flex-column">
@@ -56,15 +56,17 @@
                                                             @endif
                                                             <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
                                                         </div>
-                                                        <div class="addItems" style="inline-grid">
-                                                            <div class="quantity mb-3">
-                                                                <input id="quantity{{$dish->id}}" name="quantity{{$dish->id}}" type="number" min="1" max="100" step="1" value="1" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
-                                                            </div>                                       
-                                                            
-                                                            <button type="submit" class="btn btn-success" onclick="addItem({{$dish}},{{$branchDish}});">
-                                                                {{__('general.Add_to_cart')}}
-                                                            </button>
-                                                        </div>
+                                                        @if($allowAdd)
+                                                            <div class="addItems">
+                                                                <div class="quantity mb-3">
+                                                                    <input id="quantity{{$dish->id}}" name="quantity{{$dish->id}}" type="number" min="1" max="100" step="1" value="1" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
+                                                                </div>
+
+                                                                <button type="submit" class="btn btn-success" onclick="addItem({{$dish}},{{$branchDish}});">
+                                                                    {{__('general.Add_to_cart')}}
+                                                                </button>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,7 +91,7 @@
                                 @foreach($branchDishes as $branchDish)
                                     @php($dish = $branchDish->dish)
                                     @if($dish->category ==$categories[$i])
-                                        
+
                                         <div class="d-flex p-3 ">
                                             <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
                                             <div class="ml-3 w-100 d-flex flex-column">
@@ -111,15 +113,17 @@
                                                             @endif
                                                             <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
                                                         </div>
-                                                        <div class="addItems" style="inline-grid">
-                                                            <div class="quantity mb-3">
-                                                                <input id="quantity{{$dish->id}}" name="quantity{{$dish->id}}" type="number" min="1" max="100" step="1" value="1" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
-                                                            </div>                                       
-                                                            
-                                                            <button type="submit" class="btn btn-success" onclick="addItem({{$dish}},{{$branchDish}});">
-                                                                {{__('general.Add_to_cart')}}
-                                                            </button>
-                                                        </div>
+                                                        @if($allowAdd)
+                                                            <div class="addItems">
+                                                                <div class="quantity mb-3">
+                                                                    <input id="quantity{{$dish->id}}" name="quantity{{$dish->id}}" type="number" min="1" max="100" step="1" value="1" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
+                                                                </div>
+
+                                                                <button type="submit" class="btn btn-success" onclick="addItem({{$dish}},{{$branchDish}});">
+                                                                    {{__('general.Add_to_cart')}}
+                                                                </button>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
