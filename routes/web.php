@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    if(Auth::check()){
+        return redirect('/home');
+    }
     return view('welcome');
 });
 
 Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');
 Route::get('/{restaurant}/{branch}/{table}/{token}', 'MenuController@menuWithToken')->name('menu');
-Route::get('/{restaurant}/{branch}/mesero', 'WaiterController@show')->name('waiter');
 Route::post('/waiter', 'WaiterController@generateCode')->name('generateCode');
 //Cart Controller
 Route::get('/mycart', 'CartController@showCart')->name('cart');

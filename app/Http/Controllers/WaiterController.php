@@ -3,18 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
-use App\Utils\Utils;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class WaiterController extends BaseController
 {
-
-    public function show(Restaurant $restaurant, $branchName){
-        Utils::verifyBranch($restaurant, $branchName);
-        return view('waiter',compact('restaurant','branchName'));
-    }
 
     public function generateCode(){
         $restaurant = Restaurant::find(request()->restaurantId);

@@ -18,6 +18,7 @@ class UsersSeeder extends Seeder
             'email' => 'mezamucorporativo@gmail.com',
             'password' => bcrypt('admin_mezamu'),
             'role' => 'administrador',
+            'branch_id' => random_int(\DB::table('branches')->min('id'), \DB::table('branches')->max('id'))
         ]);
     }
 }

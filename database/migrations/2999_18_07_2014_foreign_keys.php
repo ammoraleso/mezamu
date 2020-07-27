@@ -31,6 +31,10 @@ class ForeignKeys extends Migration
             $table->foreign('dish_id')->references('id')->on('dishes');
         });
 
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('branch_id')->references('id')->on('branches');
+        });
+
     }
 
     /**
@@ -62,6 +66,10 @@ class ForeignKeys extends Migration
             $table->dropColumn('tag_id');
             $table->dropForeign('dish_id');
             $table->dropColumn('dish_id');
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('branch_id');
         });
 
     }

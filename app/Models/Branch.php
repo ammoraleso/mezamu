@@ -14,4 +14,8 @@ class Branch extends Model
     public function branchDishes(){
         return $this->hasMany(DishBranch::class);
     }
+
+    public function restaurant(){
+        return $this->belongsTo(Restaurant::class);
+    }
 }
