@@ -96,6 +96,7 @@
                         <div id="summary" class="pt-3">
                             @php
                                 $totalPrice = 0;
+                                $message = "Hola%20mi%20pedido%20es%20:%0A";
                             @endphp
                             <div style="justify-content: center; display: flex;">
                                 <table>
@@ -107,6 +108,7 @@
                                     @foreach(Session::get('cart') as $cartItem)
                                         @if(data_get($cartItem, 'item'))
                                             @php
+                                                
                                                 $itemComplete = data_get($cartItem, 'item');
                                                 $item = $itemComplete[0];
                                                 $dishBranch = $itemComplete[1];
@@ -119,6 +121,7 @@
                                                 //Calcular el impuesto al consumo.
                                                 $totalItemPrice = $itemQuantity*$itemPrice;
                                                 $totalPrice += $totalItemPrice;
+                                                $message = $message  . $item->name . "%20X" . $itemQuantity . "%20-%20$" . number_format($totalItemPrice, 0, '.', ',') . "%0A";
                                             @endphp
                                             
                                             <tr>
@@ -132,11 +135,16 @@
                                         <td></td>
                                         <td><h4><strong>{{__('general.Total')}}</strong></h4></td>
                                         <td><h4><strong>$ {{number_format($totalPrice, 0, '.', ',')}}</strong></h4></td>
-                                        
                                     </tr>
                                 </table>
+                            
                             </div>
                         </div>
+                        @php
+                            $message = $message  . "Total:%20$" . number_format($totalPrice, 0, '.', ',');
+                            $message = utf8_encode($message);
+                        @endphp
+                        {{ $message }}
                     </div>
                 </div>
             @else
@@ -147,7 +155,7 @@
             <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                 <input type="button" onclick="history.back()" name="volver" class="btn btn-back" value="volver">
                 @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                    <a href="{{route('sendOrder')}}"class="btn btn-success">Ordenar</a>
+                    <a href="https://api.whatsapp.com/send?phone=573222434296&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">Ordenar</a>
                 @endif
             </div>
         </span>
