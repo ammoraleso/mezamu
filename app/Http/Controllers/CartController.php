@@ -87,4 +87,8 @@ class CartController extends Controller
             }
         }
     }
+
+    public function sendOrder(){
+        $this->info('Entro');
+    }
 }
