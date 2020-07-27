@@ -121,7 +121,7 @@
                                                 //Calcular el impuesto al consumo.
                                                 $totalItemPrice = $itemQuantity*$itemPrice;
                                                 $totalPrice += $totalItemPrice;
-                                                $message = $message  . $item->name . "%20X" . $itemQuantity . "%20-%20$" . number_format($totalItemPrice, 0, '.', ',') . "%0A";
+                                                $message = $message  . $item->name . "%20(X" . $itemQuantity . ")%20-%20$" . number_format($totalItemPrice, 0, '.', ',') . "%0A";
                                             @endphp
                                             
                                             <tr>
@@ -144,7 +144,6 @@
                             $message = $message  . "Total:%20$" . number_format($totalPrice, 0, '.', ',');
                             $message = utf8_encode($message);
                         @endphp
-                        {{ $message }}
                     </div>
                 </div>
             @else
