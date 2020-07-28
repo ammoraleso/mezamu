@@ -29,7 +29,6 @@ Route::get('/mycart', 'CartController@showCart')->name('cart');
 Route::post('/addItem', 'CartController@addItem')->name('addItem');
 Route::post('/removeItem', 'CartController@removeItem')->name('removeItem');
 Route::post('/changeQuantity', 'CartController@changeQuantity')->name('changeQuantity');
-Route::get('/', 'CartController@sendOrder')->name('sendOrder');
 
 Auth::routes();
 

@@ -16,7 +16,6 @@
     <script>
         var changeQuantityUrl = '{{route('changeQuantity')}}';
         var removeItemUrl = '{{route('removeItem')}}';
-        var sendOrderUrl = '{{route('sendOrder')}}';
     </script>
 @endpush
 
@@ -32,7 +31,7 @@
                             <div class="card-header">
                                 <h5 class="mb-0">
                                 <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseProd" aria-expanded="false" aria-controls="collapseTwo">
-                                    {{__('general.Products')}} 
+                                    {{__('general.Products')}}
                                 </button>
                                 </h5>
                             </div>
@@ -69,13 +68,13 @@
                                                                         <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
                                                                         <strong class="mt-2 mt-md-0 mb-0">$ {{$dish['formatedPrice']}} c/u</strong>
                                                                     </div>
-                                                                    <div class="addItems" style="inline-grid">
+                                                                    <div class="addItems">
                                                                         <div class="quantity mb-3">
                                                                             <input onchange="changeQuantity({{$dish}}, this.value);" id="quantity" name="quantity" type="number" min="1" max="100" step="1" value="{{data_get($cartItem, 'quantity')}}" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
                                                                         </div>
                                                                         <div class="quantity mb-3">
                                                                             <a onclick="removeItem({{$dish}});" href="#" style="color: currentColor"><u>{{__('general.Delete')}}</u></a>
-                                                                        </div>    
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -108,7 +107,7 @@
                                     @foreach(Session::get('cart') as $cartItem)
                                         @if(data_get($cartItem, 'item'))
                                             @php
-                                                
+
                                                 $itemComplete = data_get($cartItem, 'item');
                                                 $item = $itemComplete[0];
                                                 $dishBranch = $itemComplete[1];
@@ -123,7 +122,7 @@
                                                 $totalPrice += $totalItemPrice;
                                                 $message = $message  . $item->name . "%20(X" . $itemQuantity . ")%20-%20$" . number_format($totalItemPrice, 0, '.', ',') . "%0A";
                                             @endphp
-                                            
+
                                             <tr>
                                             <td class="no-align">{{$item['name']}}</td>
                                             <td>X {{$itemQuantity}}</td>
@@ -137,7 +136,7 @@
                                         <td><h4><strong>$ {{number_format($totalPrice, 0, '.', ',')}}</strong></h4></td>
                                     </tr>
                                 </table>
-                            
+
                             </div>
                         </div>
                         @php
