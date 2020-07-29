@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if(Auth::check()){
-        return redirect('/home');
+        return view('/home');
     }
     return view('welcome');
 });
@@ -32,7 +32,6 @@ Route::post('/changeQuantity', 'CartController@changeQuantity')->name('changeQua
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/invalidToken', function () {
     return view('invalidToken');
 })->name('invalidToken');

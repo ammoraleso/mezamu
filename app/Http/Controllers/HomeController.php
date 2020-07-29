@@ -15,15 +15,4 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     */
-    public function index()
-    {
-        $user = Auth::user();
-        $branch = $user->branch;
-        $restaurant =  $branch->restaurant;
-        return view('home', compact('restaurant','branch'));
-    }
 }
