@@ -43,4 +43,7 @@ return [
     'Categories' => 'Categorias',
     'Quantity' => 'Quantity',
     'Cost' => 'Value',
+    'OrderSuccess' =>'Order Succes',
+    'YourOrderWillCook' =>'Your Order Was created',
+    'YourOrderWillCookSoon' =>'Your Order Will Cook soon'
 ];

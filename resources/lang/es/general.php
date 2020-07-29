@@ -43,5 +43,7 @@ return [
     'Categories' => 'Categorias',
     'Quantity' => 'Cantidad',
     'Cost' => 'Valor',
-
+    'OrderSuccess' =>'Orden Creada',
+    'YourOrderWillCook' =>'Tu orden fue enviada al restaurante',
+    'YourOrderWillCookSoon' =>'se empezará a cocinar pronto'
 ];
