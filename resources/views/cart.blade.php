@@ -4,8 +4,6 @@
     {{ "MeZamÜ | Shopping" }}
 @endsection
 
-@section('title') {{ __('general.My_Cart')}} @endsection
-
 @push('stylesAndScripts')
     <link rel="stylesheet" href="{{asset('css/input_number_spinner.css')}}">
     <link rel="stylesheet" href="{{asset('css/cart.css')}}">
@@ -168,10 +166,11 @@
         $('#mia').click(function(){
             //we will send data and recive data fom our AjaxController
             $.ajax({
-                url:'{{route('clearCart')}}',
+                url:'{{route('checkOut')}}',
                 data:{},
                 type:'post',
                 success: function (response) {
+                    window.location.replace('successfulPurchase');
                 },
                 statusCode: {
                     404: function() {
@@ -180,7 +179,7 @@
                 },
                 error:function(x,xs,xt){
                     //nos dara el error si es que hay alguno
-                    window.open(JSON.stringify(x));
+                    console.log(JSON.stringify(x));
                     //alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
                 }
             });

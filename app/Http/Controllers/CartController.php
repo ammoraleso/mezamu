@@ -88,7 +88,7 @@ class CartController extends Controller
         }
     }
 
-    public function clearCart(){
+    public function checkOut(){
         Session::forget('cart');
     }
 
