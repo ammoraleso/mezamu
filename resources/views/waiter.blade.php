@@ -14,8 +14,9 @@
         <button type="submit" onclick="generateCode()" class="btn btn-success">{{ __('Generate Code') }}</button>
     </form>
     @isset($table,$token)
-        <div class="p-3">
-            <div class="m-auto" style="width: fit-content">{!!QrCode::generate('http://127.0.0.1/'.Auth::user()->branch->restaurant->slug.'/'.Auth::user()->branch->location.'/'.$table.'/'.$token)!!}</div>
+        <div class="p-3 text-center">
+            <strong><p>{{__('You qr code')}} {{$table}}</p></strong>
+            <div class="m-auto" style="width: fit-content">{!!QrCode::size(250)->generate('http://127.0.0.1/'.Auth::user()->branch->restaurant->slug.'/'.Auth::user()->branch->location.'/'.$table.'/'.$token)!!}</div>
         </div>
     @endisset
 </div>
