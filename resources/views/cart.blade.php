@@ -153,31 +153,37 @@
             <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                 <a class="btn btn-danger" href="{{url()->previous()}}">Volver</a>
                 @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                    <a id="mia" onclick="myFunction()" href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">Ordenar</a>
+                    <a id="mia" href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">Ordenar</a>
                 @endif
             </div>
         </span>
     </div>
 
     <script>
-
-         function myFunction() {
-
-             $.ajax({
-                 url: "{{ route('algo')}}",
-                 data: "name=Camilo",
-                 dataType: "json",
-                 method: "POST",
-                 success: function(result)
-                 {
-                     if (result['result'] == 'ok')
-                     {
-
-                     }
-                 },
-                 fail: function(){
-                 }
-             });
-         }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#mia').click(function(){
+            //we will send data and recive data fom our AjaxController
+            $.ajax({
+                url:'{{route('algo')}}',
+                data:{'name':"luis"},
+                type:'post',
+                success: function (response) {
+                },
+                statusCode: {
+                    404: function() {
+                        alert('web not found');
+                    }
+                },
+                error:function(x,xs,xt){
+                    //nos dara el error si es que hay alguno
+                    window.open(JSON.stringify(x));
+                    //alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                }
+            });
+        });
     </script>
 @endsection

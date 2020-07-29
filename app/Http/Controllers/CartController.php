@@ -88,8 +88,8 @@ class CartController extends Controller
         }
     }
 
-    public function algo(Request $request){
-
+    public function clearCart(){
+        Session::forget('cart');
     }
 
 }

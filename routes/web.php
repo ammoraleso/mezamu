@@ -30,7 +30,7 @@ Route::post('/addItem', 'CartController@addItem')->name('addItem');
 Route::post('/removeItem', 'CartController@removeItem')->name('removeItem');
 Route::post('/changeQuantity', 'CartController@changeQuantity')->name('changeQuantity');
 
-Route::post('/algo', 'CartController@algo')->name('algo');
+Route::post('/clearCart', 'CartController@clearCart')->name('clearCart');
 
 Auth::routes();
 
