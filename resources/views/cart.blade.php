@@ -168,14 +168,14 @@
         $('#mia').click(function(){
             //we will send data and recive data fom our AjaxController
             $.ajax({
-                url:'{{route('algo')}}',
-                data:{'name':"luis"},
+                url:'{{route('clearCart')}}',
+                data:{},
                 type:'post',
                 success: function (response) {
                 },
                 statusCode: {
                     404: function() {
-                        alert('web not found');
+                        console.log('web not found');
                     }
                 },
                 error:function(x,xs,xt){
