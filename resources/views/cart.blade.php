@@ -151,11 +151,33 @@
             @endif
             <hr>
             <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
-                <input type="button" onclick="history.back()" name="volver" class="btn btn-back" value="volver">
+                <a class="btn btn-danger" href="{{url()->previous()}}">Volver</a>
                 @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                    <a href="https://api.whatsapp.com/send?phone=573222434296&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">Ordenar</a>
+                    <a id="mia" onclick="myFunction()" href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">Ordenar</a>
                 @endif
             </div>
         </span>
     </div>
+
+    <script>
+
+         function myFunction() {
+
+             $.ajax({
+                 url: "{{ route('algo')}}",
+                 data: "name=Camilo",
+                 dataType: "json",
+                 method: "POST",
+                 success: function(result)
+                 {
+                     if (result['result'] == 'ok')
+                     {
+
+                     }
+                 },
+                 fail: function(){
+                 }
+             });
+         }
+    </script>
 @endsection

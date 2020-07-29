@@ -1,15 +1,25 @@
 function completeCartFade() {
-    $("#cartIcon").fadeOut("slow", function() {
-        $("#cartIcon").load(location.href + " #cartIcon>*", function() {
-            $("#cartIcon").fadeIn("slow");
+    $("#cartIconSmall").fadeOut("slow", function() {
+        $("#cartIconSmall").load(location.href + " #cartIconSmall>*", function() {
+            $("#cartIconSmall").fadeIn("slow");
+        });
+    });
+    $("#cartIconLarge").fadeOut("slow", function() {
+        $("#cartIconLarge").load(location.href + " #cartIconLarge>*", function() {
+            $("#cartIconLarge").fadeIn("slow");
         });
     });
 }
 
 function cartBadgeFade() {
-    $("#cartBadge").fadeOut("slow", function() {
-        $("#cartBadge").load(location.href + " #cartBadge>*", function() {
-            $("#cartBadge").fadeIn("slow");
+    $("#cartBadgeSmall").fadeOut("slow", function() {
+        $("#cartBadgeSmall").load(location.href + " #cartBadgeSmall>*", function() {
+            $("#cartBadgeSmall").fadeIn("slow");
+        });
+    });
+    $("#cartBadgeLarge").fadeOut("slow", function() {
+        $("#cartBadgeLarge").load(location.href + " #cartBadgeLarge>*", function() {
+            $("#cartBadgeLarge").fadeIn("slow");
         });
     });
 }

@@ -88,4 +88,8 @@ class CartController extends Controller
         }
     }
 
+    public function algo(Request $request){
+
+    }
+
 }

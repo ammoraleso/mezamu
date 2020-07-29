@@ -13,6 +13,10 @@ class DishBranch extends Model
         return $this->hasOne(Dish::class,'id','dish_id');
     }
 
+    public function branch(){
+        return $this->belongsTo(Branch::class);
+    }
+
     public function discountPercentage(){
         if (!is_null($this->promotion_percentage) and $this->promotion_percentage != 0){
             return $this->promotion_percentage;
