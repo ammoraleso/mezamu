@@ -14,22 +14,22 @@
 
 @section('content')
     <div class="mb-5">
-    <div class="d-lg-flex p-3 m-auto" style="width: 90%">
-        <div class="mb-3">
-            <h1 class="text-center" style="margin: 0 auto 3vh;">{{__('What we do text')}}</h1>
-            <h3 class="w-75 m-auto text-justify">{{__('What we do explanation')}}</h3>
-        </div>
-        <div id="flip-card" class="flip-card m-auto">
-        <div id="flip-card-inner" class="flip-card-inner">
-            <div class="flip-card-front">
-                <img class="menu" src="{{asset('images/menu.jpg')}}" alt="menu">
+        <div class="d-lg-flex p-3 m-auto" style="width: 90%">
+            <div class="mb-3">
+                <h1 class="text-center" style="margin: 0 auto 3vh;">{{__('What we do text')}}</h1>
+                <h3 class="w-75 m-auto text-justify">{{__('What we do explanation')}}</h3>
             </div>
-            <div id="flip-card-back" class="flip-card-back">
-                <div class="m-auto" style="width: fit-content">{!!QrCode::size(250)->generate('http://127.0.0.1/balu/cajica')!!}</div>
+            <div id="flip-card" class="flip-card m-auto">
+                <div id="flip-card-inner" class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img class="menu" src="{{asset('images/menu.jpg')}}" alt="menu">
+                    </div>
+                    <div id="flip-card-back" class="flip-card-back">
+                        <div class="m-auto" style="width: fit-content">{!!QrCode::size(250)->generate('https://mezamu.com')!!}</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <footer style="margin: 0" class="footer-distributed">
 
