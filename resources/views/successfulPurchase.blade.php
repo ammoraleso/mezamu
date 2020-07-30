@@ -18,4 +18,11 @@
       <h1>{{__('general.OrderSuccess')}}</h1> 
       <p>{{__('general.YourOrderWillCook')}}<br/>{{__('general.YourOrderWillCookSoon')}}</p>
     </div>
+    <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
+      @if (Session::get('urlMenu'))
+        <a class="btn btn-danger" href={{Session::get('urlMenu')}}>Volver</a>
+      @else
+        <a class="btn btn-danger" href="{{url()->previous()}}">Volver</a>
+      @endif
+    </div>
 @endsection
