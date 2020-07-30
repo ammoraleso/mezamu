@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use App\Utils\Utils;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Session;
 
 class MenuController extends BaseController
 {
@@ -27,7 +28,10 @@ class MenuController extends BaseController
         $dishes = $branch->dishes;
         $categories = $this->loadCategories($dishes);
         $branchDishes = $branch->branchDishes;
+        $urlMenu = $this->generate_url($restaurant->slug, $branchName, $table, $token);
         $allowAdd = true;
+        Session::put('urlMenu', $urlMenu);
+        Session::save();
         return view('menu', compact('branchDishes', 'categories', 'allowAdd'));
     }
 
@@ -44,5 +48,24 @@ class MenuController extends BaseController
         $categories = array_unique($categories);
         usort($categories, array($this,'sort_objects_by_id'));
         return $categories;
+    }
+
+    public function generate_url($restaurantName, $branchName, $table, $token)
+    {
+        $server_name = $_SERVER['SERVER_NAME'];
+
+        if (!in_array($_SERVER['SERVER_PORT'], [80, 443])) {
+            $port = ":$_SERVER[SERVER_PORT]";
+        } else {
+            $port = '';
+        }
+
+        if (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) {
+            $scheme = 'https';
+        } else {
+            $scheme = 'http';
+        }
+        $uriRestaurant = '/'.$restaurantName.'/'.$branchName.'/'.$table.'/'.$token;
+        return $scheme.'://'.$server_name.$port.$uriRestaurant;
     }
 }
