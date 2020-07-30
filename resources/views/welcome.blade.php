@@ -4,33 +4,33 @@
     {{ "MeZamÜ | Home" }}
 @endsection
 
-@section('content')
-
+@push('stylesAndScripts')
     <link rel="stylesheet" href="{{asset('css/footer/footer-distributed-with-address-and-phones.css')}}">
-    <link rel="stylesheet" href="{{asset('css/carousel.css')}}">
     <link rel="stylesheet" href="{{asset('css/utils.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <div id="welcome" class="flex-center position-ref full-height">
-        <div class="content">
-            <div class="title mb-3">
-                Bienvenido a MeZamü​
-            </div>
-            <div>
-                <div>
-                    <h4 >MeZamÜ facilita los protocolos de bioseguridad alineados a los estándares de atención
-                        y satisfacción al cliente, junto con el mejoramiento de los estándares de servicio y optimización
-                        de costos al enfocarse en una tendencia virtual y digitalizada.</h4>
-                </div>
-            </div>
+    <link rel="stylesheet" href="{{asset('css/flip.css')}}">
+@endpush
 
-            <button class="btn button_app" style="font-size: 20px;" href="/">
-                Conocenos
-            </button>
+@section('content')
+    <div class="mb-5">
+    <div class="d-lg-flex p-3 m-auto" style="width: 90%">
+        <div class="mb-3">
+            <h1 class="text-center" style="margin: 0 auto 3vh;">{{__('What we do text')}}</h1>
+            <h3 class="w-75 m-auto text-justify">{{__('What we do explanation')}}</h3>
+        </div>
+        <div id="flip-card" class="flip-card m-auto">
+        <div id="flip-card-inner" class="flip-card-inner">
+            <div class="flip-card-front">
+                <img class="menu" src="{{asset('images/menu.jpg')}}" alt="menu">
+            </div>
+            <div id="flip-card-back" class="flip-card-back">
+                <div class="m-auto" style="width: fit-content">{!!QrCode::size(250)->generate('http://127.0.0.1/balu/cajica')!!}</div>
+            </div>
         </div>
     </div>
-
-
+    </div>
+    </div>
     <footer style="margin: 0" class="footer-distributed">
 
         <div class="footer-left">
@@ -69,47 +69,18 @@
         </div>
 
     </footer>
-    <script>
-        $(document).ready(function() {
-            var itemsPerSlide = 3;
-            var totalItems = $(".carousel-item").length;
-            if(itemsPerSlide >= totalItems){//se ocultan las flechas de mover el carrousel cuando tiene 3 o menos items para mostrar
-                $("a[class^='carousel-control-']").css('display', 'none');
+
+    <script type="text/javascript">
+        var rotated = false;
+
+        window.setInterval(function(){
+            if(rotated){
+                document.getElementById('flip-card-inner').style.transform = 'rotateY(0)';
+            }else{
+                document.getElementById('flip-card-inner').style.transform = 'rotateY(180deg)';
             }
-
-            $("#myCarousel").on("slide.bs.carousel", function(e) {
-
-                if(itemsPerSlide >= totalItems) {//solo se mueve el carousel cuando hay más de 3 cards
-                    return false
-                }
-
-                var $e = $(e.relatedTarget);
-                var idx = $e.index();
-                console.log('indice: '+idx);
-                if (idx >= totalItems - (itemsPerSlide - 1)) {
-                    var it = itemsPerSlide - (totalItems - idx);
-                    console.log('otro: '+it);
-                    for (var i = 0; i < it; i++) {
-                        // append slides to end
-                        if (e.direction == "left") {
-                            $(".carousel-item")
-                                .eq(i)
-                                .appendTo(".carousel-inner");
-                        } else {
-                            $(".carousel-item")
-                                .eq(0)
-                                .appendTo(".carousel-inner");
-                        }
-                    }
-                    /*$(".media-slider").css('width', '100');*/
-                }
-
-
-            });
-            /*$("#myCarousel").on("slid.bs.carousel", function(e) {
-                $(".media-slider").css('width', '100%');
-            });*/
-        });
+            rotated = !rotated;
+        }, 3000);
     </script>
 
     <!--subscribers-->
@@ -130,24 +101,24 @@
     </script>
 
     <!--chat de soporte-->
-    <!--Para que se dragable pero que no muestre el chat al finalizar el drag-->
-    <script>
-        $(function() {
-            $( ".draggable" ).draggable({
-                stop: function(event, ui) {
-                    $('.purechat-expanded').attr('style', 'display: none!important');
-                }
+        <!--Para que se dragable pero que no muestre el chat al finalizar el drag-->
+        <script>
+            $(function() {
+                $( ".draggable" ).draggable({
+                    stop: function(event, ui) {
+                        $('.purechat-expanded').attr('style', 'display: none!important');
+                    }
+                });
+                $( ".draggable" ).click(function(){
+                    $('.purechat-expanded').attr('style', 'display: ');
+                });
             });
-            $( ".draggable" ).click(function(){
-                $('.purechat-expanded').attr('style', 'display: ');
-            });
-        });
-    </script>
-    <!--<script src="https://code.jquery.com/jquery-1.9.1.js"></script> Si se deja se daña el slider y al parecer ya está en otro lugar o no se necesita porque se quita y aún así funciona correctamente el draggable.-->
-    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <!--fin Para que se dragable pero que no muestre el chat al finalizar el drag-->
+        </script>
+        <!--<script src="https://code.jquery.com/jquery-1.9.1.js"></script> Si se deja se daña el slider y al parecer ya está en otro lugar o no se necesita porque se quita y aún así funciona correctamente el draggable.-->
+        <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <!--fin Para que se dragable pero que no muestre el chat al finalizar el drag-->
 
-    <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '1e110dc0-e024-4b2b-a871-4e07f3dec0d3', f: true }); done = true; } }; })();</script>
+        <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '1e110dc0-e024-4b2b-a871-4e07f3dec0d3', f: true }); done = true; } }; })();</script>
     <!--fin chat de soporte-->
 
 @endsection
