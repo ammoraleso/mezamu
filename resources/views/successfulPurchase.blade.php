@@ -4,7 +4,6 @@
     MeZamÜ | Successful Purchase
 @endsection
 
-
 @push('stylesAndScripts')
   <link rel="stylesheet" href="{{asset('css/successfulPurchase.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
