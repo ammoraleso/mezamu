@@ -14,8 +14,8 @@
 
 @section('content')
     <div id="welcome" class="flex-center position-ref full-height">
-        <div class="d-lg-flex justify-content-lg-around w-100">
-            <div class="text-center">
+        <div class="d-lg-flex justify-content-lg-around w-100 align-items-center">
+            <div class="text-center mb-5">
                 <div class="title mb-3">
                     MezamÜ
                 </div>
@@ -39,14 +39,14 @@
             </div>
         </div>
     </div>
-    <div class="d-lg-flex p-3 m-auto" style="width: 90%">
-        <div class="mb-3 m-auto">
 
+    <div class="d-lg-flex p-3 m-auto" style="width: 90%">
+        <div class="m-auto">
             <h3 style="width: 90%" class="m-auto text-justify">{{__('What we do explanation')}}</h3>
         </div>
     </div>
 
-    <footer style="margin: 0" class="footer-distributed">
+    <footer style="margin: 0" class="footer-distributed mt-5">
 
         <div class="footer-left">
 

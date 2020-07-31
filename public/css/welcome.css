@@ -264,6 +264,9 @@ h1{
         width: 80vw;
         margin: auto;
     }
+    .cellphone{
+        height: 100%;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -283,6 +286,9 @@ h1{
     .store{
         width: 60vw;
         margin: auto;
+    }
+    .cellphone{
+        height: 100%;
     }
 }
 
@@ -351,5 +357,4 @@ h1{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 150%;
 }
