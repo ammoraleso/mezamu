@@ -145,7 +145,7 @@ body{
     overflow-x: hidden;
 }
 #welcome{
-    color: white!important;
+    padding-bottom: 96px!important;
 }
 #welcome::after {
     content: "";
@@ -261,7 +261,7 @@ h1{
     blockquote {font-size: 1.125em;
         line-height: 1.25em;}
     .store{
-        width: 70vw;
+        width: 80vw;
         margin: auto;
     }
 }
@@ -281,7 +281,7 @@ h1{
     blockquote {font-size: 1.25em;
         line-height: 1.25em;}
     .store{
-        width: 70vw;
+        width: 60vw;
         margin: auto;
     }
 }
@@ -301,7 +301,7 @@ h1{
     blockquote {font-size: 1.5em;
         line-height: 1.46em;}
     .store{
-        width: 30vw;
+        width: 40vw;
         margin: auto;
     }
 }
@@ -321,7 +321,7 @@ h1{
     blockquote {font-size: 1.5em;
         line-height: 1.46em;}
     .store{
-        width: 20vw;
+        width: 30vw;
         margin: unset;
     }
 }
@@ -340,6 +340,10 @@ h1{
         line-height: 1.22em;}
     blockquote {font-size: 1.5em;
         line-height: 1.46em;}
+    .store{
+        width: 25vw;
+        margin: unset;
+    }
 
 }
 .cellphone{
@@ -347,4 +351,5 @@ h1{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    height: 150%;
 }
