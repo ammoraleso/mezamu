@@ -35,7 +35,8 @@
 <body>
 
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div style="height: 97px"><!--We need the hide to move content at the end of navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img alt="Mezamu Logo" class="custom-logo" src="/images/logo_blanco_sin_fondo.png">
             </a>
@@ -113,6 +114,7 @@
                 </ul>
             </div>
         </nav>
+        </div>
 
         <main>
             @yield('content')

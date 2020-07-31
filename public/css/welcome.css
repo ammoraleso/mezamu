@@ -135,7 +135,7 @@ body{
 }
 
 .section{
-    min-height: 90vh;
+    min-height: 100vh;
     height: fit-content;
     padding-top: 24px;
     position: relative;/*necesario para que las imágenes se ubiquen donde debe ser*/
@@ -247,12 +247,6 @@ h1{
     width: 50%;
     float:left;
 }
-
-#app{
-    background-color: #343a40 !important;
-    color: white;
-}
-
 @media only screen and (max-width: 600px) {
     h1 {font-size: 2em;
         line-height: 1.25em;}
@@ -266,6 +260,10 @@ h1{
         line-height: 1.11em;}
     blockquote {font-size: 1.125em;
         line-height: 1.25em;}
+    .store{
+        width: 70vw;
+        margin: auto;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -282,6 +280,10 @@ h1{
         line-height: 1.11em;}
     blockquote {font-size: 1.25em;
         line-height: 1.25em;}
+    .store{
+        width: 70vw;
+        margin: auto;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -298,6 +300,10 @@ h1{
         line-height: 1.22em;}
     blockquote {font-size: 1.5em;
         line-height: 1.46em;}
+    .store{
+        width: 30vw;
+        margin: auto;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -314,6 +320,10 @@ h1{
         line-height: 1.22em;}
     blockquote {font-size: 1.5em;
         line-height: 1.46em;}
+    .store{
+        width: 20vw;
+        margin: unset;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -331,4 +341,10 @@ h1{
     blockquote {font-size: 1.5em;
         line-height: 1.46em;}
 
+}
+.cellphone{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
