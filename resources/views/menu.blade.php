@@ -17,6 +17,10 @@
 
 @section('content')
 
+    <div class="pt-4 div-logo">
+        <img alt="Mezamu Logo" class="product-img" src="/images/{{$restaurant->logo}}">
+    </div>
+
     <div class="panel-group">
         <div class="accordion" id="accordionExample">
             @for($i =0; $i <count($categories); $i++)

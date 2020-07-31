@@ -32,7 +32,7 @@ class MenuController extends BaseController
         $allowAdd = true;
         Session::put('urlMenu', $urlMenu);
         Session::save();
-        return view('menu', compact('branchDishes', 'categories', 'allowAdd'));
+        return view('menu', compact('branchDishes', 'categories', 'allowAdd', 'restaurant'));
     }
 
     public function sort_objects_by_id($a, $b) {

@@ -42,3 +42,11 @@
     overflow: hidden;
     background-color: #f1f1f1;
 }
+
+.div-logo {
+    background-color: white;
+    justify-content: space-evenly;
+    display: flex;
+    padding-bottom: 2%;
+    padding-top: 2% !important;
+}
