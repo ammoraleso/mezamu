@@ -13,22 +13,60 @@
 @endpush
 
 @section('content')
-    <div class="mb-5">
-        <div class="d-lg-flex p-3 m-auto" style="width: 90%">
-            <div class="mb-3">
-                <h1 class="text-center" style="margin: 0 auto 3vh;">{{__('What we do text')}}</h1>
-                <h3 class="w-75 m-auto text-justify">{{__('What we do explanation')}}</h3>
+    <div id="welcome" class="flex-center position-ref full-height">
+        <div class="d-lg-flex justify-content-lg-around w-100">
+            <div class="text-center">
+                <div class="title mb-3">
+                    MezamÜ
+                </div>
+                <h4 class="mb-5">Tu tienda a un click</h4>
+                <a class="btn btn-success" style="font-size: 20px; padding: 7px 35px;" href="{{ route('register') }}">
+                    Quiero mi código
+                </a>
             </div>
-            <div id="flip-card" class="flip-card m-auto">
-                <div id="flip-card-inner" class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img class="menu" src="{{asset('images/menu.jpg')}}" alt="menu">
-                    </div>
-                    <div id="flip-card-back" class="flip-card-back">
-                        <div class="m-auto" style="width: fit-content">{!!QrCode::size(250)->generate('https://mezamu.com')!!}</div>
-                    </div>
+            <div class="position-relative">
+                <img class="store d-flex" src="{{asset('/images/store.png')}}">
+                <img class="cellphone" src="{{asset('/images/cellphone.png')}}">
+            </div>
+        </div>
+    </div>
+    <div class="d-lg-flex p-3 m-auto" style="width: 90%">
+        <div class="mb-3 m-auto">
+
+            <h3 style="width: 90%" class="m-auto text-justify">{{__('What we do explanation')}}</h3>
+        </div>
+        <div id="flip-card" class="flip-card m-auto">
+            <div id="flip-card-inner" class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="menu" src="{{asset('images/menu.jpg')}}" alt="menu">
+                </div>
+                <div id="flip-card-back" class="flip-card-back">
+                    <div class="m-auto">{!!QrCode::size(250)->generate('https://mezamu.com')!!}</div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="section" id="section2">
+        <!--repetido pero con el orden de la info y la imagen diferente para que en dispositivos pequeños el texto esté siempre arriba-->
+        <div class="d-block d-md-none sub-section-info">
+            <h1 class="mb-5">2. Recibe ofertas</h1>
+            <h3>Recibe ofertas de diferentes entrenadores que compiten por ayudarte a lograr tu meta <strong>fitness</strong></h3>
+        </div>
+        <div class="d-block d-md-none sub-section-image">
+            <div class="shadow-bottom h-100 w-100">
+                <img class="d-block w-100 h-100 how-works-image" src="{{asset('images/recibeOfertas.PNG')}}" alt="First slide">
+            </div>
+        </div>
+
+
+        <div class="d-none d-md-block sub-section-image">
+            <div class="shadow-bottom h-100 w-100">
+                <img class="d-block w-100 h-100 how-works-image" src="{{asset('images/recibeOfertas.PNG')}}" alt="First slide">
+            </div>
+        </div>
+        <div class="d-none d-md-block sub-section-info">
+            <h1 class="mb-5">2. Recibe ofertas</h1>
+            <h3>Recibe ofertas de diferentes entrenadores que compiten por ayudarte a lograr tu meta <strong>fitness</strong></h3>
         </div>
     </div>
     <footer style="margin: 0" class="footer-distributed">
