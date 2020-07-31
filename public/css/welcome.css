@@ -350,6 +350,9 @@ h1{
         width: 25vw;
         margin: unset;
     }
+    .cellphone{
+        height: 150%;
+    }
 
 }
 .cellphone{
