@@ -45,5 +45,8 @@ return [
     'Cost' => 'Valor',
     'OrderSuccess' =>'Orden Creada',
     'YourOrderWillCook' =>'Tu orden fue enviada al restaurante',
-    'YourOrderWillCookSoon' =>'se empezará a cocinar pronto'
+    'YourOrderWillCookSoon' =>'se empezará a cocinar pronto',
+    'GoToCart' => 'Ir Al Carrito',
+    'GoBack' => 'Volver',
+    'Order' => 'Ordenar',
 ];
