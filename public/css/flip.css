@@ -32,6 +32,12 @@
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }
+.flip-card-front{
+    width: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
