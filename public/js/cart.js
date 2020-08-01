@@ -71,3 +71,20 @@ function reloadSummary() {
         });
     });
 }
+
+async function goCheckout() {
+    //we will send data and recive data fom our AjaxController
+    try {
+        await $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            url: checkOutUrl,
+            data: {},
+            type: "post"
+        });
+    } catch (error) {
+        console.log("Error goCheckout put headers" + error);
+    }
+    window.location.replace("successfulPurchase");
+}

@@ -14,6 +14,7 @@
     <script>
         var changeQuantityUrl = '{{route('changeQuantity')}}';
         var removeItemUrl = '{{route('removeItem')}}';
+        var checkOutUrl = '{{route('checkOut')}}';
     </script>
 @endpush
 
@@ -93,7 +94,7 @@
                         <div id="summary" class="pt-3">
                             @php
                                 $totalPrice = 0;
-                                $message = "Hola%20mi%20pedido%20es%20:%0A";
+                                $message = "Hola%20estoy%20pidiendo%20por%20MeZamU%20-%0A";
                             @endphp
                             <div style="justify-content: center; display: flex;">
                                 <table>
@@ -109,6 +110,7 @@
                                                 $itemComplete = data_get($cartItem, 'item');
                                                 $item = $itemComplete[0];
                                                 $dishBranch = $itemComplete[1];
+                                                $table = Session::get('table');
                                                 $itemQuantity = data_get($cartItem, 'quantity');
                                                 $itemPrice = $item['price'];
                                                 if($dishBranch->promotion)
@@ -118,7 +120,7 @@
                                                 //Calcular el impuesto al consumo.
                                                 $totalItemPrice = $itemQuantity*$itemPrice;
                                                 $totalPrice += $totalItemPrice;
-                                                $message = $message  . $item->name . "%20(X" . $itemQuantity . ")%20-%20$" . number_format($totalItemPrice, 0, '.', ',') . "%0A";
+                                                $message = $message  ."%20". $item->name . "%20(X" . $itemQuantity . ")%20-%20$" . number_format($totalItemPrice, 0, '.', ',') . "%0A" ;
                                             @endphp
 
                                             <tr>
@@ -138,7 +140,7 @@
                             </div>
                         </div>
                         @php
-                            $message = $message  . "Total:%20$" . number_format($totalPrice, 0, '.', ',');
+                            $message = $message  . "Total:%20$" . number_format($totalPrice, 0, '.', ',') . "%0A" . "%2APEDIDO%20PARA%20LA%20MESA%20:%20" . $table."%2A";
                             $message = utf8_encode($message);
                         @endphp
                     </div>
@@ -150,43 +152,14 @@
             <hr>
             <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                 @if (Session::get('urlMenu'))
-                    <a class="btn btn-danger" href={{Session::get('urlMenu')}}>Volver</a>
+                    <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
                 @else
-                    <a class="btn btn-danger" href="{{url()->previous()}}">Volver</a>
+                    <a class="btn btn-danger" href="{{url()->previous()}}">{{__('general.GoBack')}}</a>
                 @endif
                 @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                    <a id="mia" href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">Ordenar</a>
+                    <a onclick="goCheckout();"  href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">{{__('general.Order')}}</a>
                 @endif
             </div>
         </span>
     </div>
-
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $('#mia').click(function(){
-            //we will send data and recive data fom our AjaxController
-            $.ajax({
-                url:'{{route('checkOut')}}',
-                data:{},
-                type:'post',
-                success: function (response) {
-                    window.location.replace('successfulPurchase');
-                },
-                statusCode: {
-                    404: function() {
-                        console.log('web not found');
-                    }
-                },
-                error:function(x,xs,xt){
-                    //nos dara el error si es que hay alguno
-                    console.log(JSON.stringify(x));
-                    //alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
-                }
-            });
-        });
-    </script>
 @endsection

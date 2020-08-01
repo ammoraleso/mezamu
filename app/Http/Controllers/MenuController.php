@@ -30,6 +30,7 @@ class MenuController extends BaseController
         $branchDishes = $branch->branchDishes;
         $urlMenu = $this->generate_url($restaurant->slug, $branchName, $table, $token);
         $allowAdd = true;
+        Session::put('table', $table);
         Session::put('urlMenu', $urlMenu);
         Session::save();
         return view('menu', compact('branchDishes', 'categories', 'allowAdd', 'restaurant'));
