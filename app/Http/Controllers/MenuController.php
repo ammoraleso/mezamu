@@ -17,7 +17,7 @@ class MenuController extends BaseController
         $categories = $this->loadCategories($dishes);
         $branchDishes = $branch->branchDishes;
         $allowAdd = false;
-        return view('menu', compact('branchDishes', 'categories', 'allowAdd'));
+        return view('menu', compact('branchDishes', 'categories', 'allowAdd','restaurant'));
     }
 
     public function menuWithToken(Restaurant $restaurant, $branchName, $table, $token){
