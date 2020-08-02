@@ -52,26 +52,24 @@
                                                     </strong>
                                                 </div>
                                                 <small><p class="ellipsis menu-description m-0">{{$dish->description}}</p></small>
-                                                <div class="d-flex flex-column-reverse h-100">
-                                                    <div style="padding-top: 2%;">
-                                                        <div class="price-container">
-                                                            @if($branchDish->promotion)
-                                                                <strong class="mr-2">${{number_format($branchDish->discountPrice(), 0, '.', ',')}}</strong>
-                                                            @endif
-                                                            <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
-                                                        </div>
-                                                        @if($allowAdd)
-                                                            <div class="addItems">
-                                                                <div class="quantity mb-3">
-                                                                    <input id="quantity{{$dish->id}}" name="quantity{{$dish->id}}" type="number" min="1" max="100" step="1" value="1" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
-                                                                </div>
-
-                                                                <button type="submit" class="btn btn-success" onclick="addItem({{$dish}},{{$branchDish}});">
-                                                                    {{__('general.Add_to_cart')}}
-                                                                </button>
-                                                            </div>
+                                                <div class="d-lg-flex w-100" style="justify-content: space-between">
+                                                    <div class="price-container">
+                                                        @if($branchDish->promotion)
+                                                            <strong class="mr-2">${{number_format($branchDish->discountPrice(), 0, '.', ',')}}</strong>
                                                         @endif
+                                                        <span class="{{$branchDish->promotion ? 'before-price' : 'font-weight-bold'}}">${{number_format($dish->price, 0, '.', ',')}}</span>
                                                     </div>
+                                                    @if($allowAdd)
+                                                        <div class="addItems">
+                                                            <div class="quantity mb-3">
+                                                                <input id="quantity{{$dish->id}}" name="quantity{{$dish->id}}" type="number" min="1" max="100" step="1" value="1" class="bg-transparent" readonly="true"><!--we use readonly instead of disable because with the last one the data is not send in the request-->
+                                                            </div>
+
+                                                            <button type="submit" class="btn btn-success" onclick="addItem({{$dish}},{{$branchDish}});">
+                                                                {{__('general.Add_to_cart')}}
+                                                            </button>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -128,7 +126,7 @@
                                                             @endif
                                                             <span class="{{$branchDish->promotion ? 'before-price' : '' }}">${{number_format($dish->price, 0, '.', ',')}}</span>
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
