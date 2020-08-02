@@ -45,5 +45,6 @@ return [
     'Cost' => 'Value',
     'OrderSuccess' =>'Order Succes',
     'YourOrderWillCook' =>'Your Order Was created',
-    'YourOrderWillCookSoon' =>'Your Order Will Cook soon'
+    'YourOrderWillCookSoon' =>'Your Order Will Cook soon',
+    'GoToCart' => 'Go To The Cart'
 ];

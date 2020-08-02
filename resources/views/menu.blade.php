@@ -141,4 +141,9 @@
             @endfor
         </div>
     </div>
+    @if ($allowAdd)
+        <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
+            <a class="btn btn-success" href="{{route('cart')}}">{{__('general.GoToCart')}}</a>
+        </div>
+    @endif
 @endsection
