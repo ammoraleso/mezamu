@@ -5,7 +5,7 @@ namespace App\Utils;
 
 
 use App\Models\Restaurant;
-use App\Token;
+use App\Models\Token;
 
 class Utils
 {
