@@ -16,11 +16,14 @@
         var removeItemUrl = '{{route('removeItem')}}';
         var checkOutUrl = '{{route('checkOut')}}';
     </script>
+
+    <!--Script to read QR Code-->
+
 @endpush
 
 @section('content')
-
     <div class="container-fluid">
+
 
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
@@ -95,6 +98,7 @@
                             @php
                                 $totalPrice = 0;
                                 $message = "Hola%20estoy%20pidiendo%20por%20MeZamU%20-%0A";
+                                $paymentCart = array();
                             @endphp
                             <div style="justify-content: center; display: flex;">
                                 <table>
@@ -121,6 +125,7 @@
                                                 $totalItemPrice = $itemQuantity*$itemPrice;
                                                 $totalPrice += $totalItemPrice;
                                                 $message = $message  ."%20". $item->name . "%20(X" . $itemQuantity . ")%20-%20$" . number_format($totalItemPrice, 0, '.', ',') . "%0A" ;
+                                                array_push($paymentCart, [$item->id => ['quantity' => $itemQuantity, 'totalItemPrice' => $totalItemPrice]]);
                                             @endphp
 
                                             <tr>
@@ -149,17 +154,43 @@
                 <h3 class="m-4">{{__('general.empty_cart_message')}}</h3>
                 <a class="bg-base btn ml-4" href="/">{{__('general.Continue_shopping')}}</a>
             @endif
-            <hr>
-            <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
-                @if (Session::get('urlMenu'))
-                    <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
-                @else
-                    <a class="btn btn-danger" href="{{url()->previous()}}">{{__('general.GoBack')}}</a>
-                @endif
-                @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                    <a onclick="goCheckout();"  href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">{{__('general.Order')}}</a>
-                @endif
-            </div>
+            <form onsubmit="return false">
+                <fieldset class="form-group mt-3">
+                    <div class="row m-auto" style="width: fit-content">
+                        <strong><legend class="col-form-label col-sm-2 pt-0">{{__('To')}}:</legend></strong>
+                        <div class="col">
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="toWhere" id="toWhere1" value="table" required>
+                                <label class="form-check-label" for="toWhere1">{{__('Table')}}</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="toWhere" id="toWhere2" value="delivery" required>
+                                <label class="form-check-label" for="toWhere2">{{__('Delivery')}}</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input class="form-check-input" type="radio" name="toWhere" id="toWhere3" value="takeAway" required>
+                                <label class="form-check-label" for="toWhere3">{{__('Take away')}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
+                    @if (Session::get('urlMenu'))
+                        <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
+                    @else
+                        <a class="btn btn-danger" href="{{url()->previous()}}">{{__('general.GoBack')}}</a>
+                    @endif
+                    @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
+                        <button type="submit" onclick="checkout('{{$dishBranch->branch->telefono}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
+                    @endif
+                </div>
+            </form>
         </span>
     </div>
+
+   @include('modalConfirmRequest')
+    @include('modalDelivery')
+
 @endsection
+
+

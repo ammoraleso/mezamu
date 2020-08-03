@@ -16,24 +16,7 @@ class MenuController extends BaseController
         $dishes = $branch->dishes;
         $categories = $this->loadCategories($dishes);
         $branchDishes = $branch->branchDishes;
-        $allowAdd = false;
-        return view('menu', compact('branchDishes', 'categories', 'allowAdd','restaurant'));
-    }
-
-    public function menuWithToken(Restaurant $restaurant, $branchName, $table, $token){
-        $branch = Utils::verifyBranch($restaurant, $branchName);
-        if(!Utils::isTokenValid($token)){
-            return view('invalidToken');
-        }
-        $dishes = $branch->dishes;
-        $categories = $this->loadCategories($dishes);
-        $branchDishes = $branch->branchDishes;
-        $urlMenu = $this->generate_url($restaurant->slug, $branchName, $table, $token);
-        $allowAdd = true;
-        Session::put('table', $table);
-        Session::put('urlMenu', $urlMenu);
-        Session::save();
-        return view('menu', compact('branchDishes', 'categories', 'allowAdd', 'restaurant'));
+        return view('menu', compact('restaurant','branchDishes', 'categories'));
     }
 
     public function sort_objects_by_id($a, $b) {
@@ -49,24 +32,5 @@ class MenuController extends BaseController
         $categories = array_unique($categories);
         usort($categories, array($this,'sort_objects_by_id'));
         return $categories;
-    }
-
-    public function generate_url($restaurantName, $branchName, $table, $token)
-    {
-        $server_name = $_SERVER['SERVER_NAME'];
-
-        if (!in_array($_SERVER['SERVER_PORT'], [80, 443])) {
-            $port = ":$_SERVER[SERVER_PORT]";
-        } else {
-            $port = '';
-        }
-
-        if (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) {
-            $scheme = 'https';
-        } else {
-            $scheme = 'http';
-        }
-        $uriRestaurant = '/'.$restaurantName.'/'.$branchName.'/'.$table.'/'.$token;
-        return $scheme.'://'.$server_name.$port.$uriRestaurant;
     }
 }

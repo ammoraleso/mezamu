@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Models\DishBranch;
+use App\Token;
+use App\Utils\Utils;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 
@@ -89,7 +91,12 @@ class CartController extends Controller
     }
 
     public function checkOut(){
-        Session::forget('cart');
+        $token = request()->token;
+        if(Utils::isTokenValid($token)) {
+            Session::forget('cart');
+        }else{
+            return response()->json(['error' => 'Invalid token'], 500); // Status code here
+        }
     }
 
 }

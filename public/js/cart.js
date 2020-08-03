@@ -72,19 +72,49 @@ function reloadSummary() {
     });
 }
 
-async function goCheckout() {
+var phone;
+var message;
+async function checkout(phone, message) {
     //we will send data and recive data fom our AjaxController
+    if(typeof $("input[name='toWhere']:checked").val()  === "undefined"){
+        return;
+    }
+    this.phone = phone;
+    this.message = message;
+
+    const ele = document.getElementsByName('toWhere');
+    var selectedPlace = null;
+    for(let i = 0; i < ele.length; i++) {
+        if(ele[i].checked){
+            selectedPlace = ele[i].value;
+            break;
+        }
+    }
+    switch (selectedPlace) {
+        case "table":
+            $("#modalTableToken").modal("show");
+            break;
+        case "delivery":
+            $("#modalDelivery").modal("show");
+            break;
+    }
+}
+
+async function successfullCodeRead(token) {
     try {
         await $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: checkOutUrl,
-            data: {},
+            data: {token: token},
             type: "post"
         });
     } catch (error) {
         console.log("Error goCheckout put headers" + error);
+        alert('Invalid code');
+        return;
     }
     window.location.replace("successfulPurchase");
+    window.open("https://api.whatsapp.com/send?phone="+phone+"&text="+message);
 }
