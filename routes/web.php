@@ -21,7 +21,6 @@ Route::get('/', function () {
 });
 
 Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');
-Route::get('/{restaurant}/{branch}/{table}/{token}', 'MenuController@menuWithToken')->name('menu');
 Route::post('/waiter', 'WaiterController@generateCode')->name('generateCode');
 
 //Cart Controller
