@@ -29,8 +29,9 @@ Route::post('/addItem', 'CartController@addItem')->name('addItem');
 Route::post('/removeItem', 'CartController@removeItem')->name('removeItem');
 Route::post('/changeQuantity', 'CartController@changeQuantity')->name('changeQuantity');
 Route::post('/checkOut', 'CartController@checkOut')->name('checkOut');
-//temporal URL to call successfulPurchase, this will be deleted after all the checkout process would be processed on controller
 Route::get('/successfulPurchase', function () {return view('/successfulPurchase');});
+Route::get('/rejectedPurchase', function () {return view('/successfulPurchase');});
+Route::get('/pendingPurchase', function () {return view('/successfulPurchase');});
 
 Auth::routes();
 

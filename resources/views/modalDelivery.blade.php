@@ -66,7 +66,8 @@
 
         function showPayModal() {
             $name = $('#name').val();
-            $city = $('#city').val();
+            //$city = $('#city').val();
+            $city = 1;
             $address = $('#address').val();
             if(!$name) {
                 $('#name').focus();
@@ -75,6 +76,7 @@
             }else{
                 $('#name').removeClass('is-invalid');
             }
+
             if(!$city){
                 $('#city').focus();
                 $('#city').addClass('is-invalid');
