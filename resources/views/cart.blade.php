@@ -150,46 +150,48 @@
                         @endphp
                     </div>
                 </div>
-            @else
-                <h3 class="m-4">{{__('general.empty_cart_message')}}</h3>
-                <a class="bg-base btn ml-4" href="/">{{__('general.Continue_shopping')}}</a>
-            @endif
-            <form onsubmit="return false">
-                <fieldset class="form-group mt-3">
-                    <div class="row m-auto" style="width: fit-content">
-                        <strong><legend class="col-form-label col-sm-2 pt-0">{{__('To')}}:</legend></strong>
-                        <div class="col">
-                            <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="toWhere" id="toWhere1" value="table" required>
-                                <label class="form-check-label" for="toWhere1">{{__('Table')}}</label>
-                            </div>
-                            <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="toWhere" id="toWhere2" value="delivery" required>
-                                <label class="form-check-label" for="toWhere2">{{__('Delivery')}}</label>
-                            </div>
-                            <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="toWhere" id="toWhere3" value="takeAway" required>
-                                <label class="form-check-label" for="toWhere3">{{__('Take away')}}</label>
+
+                @include('modalConfirmRequest')
+                @include('modalDelivery')
+
+                <form onsubmit="return false">
+                    <fieldset class="form-group mt-3">
+                        <div class="row m-auto" style="width: fit-content">
+                            <strong><legend class="col-form-label col-sm-2 pt-0">{{__('To')}}:</legend></strong>
+                            <div class="col">
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="toWhere" id="toWhere1" value="table" required>
+                                    <label class="form-check-label" for="toWhere1">{{__('Table')}}</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="toWhere" id="toWhere2" value="delivery" required>
+                                    <label class="form-check-label" for="toWhere2">{{__('Delivery')}}</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="toWhere" id="toWhere3" value="takeAway" required>
+                                    <label class="form-check-label" for="toWhere3">{{__('Take away')}}</label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </fieldset>
-                <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
-                    @if (Session::get('urlMenu'))
-                        <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
-                    @else
-                        <a class="btn btn-danger" href="{{url()->previous()}}">{{__('general.GoBack')}}</a>
-                    @endif
-                    @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                        <button type="submit" onclick="checkout('{{$dishBranch->branch->telefono}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
-                    @endif
-                </div>
-            </form>
+                    </fieldset>
+                    
+                </form>
+            @else
+                <h3 class="m-4">{{__('general.empty_cart_message')}}</h3>
+            @endif
+            <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
+                @if (Session::get('urlMenu'))
+                    <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
+                @else
+                    <a class="btn btn-danger" href="{{url()->previous()}}">{{__('general.GoBack')}}</a>
+                @endif
+                @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
+                    <button type="submit" onclick="checkout('{{$dishBranch->branch->telefono}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
+                @endif
+            </div>
+            
         </span>
     </div>
-
-   @include('modalConfirmRequest')
-    @include('modalDelivery')
 
 @endsection
 
