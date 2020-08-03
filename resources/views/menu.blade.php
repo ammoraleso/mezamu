@@ -18,7 +18,7 @@
 @section('content')
 
     <div class="pt-4 div-logo">
-        <img alt="Mezamu Logo" class="product-img" src="/images/{{$restaurant->logo}}">
+        <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$restaurant->logo}}">
     </div>
 
     <div class="panel-group">
@@ -40,7 +40,7 @@
                                     @if($dish->category ==$categories[$i])
 
                                         <div class="d-flex p-3 ">
-                                            <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
+                                            <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
                                             <div class="ml-3 w-100 d-flex flex-column">
                                                 <div>
                                                     <strong>
@@ -95,7 +95,7 @@
                                     @if($dish->category ==$categories[$i])
 
                                         <div class="d-flex p-3 ">
-                                            <img alt="{{$dish->name}}" class="product-img" src="/images/{{$dish->photo}}">
+                                            <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
                                             <div class="ml-3 w-100 d-flex flex-column">
                                                 <div>
                                                     <strong><p class="mb-0 d-inline-block">{{$dish->name}}
