@@ -20,7 +20,7 @@ return [
     'My_Cart' => 'Mi Carrito',
     'Delete' => 'Eliminar',
     'Summary' => 'Resumen',
-    'empty_cart_message' => 'Tu carrito está vacio, aprovecha los precios mayoristas para llevar eso que tanto quieres.',
+    'empty_cart_message' => 'Tu carrito está vacio, vuelve al menu y ordena todo lo que desees comer :) .',
     'Continue_shopping' => 'Seguir comprando',
     'Products' => 'Productos',
     'Total' => 'Total',
