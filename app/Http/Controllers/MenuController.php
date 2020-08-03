@@ -16,6 +16,8 @@ class MenuController extends BaseController
         $dishes = $branch->dishes;
         $categories = $this->loadCategories($dishes);
         $branchDishes = $branch->branchDishes;
+        $urlMenu = $this->generate_url($restaurant->slug, $branchName);
+        Session::put('urlMenu', $urlMenu);
         return view('menu', compact('restaurant','branchDishes', 'categories'));
     }
 
@@ -32,5 +34,24 @@ class MenuController extends BaseController
         $categories = array_unique($categories);
         usort($categories, array($this,'sort_objects_by_id'));
         return $categories;
+    }
+
+    public function generate_url($restaurantName, $branchName)
+    {
+        $server_name = $_SERVER['SERVER_NAME'];
+
+        if (!in_array($_SERVER['SERVER_PORT'], [80, 443])) {
+            $port = ":$_SERVER[SERVER_PORT]";
+        } else {
+            $port = '';
+        }
+
+        if (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) {
+            $scheme = 'https';
+        } else {
+            $scheme = 'http';
+        }
+        $uriRestaurant = '/'.$restaurantName.'/'.$branchName;
+        return $scheme.'://'.$server_name.$port.$uriRestaurant;
     }
 }
