@@ -61,7 +61,7 @@
             external: "true",
 
             //Atributos opcionales
-            response: "http://127.0.0.1:8000/api/response_payment",
+            response: '{{\App\Utils\Utils::generateUrl()}}'+'/api/response_payment',
         };
 
         function showPayModal() {

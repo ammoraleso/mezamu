@@ -115,6 +115,8 @@ async function successfullCodeRead(token) {
         alert("Invalid code");
         return;
     }
-    document.getElementById("whatsapp-link").click();
+    window.open(
+        "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message
+    );
     window.location.replace("successfulPurchase");
 }
