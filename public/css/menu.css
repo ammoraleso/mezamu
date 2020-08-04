@@ -36,6 +36,26 @@ p {
     font-size: 15px;
 }
 
+.tab-category {
+    display: flex;
+    width: 100%;
+    background: #343a40;
+    color: white;
+    font-style: oblique;
+    text-decoration: none;
+}
+
+.tab-category:hover {
+    color: black;
+    background-color: white;
+    text-decoration: none;
+}
+
+.tab-header {
+    background: white;
+    border-color: white;
+}
+
 .active,
 .collapsible:hover {
     background-color: #555;
