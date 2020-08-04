@@ -189,6 +189,10 @@
                     <button type="submit" onclick="checkout('{{$dishBranch->branch->telefono}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
                 @endif
             </div>
+
+            <div name="divHrefB" style="height: 0px;width: 0px;overflow:hidden;">
+                <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">{{__('general.Order')}}</a>
+            </div>
             
         </span>
     </div>
