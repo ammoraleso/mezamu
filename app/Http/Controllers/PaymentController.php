@@ -11,9 +11,6 @@ class PaymentController extends Controller
 {
     public function responsePayment(){
 
-        Session::forget('cart');
-        Session::save();
-
         $httpClient =new Client();
         $response = $httpClient->get('https://secure.epayco.co/validation/v1/reference/'.request('ref_payco'));
         $data = json_decode($response->getBody()->getContents())->data;//Transforma a array porque en el response tambien se usa array y ambos usan el mismo método de procesar el pago
@@ -23,7 +20,9 @@ class PaymentController extends Controller
 
         switch ($data->x_cod_response){
             case 1://Acepted transaction
-                return redirect()->route('cart');
+                Session::forget('cart');
+                Session::save();
+                return  redirect('successfulPurchase');
             case 2://Rejected
                 return redirect('rejectedPurchase');
             case 3://Pending
