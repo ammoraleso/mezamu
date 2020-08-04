@@ -26,9 +26,9 @@
             @for($i =0; $i <count($categories); $i++)
                 @if ($categories[$i]->id === 1)
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header tab-header">
                             <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$categories[$i]->id}}" aria-expanded="false" aria-controls="collapseTwo">
+                            <button class="btn btn-link collapsed tab-category" type="button" data-toggle="collapse" data-target="#collapse{{$categories[$i]->id}}" aria-expanded="false" aria-controls="collapseTwo">
                                 {{$categories[$i]->description}}
                             </button>
                             </h5>
@@ -79,9 +79,9 @@
                     </div>
                 @else
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header tab-header">
                             <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$categories[$i]->id}}" aria-expanded="false" aria-controls="collapseTwo">
+                            <button class="btn btn-link collapsed tab-category" type="button" data-toggle="collapse" data-target="#collapse{{$categories[$i]->id}}" aria-expanded="false" aria-controls="collapseTwo">
                                 {{$categories[$i]->description}}
                             </button>
                             </h5>
