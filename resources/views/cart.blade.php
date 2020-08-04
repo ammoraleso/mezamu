@@ -181,10 +181,6 @@
                 <h3 class="m-4">{{__('general.empty_cart_message')}}</h3>
                 <a class="btn btn-danger" href="{{url()->previous()}}">{{__('general.GoBack')}}</a>
             @endif
-
-            <div name="divHrefB" style="height: 0px;width: 0px;overflow:hidden;">
-                <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">{{__('general.Order')}}</a>
-            </div>
         </span>
     </div>
 
