@@ -76,16 +76,16 @@ var phone;
 var message;
 async function checkout(phone, message) {
     //we will send data and recive data fom our AjaxController
-    if(typeof $("input[name='toWhere']:checked").val()  === "undefined"){
+    if (typeof $("input[name='toWhere']:checked").val() === "undefined") {
         return;
     }
     this.phone = phone;
     this.message = message;
 
-    const ele = document.getElementsByName('toWhere');
+    const ele = document.getElementsByName("toWhere");
     var selectedPlace = null;
-    for(let i = 0; i < ele.length; i++) {
-        if(ele[i].checked){
+    for (let i = 0; i < ele.length; i++) {
+        if (ele[i].checked) {
             selectedPlace = ele[i].value;
             break;
         }
@@ -107,14 +107,14 @@ async function successfullCodeRead(token) {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: checkOutUrl,
-            data: {token: token},
+            data: { token: token },
             type: "post"
         });
     } catch (error) {
         console.log("Error goCheckout put headers" + error);
-        alert('Invalid code');
+        alert("Invalid code");
         return;
     }
+    document.getElementById("whatsapp-link").click();
     window.location.replace("successfulPurchase");
-    window.open("https://api.whatsapp.com/send?phone="+phone+"&text="+message);
 }
