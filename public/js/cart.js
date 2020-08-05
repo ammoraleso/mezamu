@@ -3,7 +3,7 @@ async function addItem(dish, branchDish) {
     try {
         itemsCounter = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                _token: $("meta[name='csrf-token']").attr("content")
             },
             url: addItemUrl,
             method: "POST",
@@ -14,6 +14,7 @@ async function addItem(dish, branchDish) {
             }
         });
     } catch (error) {
+        prompt("Error when you try to add Item", error);
         console.log("Error adding item " + error);
         return;
     }
