@@ -172,7 +172,7 @@
                     </fieldset>
                     <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                         <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
-                        <button type="submit" onclick="checkout('{{$dishBranch->branch->telefono}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
+                        <button type="submit" onclick="checkout('{{$dishBranch->branch->email}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
                     </div>
                 </form>
 
