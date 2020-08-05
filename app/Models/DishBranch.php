@@ -21,7 +21,7 @@ class DishBranch extends Model
         if (!is_null($this->promotion_percentage) and $this->promotion_percentage != 0){
             return $this->promotion_percentage;
         }elseif (!is_null($this->promotion_price) and $this->promotion_price != 0){
-            return 100-($this->promotion_price*100/$this->dish->price);
+            return floor(100-($this->promotion_price*100/$this->dish->price));
         }
         throw new Exception('Wrong data for promotion');
     }

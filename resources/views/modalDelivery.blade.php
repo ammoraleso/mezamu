@@ -3,8 +3,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title m-auto text-center" id="exampleModalLongTitle">{{__('Ask code')}}</h5>
-                <button type="button" class="close m-0 p-0" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title m-auto text-center modal-header">{{__('Ask code')}}</h5>
+                <button type="button" class="close m-0 p-0 modal-close-button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="flex-grow-1 mx-auto mt-3">
-                        <button id="submitButton" class="btn bg-base w-100 mb-3"
+                        <button id="submitButton" class="btn bg-base w-100 mb-3 btn-success"
                                 onclick="showPayModal()" type="button">{{__('general.Continue')}}</button>
                     </div>
                 </form>
