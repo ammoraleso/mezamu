@@ -6,6 +6,12 @@ p {
     height: 13vh;
     width: 13vh;
 }
+
+.arrow-img {
+    height: 3vh;
+    width: 3vh;
+}
+
 .price-container {
     height: min-content;
     margin: auto 0;
@@ -43,6 +49,7 @@ p {
     color: white;
     font-style: oblique;
     text-decoration: none;
+    justify-content: space-between;
 }
 
 .tab-category:hover {

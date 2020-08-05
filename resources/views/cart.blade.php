@@ -32,6 +32,7 @@
                                 <h5 class="mb-0">
                                 <button class="btn btn-link collapsed tab-category " type="button" data-toggle="collapse" data-target="#collapseProd" aria-expanded="false" aria-controls="collapseTwo">
                                     {{__('general.Products')}}
+                                    <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
                                 </button>
                                 </h5>
                             </div>
