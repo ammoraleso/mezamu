@@ -29,7 +29,8 @@
                         <div class="card-header tab-header">
                             <h5 class="mb-0">
                             <button class="btn btn-link collapsed tab-category" type="button" data-toggle="collapse" data-target="#collapse{{$categories[$i]->id}}" aria-expanded="false" aria-controls="collapseTwo">
-                                {{$categories[$i]->description}}
+                                {{$categories[$i]->description . " "}}
+                                <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
                             </button>
                             </h5>
                         </div>
@@ -82,8 +83,10 @@
                         <div class="card-header tab-header">
                             <h5 class="mb-0">
                             <button class="btn btn-link collapsed tab-category" type="button" data-toggle="collapse" data-target="#collapse{{$categories[$i]->id}}" aria-expanded="false" aria-controls="collapseTwo">
-                                {{$categories[$i]->description}}
+                                {{$categories[$i]->description }}
+                                <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
                             </button>
+                            
                             </h5>
                         </div>
                         <div id="collapse{{$categories[$i]->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
