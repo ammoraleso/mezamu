@@ -49,4 +49,6 @@ return [
     'GoToCart' => 'Ir Al Carrito',
     'GoBack' => 'Volver',
     'Order' => 'Ordenar',
+    "Ask code" => "Escanea o solicita el código de verificación",
+    "Delivery_Form" => "Datos Domicilio",
 ];
