@@ -14,7 +14,6 @@ async function addItem(dish, branchDish) {
             }
         });
     } catch (error) {
-        prompt("Error when you try to add", error.responseText);
         console.log("Error adding item " + error);
         return;
     }

@@ -21,7 +21,7 @@ async function cartBadgeFade() {
 function reloadCartIcon(quantity, addOrRemove) {
     //true: request comes from add item; false: request comes from remove item
     if (addOrRemove) {
-        if (quantity == 1) {
+        if (quantity >= 1) {
             completeCartFade();
         } else {
             cartBadgeFade();
