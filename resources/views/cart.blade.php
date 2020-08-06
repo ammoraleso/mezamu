@@ -26,7 +26,7 @@
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
                 @if (!Session::get('isScheduleValid'))
-                    <h3 style="color: white; background-color: red;">{{__('general.No_valid_Schedule')}}</h3>
+                    <h3 style="color: white; background-color: red; padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
                 @endif
                 <div class="grid">
                     <div class="accordion" id="accordionExample">

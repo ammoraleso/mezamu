@@ -21,7 +21,7 @@
         <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$restaurant->logo}}">
     </div>
     @if (!Session::get('isScheduleValid'))
-        <h3 style="color: white; background-color: red;">{{__('general.No_valid_Schedule')}}</h3>
+        <h3 style="color: white; background-color: red;padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
     @endif
     <div class="panel-group">
         <div class="accordion" id="accordionExample">
