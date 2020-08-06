@@ -25,6 +25,9 @@
     <div class="container-fluid">
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
+                @if (!Session::get('isScheduleValid'))
+                    <h3 style="color: white; background-color: red;">{{__('general.No_valid_Schedule')}}</h3>
+                @endif
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
                         <div class="card" style="border-color: white">
@@ -172,7 +175,9 @@
                     </fieldset>
                     <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                         <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
-                        <button type="submit" onclick="checkout('{{$dishBranch->branch->email}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
+                        @if (Session::get('isScheduleValid'))
+                            <button type="submit" onclick="checkout('{{$dishBranch->branch->email}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
+                        @endif
                     </div>
                 </form>
 

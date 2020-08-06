@@ -49,4 +49,5 @@ return [
     'GoToCart' => 'Go To The Cart',
     "Ask code" => "Scan or request your verify code",
     "Delivery_Form" => "Delivery Form",
+    "No_valid_Schedule" => "Currently the Restaurante is close."
 ];
