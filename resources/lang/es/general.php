@@ -51,4 +51,5 @@ return [
     'Order' => 'Ordenar',
     "Ask code" => "Escanea o solicita el código de verificación",
     "Delivery_Form" => "Datos Domicilio",
+    "No_valid_Schedule" => "Acutalmente el restaurante esta cerrado."
 ];

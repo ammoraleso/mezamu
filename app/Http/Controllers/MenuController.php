@@ -17,7 +17,10 @@ class MenuController extends BaseController
         $categories = $this->loadCategories($dishes);
         $branchDishes = $branch->branchDishes;
         $urlMenu = $this->generate_url($restaurant->slug, $branchName);
+        $isScheduleValid = Utils::validateSchedule($branch);
         Session::put('urlMenu', $urlMenu);
+        Session::put('isScheduleValid', $isScheduleValid);
+        Session::save();
         return view('menu', compact('restaurant','branchDishes', 'categories'));
     }
 

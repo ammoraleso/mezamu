@@ -5,6 +5,7 @@ namespace App\Utils;
 
 
 use App\Models\Restaurant;
+use App\Models\Branch;
 use App\Models\Token;
 
 class Utils
@@ -16,6 +17,26 @@ class Utils
         }
         return $branch;
     }
+
+    static function getSchedule(Branch $branch, $dayName){
+        $schedule = $branch->ScheduleBranch()->where('day',$dayName)->first();
+        if(is_null($schedule)){
+            abort(404);
+        }
+        return $schedule;
+    }
+
+    static function validateSchedule($branch)
+    {
+        $schedule = Utils::getSchedule($branch, date("l"));
+        date_default_timezone_set('America/Bogota');
+        $currentTime = date('H:i:s');
+        if ($currentTime >= $schedule->open && $currentTime <= $schedule->close) {
+            return true;
+        }
+        return false;
+    }
+
 
     static function isTokenValid($token){
         return !is_null(Token::where('token',$token)->first());
