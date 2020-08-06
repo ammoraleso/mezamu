@@ -20,7 +20,7 @@
     <div class="pt-4 div-logo">
         <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$restaurant->logo}}">
     </div>
-    @if (!Session::get('isScheduleValid'))
+    @if (!$isScheduleValid)
         <h3 style="color: white; background-color: red;padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
     @endif
     <div class="panel-group">
@@ -55,7 +55,7 @@
 
                                             </div>
                                             <small><p class="ellipsis menu-description m-0">{{$dish->description}}</p></small>
-                                            @if (Session::get('isScheduleValid'))
+                                            @if ($isScheduleValid)
                                                 <div class="d-flex flex-column-reverse h-100" style="padding-top: 2%;">
                                                     <div class="addItems">
                                                         <div class="quantity mb-3">
