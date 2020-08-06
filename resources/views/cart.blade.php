@@ -21,13 +21,12 @@
 
 @endpush
 
+
+
 @section('content')
     <div class="container-fluid">
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                @if (!Session::get('isScheduleValid'))
-                    <h3 style="color: white; background-color: red; padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
-                @endif
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
                         <div class="card" style="border-color: white">
@@ -44,11 +43,13 @@
                                     <div class="w-100 mt-3 mr-md-5">
                                         @foreach(Session::get('cart') as $cartItem)
                                             @if(data_get($cartItem, 'item'))
-                                                @php
+                                                @php 
                                                     $itemComplete = data_get($cartItem, 'item');
                                                     $dish = $itemComplete[0];
                                                     $branchDish = $itemComplete[1];
+                                                    $branch = $branchDish->branch;
                                                 @endphp
+                                                {{$isScheduleValid = App\Utils\Utils::validateSchedule($branch)}}
                                                 <span id="cartItem{{$dish['id']}}">
                                                     <div class="d-flex p-3 ">
                                                         <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
@@ -166,16 +167,19 @@
                                     <input class="form-check-input" type="radio" name="toWhere" id="toWhere2" value="delivery" required>
                                     <label class="form-check-label" for="toWhere2">{{__('Delivery')}}</label>
                                 </div>
-                                <div class="form-check-inline">
+                                <!-- <div class="form-check-inline">
                                     <input class="form-check-input" type="radio" name="toWhere" id="toWhere3" value="takeAway" required>
                                     <label class="form-check-label" for="toWhere3">{{__('Take away')}}</label>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </fieldset>
+                    @if (!$isScheduleValid)
+                        <h3 style="color: white; background-color: red; padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
+                    @endif
                     <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                         <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
-                        @if (Session::get('isScheduleValid'))
+                        @if ($isScheduleValid)
                             <button type="submit" onclick="checkout('{{$dishBranch->branch->email}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
                         @endif
                     </div>

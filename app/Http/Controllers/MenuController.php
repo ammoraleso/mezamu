@@ -19,9 +19,8 @@ class MenuController extends BaseController
         $urlMenu = $this->generate_url($restaurant->slug, $branchName);
         $isScheduleValid = Utils::validateSchedule($branch);
         Session::put('urlMenu', $urlMenu);
-        Session::put('isScheduleValid', $isScheduleValid);
         Session::save();
-        return view('menu', compact('restaurant','branchDishes', 'categories'));
+        return view('menu', compact('restaurant','branchDishes', 'categories','isScheduleValid'));
     }
 
     public function sort_objects_by_id($a, $b) {
