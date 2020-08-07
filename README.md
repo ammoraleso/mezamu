@@ -54,3 +54,8 @@ Se toma de ejemplo UserSeeder (https://stackoverflow.com/questions/52057513/add-
 -   Añadir el registro a insertar en UsersSeeder
 -   Modificar DatabaseSeeder
 -   Correr el comando php artisan db:seed
+
+## Limpiar Memoria
+
+php artisan cache:clear
+composer dump-autoload
