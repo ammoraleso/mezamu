@@ -21,17 +21,20 @@
 
 @endpush
 
+
+
 @section('content')
     <div class="container-fluid">
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
-                        <div class="card">
-                            <div class="card-header">
+                        <div class="card" style="border-color: white">
+                            <div class="card-header tab-header">
                                 <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseProd" aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="btn btn-link collapsed tab-category " type="button" data-toggle="collapse" data-target="#collapseProd" aria-expanded="false" aria-controls="collapseTwo">
                                     {{__('general.Products')}}
+                                    <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
                                 </button>
                                 </h5>
                             </div>
@@ -40,11 +43,13 @@
                                     <div class="w-100 mt-3 mr-md-5">
                                         @foreach(Session::get('cart') as $cartItem)
                                             @if(data_get($cartItem, 'item'))
-                                                @php
+                                                @php 
                                                     $itemComplete = data_get($cartItem, 'item');
                                                     $dish = $itemComplete[0];
                                                     $branchDish = $itemComplete[1];
+                                                    $branch = $branchDish->branch;
                                                 @endphp
+                                                {{$isScheduleValid = App\Utils\Utils::validateSchedule($branch)}}
                                                 <span id="cartItem{{$dish['id']}}">
                                                     <div class="d-flex p-3 ">
                                                         <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
@@ -162,29 +167,35 @@
                                     <input class="form-check-input" type="radio" name="toWhere" id="toWhere2" value="delivery" required>
                                     <label class="form-check-label" for="toWhere2">{{__('Delivery')}}</label>
                                 </div>
-                                <div class="form-check-inline">
+                                <!-- <div class="form-check-inline">
                                     <input class="form-check-input" type="radio" name="toWhere" id="toWhere3" value="takeAway" required>
                                     <label class="form-check-label" for="toWhere3">{{__('Take away')}}</label>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </fieldset>
+                    @if (!$isScheduleValid)
+                        <h3 style="color: white; background-color: red; padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
+                    @endif
                     <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                         <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
-                        <button type="submit" onclick="checkout('{{$dishBranch->branch->telefono}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
+                        @if ($isScheduleValid)
+                            <button type="submit" onclick="checkout('{{$dishBranch->branch->email}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
+                        @endif
                     </div>
                 </form>
 
                 @include('modalConfirmRequest')
                 @include('modalDelivery')
             @else
-                <h3 class="m-4">{{__('general.empty_cart_message')}}</h3>
-                <a class="btn btn-danger" href="{{url()->previous()}}">{{__('general.GoBack')}}</a>
+                <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
+                    <img alt="empty_cart" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/empty-cart.png">
+                </div>
+                <h3 class="m-4" style="font-style: oblique; text-align: justify;"><b>{{__('general.empty_cart_message')}}</b></h3>
+                <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
+                    <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
+                </div>
             @endif
-
-            <div name="divHrefB" style="height: 0px;width: 0px;overflow:hidden;">
-                <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone={{$dishBranch->branch->telefono}}&text={{utf8_encode($message)}}" class="btn btn-success" target="_blank">{{__('general.Order')}}</a>
-            </div>
         </span>
     </div>
 

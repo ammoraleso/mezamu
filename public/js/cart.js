@@ -1,3 +1,6 @@
+let email;
+let message;
+
 async function addItem(dish, branchDish) {
     let itemsCounter;
     try {
@@ -72,14 +75,12 @@ function reloadSummary() {
     });
 }
 
-var phone;
-var message;
-async function checkout(phone, message) {
+async function checkout(email, message) {
     //we will send data and recive data fom our AjaxController
     if (typeof $("input[name='toWhere']:checked").val() === "undefined") {
         return;
     }
-    this.phone = phone;
+    this.email = email;
     this.message = message;
 
     const ele = document.getElementsByName("toWhere");
@@ -115,6 +116,8 @@ async function successfullCodeRead(token) {
         alert("Invalid code");
         return;
     }
-    document.getElementById("whatsapp-link").click();
+    // window.open(
+    //     "https://api.whatsapp.com/send?phone=" + phone + "&text=" + message
+    // );
     window.location.replace("successfulPurchase");
 }

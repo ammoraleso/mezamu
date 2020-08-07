@@ -1,7 +1,7 @@
-.py-4 {
-    /*to delete the padding between nav and content*/
-    /*padding: 0px!important;*/
-}
+/*.py-4 {
+    to delete the padding between nav and content
+    padding: 0px!important;
+}*/
 
 table {
     font-family: arial, sans-serif;
@@ -22,4 +22,15 @@ th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+.modal-header {
+    background: #343a40;
+    color: white;
+    font-style: oblique;
+    border-color: #343a40;
+}
+
+.modal-close-button {
+    color: white;
 }

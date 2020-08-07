@@ -46,5 +46,8 @@ return [
     'OrderSuccess' =>'Order Succes',
     'YourOrderWillCook' =>'Your Order Was created',
     'YourOrderWillCookSoon' =>'Your Order Will Cook soon',
-    'GoToCart' => 'Go To The Cart'
+    'GoToCart' => 'Go To The Cart',
+    "Ask code" => "Scan or request your verify code",
+    "Delivery_Form" => "Delivery Form",
+    "No_valid_Schedule" => "Currently the Restaurante is close."
 ];

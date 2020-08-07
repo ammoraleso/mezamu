@@ -20,6 +20,7 @@ class CreateBranchesTable extends Migration
             $table->unsignedBigInteger('restaurant_id');//foreign
             $table->unsignedInteger('tables');
             $table->String('telefono', 15);
+            $table->string('email');
         });
     }
 
