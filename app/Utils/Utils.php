@@ -28,8 +28,8 @@ class Utils
 
     static function validateSchedule($branch)
     {
-        $schedule = Utils::getSchedule($branch, date("l"));
         date_default_timezone_set('America/Bogota');
+        $schedule = Utils::getSchedule($branch, date("l"));
         $currentTime = date('H:i:s');
         if ($currentTime >= $schedule->open && $currentTime <= $schedule->close) {
             return true;
