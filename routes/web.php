@@ -29,6 +29,8 @@ Route::post('/addItem', 'CartController@addItem')->name('addItem');
 Route::post('/removeItem', 'CartController@removeItem')->name('removeItem');
 Route::post('/changeQuantity', 'CartController@changeQuantity')->name('changeQuantity');
 Route::post('/checkOut', 'CartController@checkOut')->name('checkOut');
+Route::post('/findEmail', 'CartController@findEmail')->name('findEmail');
+Route::post('/saveCustomer', 'CartController@saveCustomer')->name('saveCustomer');
 Route::get('/successfulPurchase', function () {return view('/successfulPurchase');});
 Route::get('/rejectedPurchase', function () {return view('/successfulPurchase');});
 Route::get('/pendingPurchase', function () {return view('/successfulPurchase');});

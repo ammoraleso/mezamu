@@ -121,3 +121,43 @@ async function successfullCodeRead(token) {
     // );
     window.location.replace("successfulPurchase");
 }
+
+async function loadPerfil() {
+    $email = $("#email").val();
+    let customer;
+    $("#email").removeClass("is-invalid");
+    if (!$email) {
+        $("#email").focus();
+        $("#email").addClass("is-invalid");
+        return;
+    }
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test($email)) {
+        alert("Por favor ingresa un menú válido.");
+        return;
+    }
+
+    try {
+        customer = await $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            url: findEmailUrl,
+            data: { email: $email },
+            type: "post"
+        });
+    } catch (error) {
+        return console.log("LoadPerfil error: " + error);
+    }
+    if (customer) {
+        $("#name").val(customer.nombre);
+        $("#address").val(customer.direccion);
+        $("#phone").val(customer.telefono);
+    } else {
+        $("#name").val("");
+        $("#address").val("");
+        $("#phone").val("");
+    }
+    $("#perfil-form").removeAttr("style");
+    $("perfil-form").show();
+}
