@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/input_number_spinner.css')}}">
     <link rel="stylesheet" href="{{asset('css/cart.css')}}">
     <link rel="stylesheet" href="{{asset('css/menu.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
     <!--Script for change and remove items from the cart-->
@@ -15,6 +16,8 @@
         var changeQuantityUrl = '{{route('changeQuantity')}}';
         var removeItemUrl = '{{route('removeItem')}}';
         var checkOutUrl = '{{route('checkOut')}}';
+        var findEmailUrl = '{{route('findEmail')}}'
+        var saveCustomerUrl = '{{route('saveCustomer')}}'
     </script>
 
     <!--Script to read QR Code-->

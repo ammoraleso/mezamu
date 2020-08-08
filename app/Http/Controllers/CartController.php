@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Models\DishBranch;
+use App\Models\Customer;
 use App\Token;
 use App\Utils\Utils;
 use Illuminate\Support\Arr;
@@ -88,6 +89,28 @@ class CartController extends Controller
                 Session::save();
             }
         }
+    }
+
+    public function findEmail(){
+        $email = request()->email;
+        return $customer = Customer::where('email', '=',$email)->get()->first();
+    }
+
+    public function saveCustomer(){
+        // $customer = new Customer();
+        // $customer->nombre = request()->name;
+        // $customer->telefono = request()->phone;
+        // $customer->direccion = request()->address;
+        // $customer->customer = request()->email;
+
+        $nombre = request()->name;
+        $telefono = request()->phone;
+        $direccion = request()->address;
+        $email = request()->email;
+
+        // $customer = Customer::firstOrNew(['email' => $email],['nombre' => $nombre],['direccion' => $direccion],['telefono' => $telefono]);
+        // $customer->save();
+        Customer::updateOrCreate(['email' => $email],['nombre' => $nombre,'direccion' => $direccion,'telefono' => $telefono]);
     }
 
     public function checkOut(){
