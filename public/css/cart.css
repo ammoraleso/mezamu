@@ -34,3 +34,42 @@ tr:nth-child(even) {
 .modal-close-button {
     color: white;
 }
+
+/* Style the search field */
+.modal-input[type="text"] {
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    height: calc(1.6em + 0.75rem + 2px);
+    background: #f1f1f1;
+}
+
+/* Clear floats */
+.modal-input::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.modal-input::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style the submit button */
+.modal-button {
+    float: left;
+    width: 20%;
+    height: calc(1.6em + 0.75rem + 2px);
+    background: #2196f3 !important;
+    color: white !important;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.modal-button button:hover {
+    background: #0b7dda !important;
+}

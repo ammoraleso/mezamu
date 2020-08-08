@@ -10,26 +10,50 @@
             </div>
             <div class="modal-body m-auto">
                 <form id="myForm">
-                    <div class="input-group">
-                        <div class="form-group flex-grow-1">
-                            <label class="control-label">{{__('general.Delivery_Name')}}
-                                <small>({{__('general.required')}})</small>
-                            </label>
-                            <input id="name" name="name" type="text" class="form-control" required style="background-image: none!important;">
-                        </div>
-                    </div>
 
                     <div class="input-group">
                         <div class="form-group flex-grow-1">
-                            <label class="control-label">{{__('general.Address')}}
+                            <label class="control-label">{{__('general.Email')}}
                                 <small>({{__('general.required')}})</small>
                             </label>
-                            <input id="address" name="address" type="text" class="form-control" required style="background-image: none!important;">
+                            <input id="email" class="modal-input" type="text" placeholder="Search.." name="search">
+                            <button class="modal-button" type="button" onclick="loadPerfil()"><i class="fa fa-search"></i></button>
+                            
                         </div>
                     </div>
-                    <div class="flex-grow-1 mx-auto mt-3">
-                        <button id="submitButton" class="btn bg-base w-100 mb-3 btn-success"
-                                onclick="showPayModal()" type="button">{{__('general.Continue')}}</button>
+                    <hr>
+                    <div id="perfil-form" style="visibility: hidden">
+                        <div class="input-group">
+                            <div class="form-group flex-grow-1">
+                                <label class="control-label">{{__('general.Delivery_Name')}}
+                                    <small>({{__('general.required')}})</small>
+                                </label>
+                                <input id="name" name="name" type="text" class="form-control" required style="background-image: none!important;">
+                            </div>
+                        </div>
+    
+                        <div class="input-group">
+                            <div class="form-group flex-grow-1">
+                                <label class="control-label">{{__('general.Address')}}
+                                    <small>({{__('general.required')}})</small>
+                                </label>
+                                <input id="address" name="address" type="text" class="form-control" required style="background-image: none!important;">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="form-group flex-grow-1">
+                                <label class="control-label">{{__('general.Phone')}}
+                                    <small>({{__('general.required')}})</small>
+                                </label>
+                                <input id="phone" name="phone" type="text" class="form-control" required style="background-image: none!important;">
+                            </div>
+                        </div>
+
+                        <div class="flex-grow-1 mx-auto mt-3">
+                            <button id="submitButton" class="btn bg-base w-100 mb-3 btn-success"
+                                    onclick="showPayModal()" type="button">{{__('general.Continue')}}</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -64,11 +88,12 @@
             response: '{{\App\Utils\Utils::generateUrl()}}'+'/api/response_payment',
         };
 
-        function showPayModal() {
+        async function showPayModal() {
             $name = $('#name').val();
             //$city = $('#city').val();
             $city = 1;
             $address = $('#address').val();
+            $phone = $('#phone').val();
             if(!$name) {
                 $('#name').focus();
                 $('#name').addClass('is-invalid');
@@ -91,6 +116,14 @@
             }else{
                 $('#address').removeClass('is-invalid');
             }
+            if(!$phone){
+                $('#phone').focus();
+                $('#phone').addClass('is-invalid');
+                return;
+            }else{
+                $('#phone').removeClass('is-invalid');
+            }
+
 
             data.amount='{{$totalPrice}}';
             data.extra1= '{!! json_encode($paymentCart)!!}'.replace(/"/g, "'");
@@ -99,6 +132,23 @@
             data.extra4= $name;
             //Atributos cliente
             data.type_doc_billing= "cc";
+            try {
+                await $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    url: saveCustomerUrl,
+                    data: { 
+                        email: $email,
+                        name: $name,
+                        address: $address,
+                        phone: $phone
+                    },
+                    type: "post"
+                });
+            } catch (error) {
+                console.log("Error saving Customer: " + error);    
+            }
             handler.open(data)
         }
     </script>
