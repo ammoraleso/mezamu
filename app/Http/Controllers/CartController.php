@@ -97,19 +97,12 @@ class CartController extends Controller
     }
 
     public function saveCustomer(){
-        // $customer = new Customer();
-        // $customer->nombre = request()->name;
-        // $customer->telefono = request()->phone;
-        // $customer->direccion = request()->address;
-        // $customer->customer = request()->email;
 
         $nombre = request()->name;
         $telefono = request()->phone;
         $direccion = request()->address;
         $email = request()->email;
 
-        // $customer = Customer::firstOrNew(['email' => $email],['nombre' => $nombre],['direccion' => $direccion],['telefono' => $telefono]);
-        // $customer->save();
         Customer::updateOrCreate(['email' => $email],['nombre' => $nombre,'direccion' => $direccion,'telefono' => $telefono]);
     }
 
