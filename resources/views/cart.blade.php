@@ -30,6 +30,12 @@
     <div class="container-fluid">
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
+                @php 
+                    $itemComplete =  data_get(Session::get('cart')[1], 'item');
+                    $branchDish = $itemComplete[1];
+                    $branch = $branchDish->branch;
+                @endphp
+                <div style="visibility: hidden; height: 0%;">{{$isScheduleValid = App\Utils\Utils::validateSchedule($branch)}}</div>
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
                         <div class="card" style="border-color: white">
@@ -50,9 +56,7 @@
                                                     $itemComplete = data_get($cartItem, 'item');
                                                     $dish = $itemComplete[0];
                                                     $branchDish = $itemComplete[1];
-                                                    $branch = $branchDish->branch;
                                                 @endphp
-                                                {{$isScheduleValid = App\Utils\Utils::validateSchedule($branch)}}
                                                 <span id="cartItem{{$dish['id']}}">
                                                     <div class="d-flex p-3 ">
                                                         <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
