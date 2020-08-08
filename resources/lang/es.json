@@ -23,5 +23,8 @@
     "Delivery": "Domicilio",
     "Take away": "Llevar",
     "Ask code": "Escanea o solicita el código de verificación",
-    "Validate": "Validar"
+    "Validate": "Validar",
+    "New Orders": "Nuevas Ordenes",
+    "In Preparation": "En Preparación",
+    "Ready": "Listas"
 }
