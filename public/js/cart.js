@@ -131,6 +131,12 @@ async function loadPerfil() {
         $("#email").addClass("is-invalid");
         return;
     }
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test($email)) {
+        alert("Por favor ingresa un menú válido.");
+        return;
+    }
+
     try {
         customer = await $.ajax({
             headers: {

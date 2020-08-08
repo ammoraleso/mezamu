@@ -61,7 +61,13 @@
     </div>
 </div>
 
-    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
+    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script> 
+    <!-- Script to use Input Email pattern Property -->
+    <script>  
+        function myGeeks() {  
+            var em = document.getElementById("email").pattern; 
+        }  
+    </script>  
 
     <!--PAYMENT-->
     <script>
