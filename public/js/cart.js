@@ -75,13 +75,11 @@ function reloadSummary() {
     });
 }
 
-async function checkout(email, message) {
-    //we will send data and recive data fom our AjaxController
+async function checkout() {
+    //we will send data and get data fom our AjaxController
     if (typeof $("input[name='toWhere']:checked").val() === "undefined") {
         return;
     }
-    this.email = email;
-    this.message = message;
 
     const ele = document.getElementsByName("toWhere");
     var selectedPlace = null;
@@ -108,7 +106,10 @@ async function successfullCodeRead(token) {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: checkOutUrl,
-            data: { token: token },
+            data: {
+                token: token,
+                options: document.getElementById('options').value
+            },
             type: "post"
         });
     } catch (error) {
@@ -160,4 +161,16 @@ async function loadPerfil() {
     }
     $("#perfil-form").removeAttr("style");
     $("perfil-form").show();
+}
+
+function collapseTab(id_target = "Prod") {
+    const target = "#collapse" + id_target;
+    if ($(target).attr("class") === "collapse") {
+        $(target).attr("class", "collapse show");
+        return;
+    }
+    if ($(target).attr("class") === "collapse show") {
+        $(target).attr("class", "collapse");
+        return;
+    }
 }

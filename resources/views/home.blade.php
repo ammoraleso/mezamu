@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    @include('waiter')
+    <orders :branchid="{{Auth::user()->branch_id}}"></orders>
 @endsection

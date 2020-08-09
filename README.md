@@ -59,3 +59,7 @@ Se toma de ejemplo UserSeeder (https://stackoverflow.com/questions/52057513/add-
 
 php artisan cache:clear
 composer dump-autoload
+
+## Vue
+
+-   npm install --save laravel-echo pusher-js

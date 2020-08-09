@@ -18,11 +18,11 @@
                             </label>
                             <input id="email" class="modal-input" type="text" placeholder="Search.." name="search">
                             <button class="modal-button" type="button" onclick="loadPerfil()"><i class="fa fa-search"></i></button>
-                            
+
                         </div>
                     </div>
                     <hr>
-                    <div id="perfil-form" style="visibility: hidden">
+                    <div id="perfil-form" style="display: none">
                         <div class="input-group">
                             <div class="form-group flex-grow-1">
                                 <label class="control-label">{{__('general.Delivery_Name')}}
@@ -31,7 +31,7 @@
                                 <input id="name" name="name" type="text" class="form-control" required style="background-image: none!important;">
                             </div>
                         </div>
-    
+
                         <div class="input-group">
                             <div class="form-group flex-grow-1">
                                 <label class="control-label">{{__('general.Address')}}
@@ -61,16 +61,16 @@
     </div>
 </div>
 
-    <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script> 
+    <script type="application/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
     <!-- Script to use Input Email pattern Property -->
-    <script>  
-        function myGeeks() {  
-            var em = document.getElementById("email").pattern; 
-        }  
-    </script>  
+    <script type="application/javascript">
+        function myGeeks() {
+            var em = document.getElementById("email").pattern;
+        }
+    </script>
 
     <!--PAYMENT-->
-    <script>
+    <script type="application/javascript">
         var handler = ePayco.checkout.configure({
             key:'f2896c38764f97526a193f24de170b96',
             //key: '71c83236ba0231c2d3e4048be66fc298',//intraining
@@ -144,7 +144,7 @@
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                     },
                     url: saveCustomerUrl,
-                    data: { 
+                    data: {
                         email: $email,
                         name: $name,
                         address: $address,
@@ -153,7 +153,7 @@
                     type: "post"
                 });
             } catch (error) {
-                console.log("Error saving Customer: " + error);    
+                console.log("Error saving Customer: " + error);
             }
             handler.open(data)
         }

@@ -85,7 +85,7 @@
 
     </footer>
 
-    <script type="text/javascript">
+    <script type="application/javascript">
         var rotated = false;
 
         window.setInterval(function(){
@@ -99,13 +99,13 @@
     </script>
 
     <!--subscribers-->
-    <script type="text/javascript">
+    <script type="application/javascript">
         var subscribersSiteId = 'cd602984-8642-4484-8a8b-431d84a5faf0';
     </script>
-    <script type="text/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>
+    <script type="application/javascript" src="https://cdn.subscribers.com/assets/subscribers.js"></script>
 
     <!--google analytics-->
-    <script>
+    <script type="application/javascript">
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -117,7 +117,7 @@
 
     <!--chat de soporte-->
         <!--Para que se dragable pero que no muestre el chat al finalizar el drag-->
-        <script>
+        <script type="application/javascript">
             $(function() {
                 $( ".draggable" ).draggable({
                     stop: function(event, ui) {
@@ -130,10 +130,10 @@
             });
         </script>
         <!--<script src="https://code.jquery.com/jquery-1.9.1.js"></script> Si se deja se daña el slider y al parecer ya está en otro lugar o no se necesita porque se quita y aún así funciona correctamente el draggable.-->
-        <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="application/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <!--fin Para que se dragable pero que no muestre el chat al finalizar el drag-->
 
-        <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '1e110dc0-e024-4b2b-a871-4e07f3dec0d3', f: true }); done = true; } }; })();</script>
+        <script type="application/javascript" data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '1e110dc0-e024-4b2b-a871-4e07f3dec0d3', f: true }); done = true; } }; })();</script>
     <!--fin chat de soporte-->
 
 @endsection

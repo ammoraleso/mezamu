@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Branch extends Model
 {
+    use Notifiable;
 
     public function dishes(){
         return $this->hasManyThrough(Dish::class,DishBranch::class,'branch_id','id','id','dish_id');
