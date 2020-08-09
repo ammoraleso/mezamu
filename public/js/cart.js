@@ -114,7 +114,7 @@ async function successfullCodeRead(token) {
         });
     } catch (error) {
         console.log("Error goCheckout put headers" + error);
-        //alert("Invalid code");
+        alert("Invalid code");
         return;
     }
     // window.open(
