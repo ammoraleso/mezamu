@@ -27,8 +27,3 @@
     <script src="{{asset('js/html5-qrcode.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/qrreader.js')}}" type="text/javascript"></script>
 @endpush
-<style>
-    #reader__dashboard_section_swaplink{
-        display: none;
-    }
-</style>

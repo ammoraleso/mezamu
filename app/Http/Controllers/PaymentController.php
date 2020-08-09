@@ -21,7 +21,7 @@ class PaymentController extends Controller
 
         switch ($data->x_cod_response){
             case 1://Acepted transaction
-                Arr::first(Session::get('cart'))['item'][1]->branch->notify(new Order(Session::get('cart')));
+                Arr::first(Session::get('cart'))['item']->branch->notify(new Order(Session::get('cart')));
                 Session::forget('cart');
                 Session::save();
                 return  redirect('successfulPurchase');

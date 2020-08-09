@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<script>
+<script type="application/javascript">
     export default {
         props:['branchid'],
         data(){

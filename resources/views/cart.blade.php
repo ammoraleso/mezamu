@@ -12,30 +12,22 @@
     <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
     <!--Script for change and remove items from the cart-->
-    <script>
+    <script type="text/javascript">
         var changeQuantityUrl = '{{route('changeQuantity')}}';
         var removeItemUrl = '{{route('removeItem')}}';
         var checkOutUrl = '{{route('checkOut')}}';
         var findEmailUrl = '{{route('findEmail')}}'
         var saveCustomerUrl = '{{route('saveCustomer')}}'
     </script>
-
-    <!--Script to read QR Code-->
-
 @endpush
-
-
 
 @section('content')
     <div class="container-fluid">
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                @php 
-                    $itemComplete =  data_get(Session::get('cart')[1], 'item');
-                    $branchDish = $itemComplete[1];
-                    $branch = $branchDish->branch;
+                @php
+                    $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch)
                 @endphp
-                <div style="visibility: hidden; height: 0%;">{{$isScheduleValid = App\Utils\Utils::validateSchedule($branch)}}</div>
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
                         <div class="card" style="border-color: white">
@@ -52,10 +44,9 @@
                                     <div class="w-100 mt-3 mr-md-5">
                                         @foreach(Session::get('cart') as $cartItem)
                                             @if(data_get($cartItem, 'item'))
-                                                @php 
-                                                    $itemComplete = data_get($cartItem, 'item');
-                                                    $dish = $itemComplete[0];
-                                                    $branchDish = $itemComplete[1];
+                                                @php
+                                                    $branchDish = data_get($cartItem, 'item');
+                                                    $dish = $branchDish->dish;
                                                 @endphp
                                                 <span id="cartItem{{$dish['id']}}">
                                                     <div class="d-flex p-3 ">
@@ -107,7 +98,6 @@
                         <div id="summary" class="pt-3">
                             @php
                                 $totalPrice = 0;
-                                $message = "Hola%20estoy%20pidiendo%20por%20MeZamU%20-%0A";
                                 $paymentCart = array();
                             @endphp
                             <div style="justify-content: center; display: flex;">
@@ -122,24 +112,21 @@
                                             @php
 
                                                 $itemComplete = data_get($cartItem, 'item');
-                                                $item = $itemComplete[0];
-                                                $dishBranch = $itemComplete[1];
                                                 $table = Session::get('table');
                                                 $itemQuantity = data_get($cartItem, 'quantity');
-                                                $itemPrice = $item['price'];
-                                                if($dishBranch->promotion)
+                                                $itemPrice = $itemComplete->dish['price'];
+                                                if($itemComplete->promotion)
                                                 {
-                                                    $itemPrice = $dishBranch->discountPrice();
+                                                    $itemPrice = $itemComplete->discountPrice();
                                                 }
                                                 //Calcular el impuesto al consumo.
                                                 $totalItemPrice = $itemQuantity*$itemPrice;
                                                 $totalPrice += $totalItemPrice;
-                                                $message = $message  ."%20". $item->name . "%20(X" . $itemQuantity . ")%20-%20$" . number_format($totalItemPrice, 0, '.', ',') . "%0A" ;
-                                                array_push($paymentCart, [$item->id => ['quantity' => $itemQuantity, 'totalItemPrice' => $totalItemPrice]]);
+                                                array_push($paymentCart, [$itemComplete->dish->id => ['quantity' => $itemQuantity, 'totalItemPrice' => $totalItemPrice]]);
                                             @endphp
 
                                             <tr>
-                                            <td class="no-align">{{$item['name']}}</td>
+                                            <td class="no-align">{{$itemComplete->dish['name']}}</td>
                                             <td>X {{$itemQuantity}}</td>
                                             <td>$ {{number_format($totalItemPrice, 0, '.', ',')}}</td>
                                             </tr>
@@ -154,10 +141,6 @@
 
                             </div>
                         </div>
-                        @php
-                            $message = $message  . "Total:%20$" . number_format($totalPrice, 0, '.', ',') . "%0A" . "%2APEDIDO%20PARA%20LA%20MESA%20:%20" . $table."%2A";
-                            $message = utf8_encode($message);
-                        @endphp
                     </div>
                 </div>
 
@@ -187,7 +170,7 @@
                     <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                         <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
                         @if ($isScheduleValid)
-                            <button type="submit" onclick="checkout('{{$dishBranch->branch->email}}','{{utf8_encode($message)}}')" class="btn btn-success">{{__('general.Order')}}</button>
+                            <button type="submit" onclick="checkout()" class="btn btn-success">{{__('general.Order')}}</button>
                         @endif
                     </div>
                 </form>

@@ -75,13 +75,11 @@ function reloadSummary() {
     });
 }
 
-async function checkout(email, message) {
-    //we will send data and recive data fom our AjaxController
+async function checkout() {
+    //we will send data and get data fom our AjaxController
     if (typeof $("input[name='toWhere']:checked").val() === "undefined") {
         return;
     }
-    this.email = email;
-    this.message = message;
 
     const ele = document.getElementsByName("toWhere");
     var selectedPlace = null;
