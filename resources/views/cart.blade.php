@@ -165,7 +165,7 @@
                         </div>
                     </fieldset>
                     <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
-                        <textarea style="resize: none; width: 80%;" id="text-area" placeholder="Ingresa aquí tus comentarios adicionales.." rows="4" cols="50"></textarea>
+                        <textarea style="resize: none; width: 80%;" id="options" placeholder="Ingresa aquí tus comentarios adicionales.." rows="4" cols="50"></textarea>
                     </div>
                     @if (!$isScheduleValid)
                         <h3 style="color: white; background-color: red; padding: 2%">{{__('general.No_valid_Schedule')}}</h3>

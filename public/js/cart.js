@@ -106,12 +106,15 @@ async function successfullCodeRead(token) {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: checkOutUrl,
-            data: { token: token },
+            data: {
+                token: token,
+                options: document.getElementById('options').value
+            },
             type: "post"
         });
     } catch (error) {
         console.log("Error goCheckout put headers" + error);
-        alert("Invalid code");
+        //alert("Invalid code");
         return;
     }
     // window.open(
