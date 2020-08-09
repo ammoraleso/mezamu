@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <hr>
-                    <div id="perfil-form" style="visibility: hidden">
+                    <div id="perfil-form" style="display: none">
                         <div class="input-group">
                             <div class="form-group flex-grow-1">
                                 <label class="control-label">{{__('general.Delivery_Name')}}
@@ -62,13 +62,7 @@
 </div>
 
     <script type="text/javascript" src="https://checkout.epayco.co/checkout.js">   </script> 
-    <!-- Script to use Input Email pattern Property -->
-    <script>  
-        function myGeeks() {  
-            var em = document.getElementById("email").pattern; 
-        }  
-    </script>  
-
+    
     <!--PAYMENT-->
     <script>
         var handler = ePayco.checkout.configure({
