@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <hr>
-                    <div id="perfil-form" style="visibility: hidden">
+                    <div id="perfil-form" style="display: none">
                         <div class="input-group">
                             <div class="form-group flex-grow-1">
                                 <label class="control-label">{{__('general.Delivery_Name')}}
