@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header tab-header">
                         <h5 class="mb-0">
-                        <button class="btn btn-link collapsed tab-category" type="button" data-toggle="collapse" data-target="#collapse{{$categories[$i]->id}}" aria-expanded="false" aria-controls="collapseTwo">
+                        <button class="btn btn-link tab-category" onclick="collapseTab({{$categories[$i]->id}})" type="button">
                             {{$categories[$i]->description }}
                             <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
                         </button>
