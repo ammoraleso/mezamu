@@ -1,37 +1,37 @@
 /* mixin for multiline */
 
 .ellipsis {
-  overflow: hidden;
-  position: relative;
-  line-height: 1.2em;
-  max-height: 3.6em;
-  text-align: justify;
-  margin-right: -1em;
-  padding-right: 1em;
+    overflow: hidden;
+    position: relative;
+    line-height: 1.2em;
+    max-height: 3.6em;
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
 }
 
 .ellipsis:before {
-  content: '...';
-  position: absolute;
-  right: 0;
-  bottom: 0;
+    content: "...";
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .ellipsis:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  background: white;
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: white;
 }
 
 .vertical-center {
-  position: relative;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .icon {
@@ -48,4 +48,16 @@
     margin-left: 25px;
     padding: 0 5px;
     border-radius: 20px;
+}
+
+table th,
+table td {
+    height: 30px;
+    width: 200px;
+}
+table span {
+    display: block;
+    background-color: #09c;
+    height: 100%;
+    width: 100%;
 }

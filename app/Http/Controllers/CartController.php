@@ -35,7 +35,7 @@ class CartController extends Controller
                 Arr::set($this->cart, $item->id . '.quantity', Arr::get($this->cart, $item->id . '.quantity') + $quantity);
                 Arr::set($this->cart, 'totalQuantity', Arr::get($this->cart, 'totalQuantity') + $quantity);
             }else{
-                $this->cart = Arr::add($this->cart, $item->id, ['item' => [$item,$dishBranch], 'quantity' => $quantity]);
+                $this->cart = Arr::add($this->cart, $item->id, ['item' => $dishBranch, 'quantity' => $quantity]);
                 Arr::set($this->cart, 'totalQuantity', Arr::get($this->cart, 'totalQuantity') + $quantity);
             }
         }else{
