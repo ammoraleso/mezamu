@@ -25,9 +25,14 @@
     <div class="container-fluid">
         <span id="cartContainer">
             @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                @php
-                    $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch)
-                @endphp
+                @foreach(Session::get('cart') as $cartItem) 
+                    @if(data_get($cartItem, 'item'))
+                        @php
+                            $isScheduleValid = App\Utils\Utils::validateSchedule(data_get($cartItem, 'item')->branch);
+                        @endphp
+                        @break
+                    @endif    
+                @endforeach
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
                         <div class="card" style="border-color: white">
