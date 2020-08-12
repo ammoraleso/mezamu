@@ -1968,11 +1968,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['branchid'],
+  props: ['branchid', 'databaseorders'],
   data: function data() {
     return {
-      orders: []
+      orders: this.databaseorders
     };
   },
   mounted: function mounted() {
@@ -43706,41 +43710,65 @@ var render = function() {
           ]),
           _vm._v(" "),
           _vm._l(_vm.orders, function(order) {
-            return _c("div", [
-              _c(
-                "div",
-                {
-                  staticClass: "card text-white bg-primary mb-3",
-                  staticStyle: { "max-width": "20rem" }
-                },
-                [
-                  _c("div", { staticClass: "card-header font-weight-bold" }, [
-                    _vm._v("Header")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(order.items, function(item) {
-                    return _c("div", { staticClass: "card-body" }, [
-                      _c("p", { staticClass: "card-text" }, [
-                        _vm._v(
-                          _vm._s(item.quantity) +
-                            " | " +
-                            _vm._s(item.dish_branch.dish.name)
-                        )
+            return _c("span", [
+              order.order.status == 0
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "card mb-3",
+                      class:
+                        order.order.type == "delivery"
+                          ? "bg-primary text-white"
+                          : "",
+                      staticStyle: { "max-width": "20rem" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "card-header font-weight-bold" },
+                        [_vm._v("Orden: " + _vm._s(order.order.id))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "card-body" },
+                        _vm._l(order.items, function(item) {
+                          return _c("div", [
+                            _c("p", { staticClass: "card-text" }, [
+                              _vm._v(
+                                _vm._s(item.quantity) +
+                                  " | " +
+                                  _vm._s(item.dish_branch.dish.name)
+                              )
+                            ])
+                          ])
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-footer" }, [
+                        order.order.type == "delivery"
+                          ? _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v("Domicilio")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "font-weight-bold" }, [
+                          _vm._v(
+                            "Total: $" +
+                              _vm._s(
+                                Intl.NumberFormat().format(order.order.total)
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Lugar: " + _vm._s(order.order.place))
+                        ])
                       ])
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("p", { staticClass: "font-weight-bold" }, [
-                      _vm._v(
-                        "Total: $" +
-                          _vm._s(Intl.NumberFormat().format(order.order.total))
-                      )
-                    ])
-                  ])
-                ],
-                2
-              )
+                    ]
+                  )
+                : _vm._e()
             ])
           })
         ],

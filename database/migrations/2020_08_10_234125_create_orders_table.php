@@ -17,10 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedBigInteger('branch_id');//foreign
             $table->string('type');
             $table->string('payment_type');
-            $table->unsignedBigInteger('customer_id')->nullable();
-            $table->string('place')->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();//foreign
+            $table->string('place');
             $table->unsignedInteger('status')->default(0);//0 new; 1 preparing; 2 Ready
             $table->unsignedInteger('total');
         });

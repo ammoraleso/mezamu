@@ -3,17 +3,21 @@
         <div class="d-flex justify-content-around">
             <div class="card p-3">
                 <h3 class="text-center font-weight-bolder mb-3">Nuevas Ordenes</h3>
-                <div v-for="order in orders">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-                        <div class="card-header font-weight-bold">Header</div>
-                        <div v-for="item in order.items" class="card-body">
-                            <p class="card-text">{{item.quantity}} | {{item.dish_branch.dish.name}}</p>
+                <span v-for="order in orders">
+                    <div v-if="order.order.status == 0" class="card mb-3" :class="order.order.type == 'delivery' ? 'bg-primary text-white' : ''" style="max-width: 20rem;">
+                        <div class="card-header font-weight-bold">Orden: {{order.order.id}}</div>
+                        <div class="card-body">
+                            <div v-for="item in order.items">
+                                <p class="card-text">{{item.quantity}} | {{item.dish_branch.dish.name}}</p>
+                            </div>
                         </div>
                         <div class="card-footer">
+                            <p v-if="order.order.type == 'delivery'" class="font-weight-bold">Domicilio</p>
                             <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+                            <p class="font-weight-bold">Lugar: {{order.order.place}}</p>
                         </div>
                     </div>
-                </div>
+                </span>
             </div>
             <div class="card">
                 <h3 class="text-center">En Preparación</h3>
@@ -27,10 +31,10 @@
 
 <script type="application/javascript">
     export default {
-        props:['branchid'],
+        props:['branchid','databaseorders'],
         data(){
             return{
-                orders: [],
+                orders: this.databaseorders
             }
         },
         mounted() {

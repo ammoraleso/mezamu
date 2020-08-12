@@ -124,7 +124,7 @@
                                                 $totalPrice += $totalItemPrice;
                                                 array_push($paymentCart, [$itemComplete->dish->id => ['quantity' => $itemQuantity, 'totalItemPrice' => $totalItemPrice]]);
                                             @endphp
-
+                                            <input id="totalPrice" hidden value="{{$totalPrice}}"/>
                                             <tr>
                                             <td class="no-align">{{$itemComplete->dish['name']}}</td>
                                             <td>X {{$itemQuantity}}</td>
@@ -138,7 +138,6 @@
                                         <td><h4><strong>$ {{number_format($totalPrice, 0, '.', ',')}}</strong></h4></td>
                                     </tr>
                                 </table>
-
                             </div>
                         </div>
                     </div>

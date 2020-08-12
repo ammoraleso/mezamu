@@ -16,6 +16,7 @@ class NotificationController extends Controller
 
     public static function notify(String $type, $place, $total){
         $order = new \App\Models\Order();
+        $order->branch_id = Arr::first(Session::get('cart'))['item']->branch->id;
         $order->type = $type;
         $order->place = $place;
         $order->total = $total;

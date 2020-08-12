@@ -12,13 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    if(Auth::check()){
-        return view('/home');
-    }
-    return view('welcome');
-});
+Route::get('/', 'HomeController@show')->name('home');
 
 Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');
 Route::post('/waiter', 'WaiterController@generateCode')->name('generateCode');

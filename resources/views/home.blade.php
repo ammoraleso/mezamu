@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    <orders :branchid="{{Auth::user()->branch_id}}"></orders>
+    <orders :databaseorders='{!! json_encode($orders)!!}' :branchid="{{Auth::user()->branch_id}}"></orders>
 @endsection
