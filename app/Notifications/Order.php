@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\DishBranch;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
@@ -12,15 +13,16 @@ class Order extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $cart;
+    private $order;
+
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param \App\Models\Order $order
      */
-    public function __construct($cart)
+    public function __construct(\App\Models\Order $order)
     {
-        $this->cart = $cart;
+        $this->order = $order;
     }
 
     /**
@@ -63,8 +65,10 @@ class Order extends Notification implements ShouldQueue
 
     public function toBroadcast($notifiable)
     {
-        return new BroadcastMessage([
-            'cart' => $this->cart
-        ]);
+        $data = [
+            'order' => $this->order,
+            'items' => $this->order->items()->get()
+        ];
+        return new BroadcastMessage($data);
     }
 }

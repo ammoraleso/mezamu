@@ -26,6 +26,19 @@ class ForeignKeys extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
         });
 
+        Schema::table('orders', function (Blueprint $table) {
+            $table->foreign('customer_id')->references('id')->on('customer');
+        });
+
+        Schema::table('order_dishes', function (Blueprint $table) {
+            $table->foreign('order_id')->references('id')->on('orders');;
+            $table->foreign('dish_branch_id')->references('id')->on('dish_branch');;
+        });
+
+        Schema::table('schedule_branch', function (Blueprint $table) {
+            $table->foreign('branch_id')->references('id')->on('branches');
+        });
+
         Schema::table('tag_dish', function (Blueprint $table) {
             $table->foreign('tag_id')->references('id')->on('tags');
             $table->foreign('dish_id')->references('id')->on('dishes');
@@ -61,6 +74,23 @@ class ForeignKeys extends Migration
             $table->dropColumn('category_id');
         });
 
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign('customer_id');
+            $table->dropColumn('customer_id');
+        });
+
+        Schema::table('order_dishes', function (Blueprint $table) {
+            $table->dropForeign('order_id');
+            $table->dropColumn('order_id');
+            $table->dropForeign('dish_branch_id');
+            $table->dropColumn('dish_branch_id');
+        });
+
+        Schema::table('schedule_branch', function (Blueprint $table) {
+            $table->dropForeign('branch_id');
+            $table->dropColumn('branch_id');
+        });
+
         Schema::table('tag_dish', function (Blueprint $table) {
             $table->dropForeign('tag_id');
             $table->dropColumn('tag_id');
@@ -70,6 +100,7 @@ class ForeignKeys extends Migration
 
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign('branch_id');
+            $table->dropColumn('branch_id');
         });
 
     }

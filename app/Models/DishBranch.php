@@ -9,6 +9,8 @@ class DishBranch extends Model
 {
     protected $table = 'dish_branch';
 
+    protected $with = ['dish'];
+
     public function dish(){
         return $this->hasOne(Dish::class,'id','dish_id');
     }

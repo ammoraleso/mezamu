@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dish;
 use App\Models\DishBranch;
 use App\Models\Customer;
+use App\Notifications\Order;
 use App\Token;
 use App\Utils\Utils;
 use Illuminate\Support\Arr;
@@ -23,6 +24,7 @@ class CartController extends Controller
     public function addItem(){
 
         $this->cart = Session::get('cart');//get the cart stored in session to add quantities of a same product.
+        $totalQuantity = Session::get('totalQuantity') ? Session::get('totalQuantity') : 0;
 
         $quantity = request('quantity');
         $itemID = request('itemID');
@@ -33,18 +35,17 @@ class CartController extends Controller
         if($this->cart){
             if(array_key_exists($item->id, $this->cart)) {
                 Arr::set($this->cart, $item->id . '.quantity', Arr::get($this->cart, $item->id . '.quantity') + $quantity);
-                Arr::set($this->cart, 'totalQuantity', Arr::get($this->cart, 'totalQuantity') + $quantity);
             }else{
-                $this->cart = Arr::add($this->cart, $item->id, ['item' => [$item,$dishBranch], 'quantity' => $quantity]);
-                Arr::set($this->cart, 'totalQuantity', Arr::get($this->cart, 'totalQuantity') + $quantity);
+                $this->cart = Arr::add($this->cart, $item->id, ['item' => $dishBranch, 'quantity' => $quantity]);
             }
         }else{
-            $this->cart = [$item->id => ['item' => $dishBranch, 'quantity' => $quantity],'totalQuantity' => $quantity];
+            $this->cart = [$item->id => ['item' => $dishBranch, 'quantity' => $quantity]];
         }
-        // $this->cart ="";
+        $totalQuantity += $quantity;
+        Session::put('totalQuantity', $totalQuantity);
         Session::put('cart', $this->cart);
         Session::save();
-        return  Arr::get(Session::get('cart'),'totalQuantity');//Needed to reload the cart icon*/
+        return  $totalQuantity;//Needed to reload the cart icon*/
     }
 
     /**
@@ -56,15 +57,16 @@ class CartController extends Controller
         if($itemID) {
             $this->cart = Session::get('cart');//get the cart stored in session to add quantities of a same product.
             if ($this->cart && array_key_exists($itemID, $this->cart)) {
-                $totalQuantity = Arr::get($this->cart, 'totalQuantity')- Arr::get($this->cart, $itemID.'.quantity');
+                $totalQuantity = Session::get('totalQuantity')- Arr::get($this->cart, $itemID.'.quantity');
                 if($totalQuantity == 0){
                     Session::forget('cart');
                 }else {
-                    Arr::set($this->cart, 'totalQuantity', $totalQuantity);
                     Arr::forget($this->cart, $itemID);
                     Session::put('cart', $this->cart);
-                    Session::save();
+
                 }
+                Session::put('totalQuantity', $totalQuantity);
+                Session::save();
                 return  $totalQuantity;//Needed to reload the cart icon
             }
         }
@@ -77,13 +79,10 @@ class CartController extends Controller
         if($itemID) {
             $this->cart = Session::get('cart');//get the cart stored in session to add quantities of a same product.
             if ($this->cart && array_key_exists($itemID, $this->cart)) {
-
                 $oldQuantity = Arr::get($this->cart, $itemID.'.quantity');
                 Arr::set($this->cart, $itemID.'.quantity', $newQuantity);
-
-                $oldTotalQuantity = Arr::get($this->cart, 'totalQuantity');
-                $totalQuantity = $oldQuantity > $newQuantity ? $oldTotalQuantity-($oldQuantity - $newQuantity) : $oldTotalQuantity+($newQuantity - $oldQuantity);
-                Arr::set($this->cart, 'totalQuantity', $totalQuantity);
+                $oldTotalQuantity = Session::get('totalQuantity');
+                Session::put('totalQuantity',$oldTotalQuantity + $newQuantity - $oldQuantity);
                 Session::put('cart', $this->cart);
                 Session::save();
             }
@@ -95,6 +94,10 @@ class CartController extends Controller
         return $customer = Customer::where('email', '=',$email)->get()->first();
     }
 
+    public function uploadCustomer(){
+        Session::put('customer', $this->saveCustomer());
+    }
+
     public function saveCustomer(){
 
         $nombre = request()->name;
@@ -102,13 +105,14 @@ class CartController extends Controller
         $direccion = request()->address;
         $email = request()->email;
 
-        Customer::updateOrCreate(['email' => $email],['nombre' => $nombre,'direccion' => $direccion,'telefono' => $telefono]);
+        return Customer::updateOrCreate(['email' => $email],['nombre' => $nombre,'direccion' => $direccion,'telefono' => $telefono]);
     }
 
     public function checkOut(){
         $token = request()->token;
         if(Utils::isTokenValid($token)) {
-            Session::forget('cart');
+            //TODO leer el place del token, y traer el total del request.
+            NotificationController::notify('in-situ','mesa 1' , 0);
         }else{
             return response()->json(['error' => 'Invalid token'], 500); // Status code here
         }
