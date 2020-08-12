@@ -3,9 +3,6 @@ INSERT INTO `mezamu`.`restaurants` (`id`, `company_name`, `name`, `logo`, `slug`
 
 #Branch
 INSERT INTO `mezamu`.`branches` (`id`, `location`, `restaurant_id`, `tables`, `telefono`,`email`) VALUES ('1', 'cajica', '1', '5', '573182659093','andresmaomorales@gmail.com');
-ALTER TABLE `mezamu`.`branches` 
-ADD COLUMN `email` VARCHAR(255) NOT NULL AFTER `telefono`;
-
 
 #User - admin_mezamu
 INSERT INTO `mezamu`.`users` (`id`, `name`, `email`, `password`, `role`, `branch_id`) VALUES ('1', 'Admin MeZamÜ', 'mezamucorporativo@gmail.com', '$2y$10$8iK5BlsTeFYgMw5d054iI.s2fGlb14/tBq8uaufk5s8lMj4TpnzcW', 'administrador', '1');
