@@ -162,3 +162,15 @@ async function loadPerfil() {
     $("#perfil-form").removeAttr("style");
     $("perfil-form").show();
 }
+
+function collapseTab(id_target = "Prod") {
+    const target = "#collapse" + id_target;
+    if ($(target).attr("class") === "collapse") {
+        $(target).attr("class", "collapse show");
+        return;
+    }
+    if ($(target).attr("class") === "collapse show") {
+        $(target).attr("class", "collapse");
+        return;
+    }
+}

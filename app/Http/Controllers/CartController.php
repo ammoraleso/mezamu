@@ -63,7 +63,6 @@ class CartController extends Controller
                 }else {
                     Arr::forget($this->cart, $itemID);
                     Session::put('cart', $this->cart);
-
                 }
                 Session::put('totalQuantity', $totalQuantity);
                 Session::save();

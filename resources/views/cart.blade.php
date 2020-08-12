@@ -33,7 +33,7 @@
                         <div class="card" style="border-color: white">
                             <div class="card-header tab-header">
                                 <h5 class="mb-0">
-                                <button class="btn btn-link collapsed tab-category " type="button" data-toggle="collapse" data-target="#collapseProd" aria-expanded="false" aria-controls="collapseTwo">
+                               <button class="btn btn-link tab-category" onclick="collapseTab()" type="button">
                                     {{__('general.Products')}}
                                     <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
                                 </button>
