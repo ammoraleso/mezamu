@@ -24,15 +24,10 @@
 @section('content')
     <div class="container-fluid">
         <span id="cartContainer">
-            @if(Session::get('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
-                @foreach(Session::get('cart') as $cartItem) 
-                    @if(data_get($cartItem, 'item'))
-                        @php
-                            $isScheduleValid = App\Utils\Utils::validateSchedule(data_get($cartItem, 'item')->branch);
-                        @endphp
-                        @break
-                    @endif    
-                @endforeach
+            @if(Session::get('cart') && Session::get('totalQuantity') > 0)
+                @php
+                    $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch)
+                @endphp
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
                         <div class="card" style="border-color: white">
@@ -108,7 +103,7 @@
                             <div style="justify-content: center; display: flex;">
                                 <table>
                                     <tr>
-                                        <th class="no-align"><i><h5><strong>{{__('general.Products')}} ({{Session::get('cart')['totalQuantity']}})</strong></h5></i></th>
+                                        <th class="no-align"><i><h5><strong>{{__('general.Products')}} ({{Session::get('totalQuantity')}})</strong></h5></i></th>
                                         <th><i><h5><strong>{{__('general.Quantity')}}</strong></h5></i></th>
                                         <th><i><h5><strong>{{__('general.Cost')}}</strong></h5></i></th>
                                     </tr>

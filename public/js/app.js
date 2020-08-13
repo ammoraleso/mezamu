@@ -1958,6 +1958,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['branchid'],
   data: function data() {
@@ -1970,9 +1980,8 @@ __webpack_require__.r(__webpack_exports__);
 
     console.log('Component mounted.');
     Echo["private"]('App.Models.Branch.' + this.branchid).notification(function (notification) {
-      console.log(notification);
-
-      _this.orders.push('hola');
+      //console.log(notification.items[0].dishBranch);//For debug
+      _this.orders.push(notification);
     });
   }
 });
@@ -43690,19 +43699,49 @@ var render = function() {
     _c("div", { staticClass: "d-flex justify-content-around" }, [
       _c(
         "div",
-        { staticClass: "card" },
+        { staticClass: "card p-3" },
         [
-          _c("h3", [_vm._v("Nuevas Ordenes")]),
+          _c("h3", { staticClass: "text-center font-weight-bolder mb-3" }, [
+            _vm._v("Nuevas Ordenes")
+          ]),
           _vm._v(" "),
           _vm._l(_vm.orders, function(order) {
-            return _c(
-              "p",
-              {
-                staticClass:
-                  "dropdown-item break-word notification-item floating-card"
-              },
-              [_vm._v("nueva orden")]
-            )
+            return _c("div", [
+              _c(
+                "div",
+                {
+                  staticClass: "card text-white bg-primary mb-3",
+                  staticStyle: { "max-width": "20rem" }
+                },
+                [
+                  _c("div", { staticClass: "card-header font-weight-bold" }, [
+                    _vm._v("Header")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(order.items, function(item) {
+                    return _c("div", { staticClass: "card-body" }, [
+                      _c("p", { staticClass: "card-text" }, [
+                        _vm._v(
+                          _vm._s(item.quantity) +
+                            " | " +
+                            _vm._s(item.dish_branch.dish.name)
+                        )
+                      ])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c("p", { staticClass: "font-weight-bold" }, [
+                      _vm._v(
+                        "Total: $" +
+                          _vm._s(Intl.NumberFormat().format(order.order.total))
+                      )
+                    ])
+                  ])
+                ],
+                2
+              )
+            ])
           })
         ],
         2
@@ -43720,14 +43759,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card" }, [
-      _c("h3", [_vm._v("En Preparación")])
+      _c("h3", { staticClass: "text-center" }, [_vm._v("En Preparación")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [_c("h3", [_vm._v("Listas")])])
+    return _c("div", { staticClass: "card" }, [
+      _c("h3", { staticClass: "text-center" }, [_vm._v("Listas")])
+    ])
   }
 ]
 render._withStripped = true

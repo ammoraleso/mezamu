@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\OrderDish;
 use App\Models\PaymentTransaction;
 use App\Models\PendingTransaction;
 use App\Notifications\Order;
+use App\Utils\Utils;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Client;
@@ -21,9 +24,6 @@ class PaymentController extends Controller
 
         switch ($data->x_cod_response){
             case 1://Acepted transaction
-                Arr::first(Session::get('cart'))['item']->branch->notify(new Order(Session::get('cart')));
-                Session::forget('cart');
-                Session::save();
                 return  redirect('successfulPurchase');
             case 2://Rejected
                 return redirect('rejectedPurchase');
@@ -58,6 +58,7 @@ class PaymentController extends Controller
         }
 
         $this->saveTransaction($data);
+        NotificationController::notify('delivery', $data->x_extra3, $x_amount);
 
         return response()->json([
             'success' => true,

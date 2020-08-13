@@ -44,12 +44,12 @@
                 <div class="d-sm-inline-block d-lg-none">
                     @guest
                         <div id="cartIconSmall" class="mr-3 d-sm-inline-block d-lg-none">
-                            @if(Session::has('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
+                            @if(Session::has('cart') && Session::get('totalQuantity') > 0)
                                 <a href="{{route('cart')}}">
                                     <img class="icon" alt="user" src="https://mezamublobstorage.blob.core.windows.net/images/full_cart_icon.png">
                                 </a>
                                 <span id="cartBadgeSmall">
-                                    <div  class="icon-badge badge-danger">{{\Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity')}}</div>
+                                    <div  class="icon-badge badge-danger">{{Session::get('totalQuantity')}}</div>
                                 </span>
                             @else
                                 <a href="{{route('cart')}}">
@@ -73,12 +73,12 @@
                     @guest
                         <div class="d-none d-lg-inline-block">
                             <div id="cartIconLarge" class="mr-3 d-none d-lg-inline-block">
-                                @if(Session::has('cart') && \Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity') > 0)
+                                @if(Session::has('cart') && Session::get('totalQuantity') > 0)
                                     <a href="{{route('cart')}}">
                                         <img class="icon" alt="user" src="https://mezamublobstorage.blob.core.windows.net/images/full_cart_icon.png">
                                     </a>
                                     <span id="cartBadgeLarge">
-                                        <div  class="icon-badge badge-danger">{{\Illuminate\Support\Arr::get(Session::get('cart'),'totalQuantity')}}</div>
+                                        <div  class="icon-badge badge-danger">{{Session::get('totalQuantity')}}</div>
                                     </span>
                                 @else
                                     <a href="{{route('cart')}}">
