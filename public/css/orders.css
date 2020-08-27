@@ -1,0 +1,20 @@
+/* mixin for multiline */
+@media (max-width: 768px) {
+    .horizontal-scrollable {
+        width: 300%;
+    }
+}
+@media (min-width: 768px) {
+    .horizontal-scrollable {
+        width: 100%;
+    }
+}
+.horizontal-scrollable > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.horizontal-scrollable > .row > .col-xs-4 {
+    display: inline-block;
+    float: none;
+}

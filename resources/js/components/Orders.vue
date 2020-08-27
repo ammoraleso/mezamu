@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <div class="d-flex justify-content-around">
-            <div class="card p-3">
+    <div class="horizontal-scrollable">
+        <div class="row justify-content-around">
+            <div class="card align-items-center p-3 col-4">
                 <h3 class="text-center font-weight-bolder mb-3">Nuevas Ordenes</h3>
-                <span v-for="order in orders">
-                    <div v-if="order.order.status == 0" class="card mb-3" :class="order.order.type == 'delivery' ? 'bg-primary text-white' : ''" style="max-width: 20rem;">
+                <span v-for="(order, index) in orders" style="width: 90%;">
+                    <div v-if="order.order.status == 0" class="card mb-3" :class="order.order.type == 'delivery' ? 'bg-primary text-white' : ''">
                         <div class="card-header font-weight-bold">Orden: {{order.order.id}}</div>
                         <div class="card-body">
                             <div v-for="item in order.items">
@@ -15,15 +15,50 @@
                             <p v-if="order.order.type == 'delivery'" class="font-weight-bold">Domicilio</p>
                             <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
                             <p class="font-weight-bold">Lugar: {{order.order.place}}</p>
+                            <button class="btn btn-success" @click="forward(index)">Continuar</button>
                         </div>
                     </div>
                 </span>
             </div>
-            <div class="card">
-                <h3 class="text-center">En Preparación</h3>
+            <div class="card align-items-center col-4">
+                <h3 class="text-center font-weight-bolder mb-3">En Preparación</h3>
+                <span v-for="(order, index) in orders" style="width: 90%;">
+                    <div v-if="order.order.status == 1" class="card mb-3" :class="order.order.type == 'delivery' ? 'bg-primary text-white' : ''">
+                        <div class="card-header font-weight-bold">Orden: {{order.order.id}}</div>
+                        <div class="card-body">
+                            <div v-for="item in order.items">
+                                <p class="card-text">{{item.quantity}} | {{item.dish_branch.dish.name}}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <p v-if="order.order.type == 'delivery'" class="font-weight-bold">Domicilio</p>
+                            <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+                            <p class="font-weight-bold">Lugar: {{order.order.place}}</p>
+                            <button class="btn btn-info" @click="back(index)">Devolver</button>
+                            <button class="btn btn-success" @click="forward(index)">Continuar</button>
+                        </div>
+                    </div>
+                </span>
             </div>
-            <div class="card">
-                <h3 class="text-center">Listas</h3>
+            <div class="card  align-items-center col-4">
+                <h3 class="text-center font-weight-bolder mb-3">Listas</h3>
+                <span v-for="(order, index) in orders" style="width: 90%;">
+                    <div v-if="order.order.status == 2" class="card mb-3" :class="order.order.type == 'delivery' ? 'bg-primary text-white' : ''">
+                        <div class="card-header font-weight-bold">Orden: {{order.order.id}}</div>
+                        <div class="card-body">
+                            <div v-for="item in order.items">
+                                <p class="card-text">{{item.quantity}} | {{item.dish_branch.dish.name}}</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <p v-if="order.order.type == 'delivery'" class="font-weight-bold">Domicilio</p>
+                            <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+                            <p class="font-weight-bold">Lugar: {{order.order.place}}</p>
+                            <button class="btn btn-info" @click="back(index)">Devolver</button>
+                            <button class="btn btn-success" @click="forward(index)">Continuar</button>
+                        </div>
+                    </div>
+                </span>
             </div>
         </div>
     </div>
@@ -44,6 +79,18 @@
                     //console.log(notification.items[0].dishBranch);//For debug
                     this.orders.push(notification);
                 });
+        },
+        methods: {
+            forward (index) {
+                let order;
+                order = this.orders[index];
+                order.order.status += 1;
+            },
+            back (index) {
+                let order;
+                order = this.orders[index];
+                order.order.status -= 1;
+            }
         }
     }
 </script>
