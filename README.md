@@ -57,6 +57,7 @@ Se toma de ejemplo UserSeeder (https://stackoverflow.com/questions/52057513/add-
 
 ## Limpiar Memoria
 
+php artisan config:clear
 php artisan cache:clear
 composer dump-autoload
 
