@@ -64,3 +64,4 @@ composer dump-autoload
 ## Vue
 
 -   npm install --save laravel-echo pusher-js
+-   npm run watch
