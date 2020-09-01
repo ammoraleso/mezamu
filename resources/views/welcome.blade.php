@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page_title')
-    {{ "MeZamÜ | Home" }}
+    {{ "MeZamÜ | Welcome" }}
 @endsection
 
 @push('stylesAndScripts')

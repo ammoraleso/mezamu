@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('page_title')
+    {{ "MeZamÜ | Admin" }}
+@endsection
+
+
 @push('stylesAndScripts')
     <link rel="stylesheet" href="{{asset('css/orders.css')}}">
     <script src="{{asset('js/order.js')}}" type="text/javascript"></script>
