@@ -12,13 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    if(Auth::check()){
-        return view('/home');
-    }
-    return view('welcome');
-});
+Route::get('/', 'HomeController@show')->name('home');
 
 Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');
 Route::post('/waiter', 'WaiterController@generateCode')->name('generateCode');
@@ -31,6 +25,7 @@ Route::post('/changeQuantity', 'CartController@changeQuantity')->name('changeQua
 Route::post('/checkOut', 'CartController@checkOut')->name('checkOut');
 Route::post('/findEmail', 'CartController@findEmail')->name('findEmail');
 Route::post('/saveCustomer', 'CartController@uploadCustomer')->name('saveCustomer');
+Route::post('/uploadOrder', 'OrderController@uploadOrder')->name('uploadOrder');
 Route::get('/successfulPurchase', function () {return view('/successfulPurchase');});
 Route::get('/rejectedPurchase', function () {return view('/successfulPurchase');});
 Route::get('/pendingPurchase', function () {return view('/successfulPurchase');});

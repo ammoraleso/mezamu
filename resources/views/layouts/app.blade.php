@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
     <link rel="stylesheet" href="{{asset('css/utils.css')}}">
 
+
     @stack('stylesAndScripts')
 </head>
 <body>

@@ -13,6 +13,13 @@ $(document).ready(function() {
             if ($(this).find("span").length === 0) {
                 de = $("#" + data).detach();
                 de.appendTo($(this));
+                var headerObj = $(this)
+                    .parents("table")
+                    .find("th")
+                    .eq($(this).index());
+                // A quick test!
+                headerOfCard = headerObj.text();
+                console.log("My cell header is called: " + headerOfCard);
             }
         }
     });
