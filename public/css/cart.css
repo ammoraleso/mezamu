@@ -31,6 +31,14 @@ tr:nth-child(even) {
     border-color: #343a40;
 }
 
+.tab-reservation {
+    background: #343a40;
+    color: white;
+    font-style: oblique;
+    border-color: #343a40;
+    height: auto;
+}
+
 .modal-close-button {
     color: white;
 }
