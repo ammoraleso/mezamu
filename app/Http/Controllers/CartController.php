@@ -110,7 +110,7 @@ class CartController extends Controller
         $token = request()->token;
         if(Utils::isTokenValid($token)) {
             //TODO leer el place del token, y traer el total del request.
-            NotificationController::notify('in-situ','mesa '.Token::where('token',$token)->first()->table_number, request()->total);
+            NotificationController::notify('in-situ','Mesa '.Token::where('token',$token)->first()->table_number, request()->total);
         }else{
             return response()->json(['error' => 'Invalid token'], 500); // Status code here
         }

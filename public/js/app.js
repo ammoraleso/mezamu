@@ -2039,6 +2039,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["branchid", "databaseorders"],
   data: function data() {
@@ -44605,6 +44629,28 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
+                        order.order.type == "delivery"
+                          ? _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v(
+                                "Cliente: " +
+                                  _vm._s(order.order.customer.nombre)
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Lugar: " + _vm._s(order.order.place))
+                        ]),
+                        _vm._v(" "),
+                        order.order.type == "delivery"
+                          ? _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v(
+                                "Telefono: " +
+                                  _vm._s(order.order.customer.telefono)
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
                         _c("p", { staticClass: "font-weight-bold" }, [
                           _vm._v(
                             "Total: $" +
@@ -44612,10 +44658,6 @@ var render = function() {
                                 Intl.NumberFormat().format(order.order.total)
                               )
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
                         ]),
                         _vm._v(" "),
                         _c(
@@ -44691,6 +44733,28 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
+                        order.order.type == "delivery"
+                          ? _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v(
+                                "Cliente: " +
+                                  _vm._s(order.order.customer.nombre)
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Lugar: " + _vm._s(order.order.place))
+                        ]),
+                        _vm._v(" "),
+                        order.order.type == "delivery"
+                          ? _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v(
+                                "Telefono: " +
+                                  _vm._s(order.order.customer.telefono)
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
                         _c("p", { staticClass: "font-weight-bold" }, [
                           _vm._v(
                             "Total: $" +
@@ -44698,10 +44762,6 @@ var render = function() {
                                 Intl.NumberFormat().format(order.order.total)
                               )
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
                         ]),
                         _vm._v(" "),
                         _c(
@@ -44790,6 +44850,28 @@ var render = function() {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
+                        order.order.type == "delivery"
+                          ? _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v(
+                                "Cliente: " +
+                                  _vm._s(order.order.customer.nombre)
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Lugar: " + _vm._s(order.order.place))
+                        ]),
+                        _vm._v(" "),
+                        order.order.type == "delivery"
+                          ? _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v(
+                                "Telefono: " +
+                                  _vm._s(order.order.customer.telefono)
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
                         _c("p", { staticClass: "font-weight-bold" }, [
                           _vm._v(
                             "Total: $" +
@@ -44797,10 +44879,6 @@ var render = function() {
                                 Intl.NumberFormat().format(order.order.total)
                               )
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
                         ]),
                         _vm._v(" "),
                         _c(
