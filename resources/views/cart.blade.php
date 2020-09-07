@@ -124,7 +124,6 @@
                                                 $totalPrice += $totalItemPrice;
                                                 array_push($paymentCart, [$itemComplete->dish->id => ['quantity' => $itemQuantity, 'totalItemPrice' => $totalItemPrice]]);
                                             @endphp
-                                            <input id="totalPrice" hidden value="{{$totalPrice}}"/>
                                             <tr>
                                             <td class="no-align">{{$itemComplete->dish['name']}}</td>
                                             <td>X {{$itemQuantity}}</td>
@@ -132,6 +131,7 @@
                                             </tr>
                                         @endif
                                     @endforeach
+                                    <input id="totalPrice" hidden value="{{$totalPrice}}"/>
                                     <tr>
                                         <td></td>
                                         <td><h4><strong>{{__('general.Total')}}</strong></h4></td>
