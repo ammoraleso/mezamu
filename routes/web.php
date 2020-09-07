@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@show')->name('home');
 
 Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');
+Route::get('/{restaurant}/{branch}/reserva', 'ReservationController@show')->name('reservation');
 Route::post('/waiter', 'WaiterController@generateCode')->name('generateCode');
 
 //Cart Controller

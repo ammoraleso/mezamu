@@ -51,5 +51,8 @@ return [
     "Delivery_Form" => "Delivery Form",
     "No_valid_Schedule" => "Currently the Restaurante is close.",
     "Email" => "Email",
-    "Phone" => "Phone Number"
+    "Phone" => "Phone Number",
+    "Reserve_Form" => "Reserve Form",
+    "Reserve" => "Reserve",
+    "Persons" => "Persons"
 ];

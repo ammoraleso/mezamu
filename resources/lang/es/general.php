@@ -53,5 +53,8 @@ return [
     "Delivery_Form" => "Datos Domicilio",
     "No_valid_Schedule" => "Acutalmente el restaurante está cerrado.",
     "Email" => "Email",
-    "Phone" => "Teléfono"
+    "Phone" => "Teléfono",
+    "Reserve_Form" => "Datos Reserva",
+    "Reserve" => "Reservar",
+    "Persons" => "Personas"
 ];
