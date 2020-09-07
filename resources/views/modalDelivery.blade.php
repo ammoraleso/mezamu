@@ -92,6 +92,9 @@
 
             //Atributos opcionales
             response: '{{\App\Utils\Utils::generateUrl()}}'+'/api/response_payment',
+
+            //atributo deshabilitación metodo de pago
+            methodsDisable: ["SP","CASH"],
         };
 
         async function showPayModal() {
