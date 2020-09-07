@@ -25,6 +25,7 @@ class NotificationController extends Controller
         if($type === 'delivery'){
             $order->payment_type = 'ecommerce';
             $order->customer_id = Session::get('customer')->id;
+            $order->customer_id = Session::get('customer')->id;
         }else{
             $order->payment_type = 'in-situ';
         }
