@@ -140,7 +140,6 @@
             data.extra3= $address;
             data.extra4= $name;
             data.extra5= document.getElementById("descriptionOrder").value;
-            console.log(data.extra5);
             //Atributos cliente
             data.type_doc_billing= "cc";
             try {
