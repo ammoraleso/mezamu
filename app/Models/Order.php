@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['type','payment_type','customer_id','place','status','total'];
+    protected $fillable = ['type','payment_type','customer_id','place','annotations','status','total'];
 
     //We need "with" property and customer method (with the same name) in order to eager fetch relation and pass it to notification
     protected $with = ['customer'];
