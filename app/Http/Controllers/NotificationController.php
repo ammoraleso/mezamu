@@ -21,7 +21,6 @@ class NotificationController extends Controller
         $order->place = $place;
         $order->total = $total;
         $order->annotations = $description;
-        //$total = Session::get('totalPrice');
         $total = 0;
         if($type === 'delivery'){
             $order->payment_type = 'ecommerce';
