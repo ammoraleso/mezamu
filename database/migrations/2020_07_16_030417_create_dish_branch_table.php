@@ -21,6 +21,7 @@ class CreateDishBranchTable extends Migration
             $table->boolean('promotion')->default(0);
             $table->float('promotion_percentage')->nullable();
             $table->unsignedInteger('promotion_price')->nullable();//We use this field when we wanna give a price instead of a percentage of discount
+            $table->boolean('disable')->default(0);
         });
     }
 
