@@ -15,10 +15,19 @@
                 <p class="card-text">{{item.quantity}} | {{item.dish_branch.dish.name}}</p>
               </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" style="white-space: initial">
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">Domicilio</p>
-              <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+              <p
+                v-if="order.order.type == 'delivery'"
+                class="font-weight-bold"
+              >Cliente: {{order.order.customer.nombre}}</p>
               <p class="font-weight-bold">Lugar: {{order.order.place}}</p>
+              <p
+                v-if="order.order.type == 'delivery'"
+                class="font-weight-bold"
+              >Telefono: {{order.order.customer.telefono}}</p>
+              <p v-if="order.order.annotations != ''" class="font-weight-bold">Anotaciones: {{order.order.annotations}}</p>
+              <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
               <button class="btn btn-success" @click="forward(index)">Continuar</button>
             </div>
           </div>
@@ -38,10 +47,19 @@
                 <p class="card-text">{{item.quantity}} | {{item.dish_branch.dish.name}}</p>
               </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" style="white-space: initial">
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">Domicilio</p>
-              <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+              <p
+                v-if="order.order.type == 'delivery'"
+                class="font-weight-bold"
+              >Cliente: {{order.order.customer.nombre}}</p>
               <p class="font-weight-bold">Lugar: {{order.order.place}}</p>
+              <p
+                v-if="order.order.type == 'delivery'"
+                class="font-weight-bold"
+              >Telefono: {{order.order.customer.telefono}}</p>
+              <p v-if="order.order.annotations != ''" class="font-weight-bold">Anotaciones: {{order.order.annotations}}</p>
+              <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
               <button class="btn btn-info" @click="back(index)">Devolver</button>
               <button class="btn btn-success" @click="forward(index)">Continuar</button>
             </div>
@@ -62,10 +80,22 @@
                 <p class="card-text">{{item.quantity}} | {{item.dish_branch.dish.name}}</p>
               </div>
             </div>
-            <div class="card-footer">
+            <div class="card-footer" style="white-space: initial">
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">Domicilio</p>
-              <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+              <p
+                v-if="order.order.type == 'delivery'"
+                class="font-weight-bold"
+              >Cliente: {{order.order.customer.nombre}}</p>
               <p class="font-weight-bold">Lugar: {{order.order.place}}</p>
+              <p
+                v-if="order.order.type == 'delivery'"
+                class="font-weight-bold"
+              >Telefono: {{order.order.customer.telefono}}</p>
+              <p
+                v-if="order.order.annotations != ''"
+                class="font-weight-bold"
+              >Anotaciones: {{order.order.annotations}}</p>
+              <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
               <button class="btn btn-info" @click="back(index)">Devolver</button>
               <button class="btn btn-success" @click="forward(index)">Continuar</button>
             </div>

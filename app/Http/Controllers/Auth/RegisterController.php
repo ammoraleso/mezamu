@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -66,20 +66,22 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $data, $branch_id)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => strtolower($data['role']),
+            'branch_id' => $branch_id
         ]);
     }
 
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        event(new Registered($user = $this->create($request->all())));
+        $userLogged = auth()->user();
+        event(new Registered($user = $this->create($request->all(),$userLogged->branch_id)));
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }

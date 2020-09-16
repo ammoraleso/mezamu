@@ -110,7 +110,7 @@ async function loadPerfil() {
     }
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test($email)) {
-        alert("Por favor ingresa un menú válido.");
+        alert("Por favor ingresa un email válido.");
         return;
     }
 

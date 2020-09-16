@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dish;
 use App\Models\DishBranch;
 use App\Models\Customer;
-use App\Token;
+use App\Models\Token;
 use App\Utils\Utils;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
@@ -109,8 +109,7 @@ class CartController extends Controller
     public function checkOut(){
         $token = request()->token;
         if(Utils::isTokenValid($token)) {
-            //TODO leer el place del token, y traer el total del request.
-            NotificationController::notify('in-situ','mesa 1' , request()->total);
+            NotificationController::notify('in-situ','Mesa '.Token::where('token',$token)->first()->table_number, request()->total,request()->description);
         }else{
             return response()->json(['error' => 'Invalid token'], 500); // Status code here
         }

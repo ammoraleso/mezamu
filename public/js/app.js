@@ -2039,6 +2039,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["branchid", "databaseorders"],
   data: function data() {
@@ -44598,39 +44628,73 @@ var render = function() {
                         0
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-footer" }, [
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Domicilio")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            "Total: $" +
-                              _vm._s(
-                                Intl.NumberFormat().format(order.order.total)
-                              )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            on: {
-                              click: function($event) {
-                                return _vm.forward(index)
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-footer",
+                          staticStyle: { "white-space": "initial" }
+                        },
+                        [
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v("Domicilio")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Cliente: " +
+                                    _vm._s(order.order.customer.nombre)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v("Lugar: " + _vm._s(order.order.place))
+                          ]),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Telefono: " +
+                                    _vm._s(order.order.customer.telefono)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.annotations != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Anotaciones: " +
+                                    _vm._s(order.order.annotations)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "Total: $" +
+                                _vm._s(
+                                  Intl.NumberFormat().format(order.order.total)
+                                )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function($event) {
+                                  return _vm.forward(index)
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("Continuar")]
-                        )
-                      ])
+                            },
+                            [_vm._v("Continuar")]
+                          )
+                        ]
+                      )
                     ]
                   )
                 : _vm._e()
@@ -44684,52 +44748,86 @@ var render = function() {
                         0
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-footer" }, [
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Domicilio")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            "Total: $" +
-                              _vm._s(
-                                Intl.NumberFormat().format(order.order.total)
-                              )
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-footer",
+                          staticStyle: { "white-space": "initial" }
+                        },
+                        [
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v("Domicilio")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Cliente: " +
+                                    _vm._s(order.order.customer.nombre)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v("Lugar: " + _vm._s(order.order.place))
+                          ]),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Telefono: " +
+                                    _vm._s(order.order.customer.telefono)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.annotations != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Anotaciones: " +
+                                    _vm._s(order.order.annotations)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "Total: $" +
+                                _vm._s(
+                                  Intl.NumberFormat().format(order.order.total)
+                                )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              on: {
+                                click: function($event) {
+                                  return _vm.back(index)
+                                }
+                              }
+                            },
+                            [_vm._v("Devolver")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function($event) {
+                                  return _vm.forward(index)
+                                }
+                              }
+                            },
+                            [_vm._v("Continuar")]
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-info",
-                            on: {
-                              click: function($event) {
-                                return _vm.back(index)
-                              }
-                            }
-                          },
-                          [_vm._v("Devolver")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            on: {
-                              click: function($event) {
-                                return _vm.forward(index)
-                              }
-                            }
-                          },
-                          [_vm._v("Continuar")]
-                        )
-                      ])
+                        ]
+                      )
                     ]
                   )
                 : _vm._e()
@@ -44783,52 +44881,86 @@ var render = function() {
                         0
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-footer" }, [
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Domicilio")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            "Total: $" +
-                              _vm._s(
-                                Intl.NumberFormat().format(order.order.total)
-                              )
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-footer",
+                          staticStyle: { "white-space": "initial" }
+                        },
+                        [
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v("Domicilio")
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Cliente: " +
+                                    _vm._s(order.order.customer.nombre)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v("Lugar: " + _vm._s(order.order.place))
+                          ]),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Telefono: " +
+                                    _vm._s(order.order.customer.telefono)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.annotations != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Anotaciones: " +
+                                    _vm._s(order.order.annotations)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "Total: $" +
+                                _vm._s(
+                                  Intl.NumberFormat().format(order.order.total)
+                                )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              on: {
+                                click: function($event) {
+                                  return _vm.back(index)
+                                }
+                              }
+                            },
+                            [_vm._v("Devolver")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function($event) {
+                                  return _vm.forward(index)
+                                }
+                              }
+                            },
+                            [_vm._v("Continuar")]
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-info",
-                            on: {
-                              click: function($event) {
-                                return _vm.back(index)
-                              }
-                            }
-                          },
-                          [_vm._v("Devolver")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            on: {
-                              click: function($event) {
-                                return _vm.forward(index)
-                              }
-                            }
-                          },
-                          [_vm._v("Continuar")]
-                        )
-                      ])
+                        ]
+                      )
                     ]
                   )
                 : _vm._e()
