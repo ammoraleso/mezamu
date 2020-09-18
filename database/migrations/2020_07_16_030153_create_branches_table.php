@@ -20,6 +20,7 @@ class CreateBranchesTable extends Migration
             $table->unsignedBigInteger('restaurant_id');//foreign
             $table->unsignedInteger('tables');
             $table->String('telefono', 15);
+            $table->boolean('disable_epay')->default(0);
             $table->string('email');
         });
     }

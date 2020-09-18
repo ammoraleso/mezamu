@@ -24,6 +24,7 @@ Route::post('/addItem', 'CartController@addItem')->name('addItem');
 Route::post('/removeItem', 'CartController@removeItem')->name('removeItem');
 Route::post('/changeQuantity', 'CartController@changeQuantity')->name('changeQuantity');
 Route::post('/checkOut', 'CartController@checkOut')->name('checkOut');
+Route::post('/checkOutDelivery', 'CartController@checkOutDelivery')->name('checkOutDelivery');
 Route::post('/findEmail', 'CartController@findEmail')->name('findEmail');
 Route::post('/saveCustomer', 'CartController@uploadCustomer')->name('saveCustomer');
 Route::post('/uploadOrder', 'OrderController@uploadOrder')->name('uploadOrder');

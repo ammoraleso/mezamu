@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="{{asset('css/menu.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/checkout.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
     <!--Script for change and remove items from the cart-->
     <script type="text/javascript">
         var changeQuantityUrl = '{{route('changeQuantity')}}';
         var removeItemUrl = '{{route('removeItem')}}';
         var checkOutUrl = '{{route('checkOut')}}';
-        var findEmailUrl = '{{route('findEmail')}}'
-        var saveCustomerUrl = '{{route('saveCustomer')}}'
+        var findEmailUrl = '{{route('findEmail')}}';
+        var saveCustomerUrl = '{{route('saveCustomer')}}';
+        var checkOutDeliveryURL = '{{route('checkOutDelivery')}}';
     </script>
 @endpush
 
@@ -26,7 +28,8 @@
         <span id="cartContainer">
             @if(Session::get('cart') && Session::get('totalQuantity') > 0)
                 @php
-                    $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch)
+                    $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch);
+                    $branch = Arr::first(Session::get('cart'))['item']->branch;
                 @endphp
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
