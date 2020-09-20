@@ -2,7 +2,7 @@
 INSERT INTO `mezamu`.`restaurants` (`id`, `company_name`, `name`, `logo`,`nit`,`slug`) VALUES ('1', 'Balu', 'Balu', 'balu.png','1030599027','balu');
 
 #Branch
-INSERT INTO `mezamu`.`branches` (`id`, `created_at`, `updated_at`, `location`, `restaurant_id`, `tables`, `telefono`, `email`, `latitude`, `longitude`, `delivery_price_type`, `delivery_price`, `coverage`) VALUES ('1', NULL, NULL, 'cajica', '1', '5', '573182659093', 'andresmaomorales@gmail.com', '4.620221','-74.11387599999999', '1', '1000', '10000');
+INSERT INTO `mezamu`.`branches` (`id`, `created_at`, `updated_at`, `location`, `restaurant_id`, `tables`, `telefono`, `email`, `latitude`, `longitude`, `delivery_price_type`, `delivery_price`, `coverage`) VALUES ('1', NULL, NULL, 'cajica', '1', '5', '573182659093', 'andresmaomorales@gmail.com', '4.620221','-74.113875', '1', '1000', '10000');
 
 #User - admin_mezamu
 INSERT INTO `mezamu`.`users` (`id`, `name`, `email`, `password`, `role`, `branch_id`) VALUES ('1', 'Admin MeZamÜ', 'mezamucorporativo@gmail.com', '$2y$10$8iK5BlsTeFYgMw5d054iI.s2fGlb14/tBq8uaufk5s8lMj4TpnzcW', 'administrador', '1');
