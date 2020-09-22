@@ -6,32 +6,33 @@ async function addItem(dish, branchDish) {
     try {
         itemsCounter = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: addItemUrl,
             method: "POST",
             data: {
                 itemID: dish.id,
                 quantity: document.getElementById("quantity" + dish.id).value,
-                branchID: branchDish.branch_id,
-            },
+                branchID: branchDish.branch_id
+            }
         });
     } catch (error) {
         console.log("Error adding item " + error);
         return;
     }
     await reloadCartIcon(itemsCounter, true); //always has to reload only the badge
+    showFlashMessage();
 }
 
 async function changeQuantity(item, quantity) {
     try {
         await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: changeQuantityUrl,
             method: "POST",
-            data: { itemID: item["id"], quantity: quantity },
+            data: { itemID: item["id"], quantity: quantity }
         });
     } catch (error) {
         console.log("Error changeQuantity " + error);
@@ -46,11 +47,11 @@ async function removeItem(item) {
     try {
         totalCartQuantity = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: removeItemUrl,
             method: "POST",
-            data: { itemID: item["id"] },
+            data: { itemID: item["id"] }
         });
     } catch (error) {
         console.log("Error removeItem " + error);
@@ -68,8 +69,8 @@ async function removeItem(item) {
 }
 
 function reloadSummary() {
-    $("#summary").fadeOut("slow", function () {
-        $("#summary").load(location.href + " #summary>*", function () {
+    $("#summary").fadeOut("slow", function() {
+        $("#summary").load(location.href + " #summary>*", function() {
             $("#summary").fadeIn("slow");
         });
     });
@@ -119,11 +120,11 @@ async function loadPerfil() {
     try {
         customer = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: findEmailUrl,
             data: { email: $email },
-            type: "post",
+            type: "post"
         });
     } catch (error) {
         return console.log("LoadPerfil error: " + error);
@@ -174,4 +175,13 @@ async function updateDelivery(showDelivery, delivery) {
         .html("<strong>" + $("#totalPriceTable").val() + "</strong>")
         .fadeIn("slow");
     await $("#totalPriceTable").fadeIn("slow");
+}
+
+function showFlashMessage() {
+    $("#success_message")
+        .fadeIn()
+        .html("Producto(s) agregado(s)");
+    setTimeout(function() {
+        $("#success_message").fadeOut("slow");
+    }, 2000);
 }
