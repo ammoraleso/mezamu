@@ -5,7 +5,7 @@ function showDetails(dishToDetail) {
 
     document.getElementById("header-tittle").innerHTML = dish.name;
     document.getElementById("productDescription").innerHTML =
-        "<strong>Descripcion: </strong>" + dish.description;
+        "<strong>Descripción: </strong>" + dish.description;
     let = divImage = document.getElementById("product-image");
     imageUrl =
         "https://mezamublobstorage.blob.core.windows.net/images/" + dish.photo;
