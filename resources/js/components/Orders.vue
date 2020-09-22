@@ -26,8 +26,15 @@
                 v-if="order.order.type == 'delivery'"
                 class="font-weight-bold"
               >Telefono: {{order.order.customer.telefono}}</p>
-              <p v-if="order.order.annotations != ''" class="font-weight-bold">Anotaciones: {{order.order.annotations}}</p>
+              <p
+                v-if="order.order.annotations != ''"
+                class="font-weight-bold"
+              >Anotaciones: {{order.order.annotations}}</p>
               <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+              <p
+                v-if="order.order.created_at != ''"
+                class="font-weight-bold"
+              >Hora Creacion: {{order.order.date}}</p>
               <button class="btn btn-success" @click="forward(index)">Continuar</button>
             </div>
           </div>
@@ -58,8 +65,15 @@
                 v-if="order.order.type == 'delivery'"
                 class="font-weight-bold"
               >Telefono: {{order.order.customer.telefono}}</p>
-              <p v-if="order.order.annotations != ''" class="font-weight-bold">Anotaciones: {{order.order.annotations}}</p>
+              <p
+                v-if="order.order.annotations != ''"
+                class="font-weight-bold"
+              >Anotaciones: {{order.order.annotations}}</p>
               <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+              <p
+                v-if="order.order.created_at != ''"
+                class="font-weight-bold"
+              >Hora Creacion: {{order.order.date}}</p>
               <button class="btn btn-info" @click="back(index)">Devolver</button>
               <button class="btn btn-success" @click="forward(index)">Continuar</button>
             </div>
@@ -96,6 +110,10 @@
                 class="font-weight-bold"
               >Anotaciones: {{order.order.annotations}}</p>
               <p class="font-weight-bold">Total: ${{Intl.NumberFormat().format(order.order.total)}}</p>
+              <p
+                v-if="order.order.created_at != ''"
+                class="font-weight-bold"
+              >Hora Creacion: {{order.order.date}}</p>
               <button class="btn btn-info" @click="back(index)">Devolver</button>
               <button class="btn btn-success" @click="forward(index)">Continuar</button>
             </div>

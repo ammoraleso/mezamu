@@ -115,4 +115,11 @@ class CartController extends Controller
         }
     }
 
+    public function checkOutDelivery(){
+        $address = request()->address;
+        $total = request()->total;
+        $description = request()->description;
+        NotificationController::notify('delivery',$address, $total,$description);
+    }
+
 }

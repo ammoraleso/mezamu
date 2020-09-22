@@ -56,5 +56,6 @@ return [
     "Phone" => "Teléfono",
     "Reserve_Form" => "Datos Reserva",
     "Reserve" => "Reservar",
-    "Persons" => "Personas"
+    "Persons" => "Personas",    
+    "Delivery" => "Domicilio"
 ];

@@ -230,4 +230,5 @@ return [
 
     ],
 
+    'timezone' => 'America/Bogota',
 ];

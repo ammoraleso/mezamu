@@ -52,7 +52,7 @@
 
                         <div class="flex-grow-1 mx-auto mt-3">
                             <button id="submitButton" class="btn bg-base w-100 mb-3 btn-success"
-                                    onclick="showPayModal()" type="button">{{__('general.Continue')}}</button>
+                                    onclick="showPayModal({{$branch}})" type="button">{{__('general.Continue')}}</button>
                         </div>
                     </div>
                 </form>
@@ -96,71 +96,6 @@
             //atributo deshabilitación metodo de pago
             methodsDisable: ["SP","CASH"],
         };
-
-        async function showPayModal() {
-            $name = $('#name').val();
-            //$city = $('#city').val();
-            $city = 1;
-            $address = $('#address').val();
-            $phone = $('#phone').val();
-            if(!$name) {
-                $('#name').focus();
-                $('#name').addClass('is-invalid');
-                return;
-            }else{
-                $('#name').removeClass('is-invalid');
-            }
-
-            if(!$city){
-                $('#city').focus();
-                $('#city').addClass('is-invalid');
-                return;
-            }else{
-                $('#city').removeClass('is-invalid');
-            }
-            if(!$address){
-                $('#address').focus();
-                $('#address').addClass('is-invalid');
-                return;
-            }else{
-                $('#address').removeClass('is-invalid');
-            }
-            if(!$phone){
-                $('#phone').focus();
-                $('#phone').addClass('is-invalid');
-                return;
-            }else{
-                $('#phone').removeClass('is-invalid');
-            }
-
-
-            data.amount='{{$totalPrice}}';
-            data.extra1= '{!! json_encode($paymentCart)!!}'.replace(/"/g, "'");
-            data.extra2= $city;
-            data.extra3= $address;
-            data.extra4= $name;
-            data.extra5= document.getElementById("descriptionOrder").value;
-            //Atributos cliente
-            data.type_doc_billing= "cc";
-            try {
-                await $.ajax({
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    url: saveCustomerUrl,
-                    data: {
-                        email: $email,
-                        name: $name,
-                        address: $address,
-                        phone: $phone
-                    },
-                    type: "post"
-                });
-            } catch (error) {
-                console.log("Error saving Customer: " + error);
-            }
-            handler.open(data)
-        }
     </script>
     <!--PAYMENT-->
 

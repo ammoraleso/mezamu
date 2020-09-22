@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="{{asset('css/menu.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/checkout.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
     <!--Script for change and remove items from the cart-->
     <script type="text/javascript">
         var changeQuantityUrl = '{{route('changeQuantity')}}';
         var removeItemUrl = '{{route('removeItem')}}';
         var checkOutUrl = '{{route('checkOut')}}';
-        var findEmailUrl = '{{route('findEmail')}}'
-        var saveCustomerUrl = '{{route('saveCustomer')}}'
+        var findEmailUrl = '{{route('findEmail')}}';
+        var saveCustomerUrl = '{{route('saveCustomer')}}';
+        var checkOutDeliveryURL = '{{route('checkOutDelivery')}}';
     </script>
 @endpush
 
@@ -26,7 +28,8 @@
         <span id="cartContainer">
             @if(Session::get('cart') && Session::get('totalQuantity') > 0)
                 @php
-                    $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch)
+                    $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch);
+                    $branch = Arr::first(Session::get('cart'))['item']->branch;
                 @endphp
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
@@ -132,10 +135,16 @@
                                         @endif
                                     @endforeach
                                     <input id="totalPrice" hidden value="{{$totalPrice}}"/>
+                                    <input id="totalPriceBase" hidden value="{{$totalPrice}}"/>
+                                    <tr id="rowDelivery" style="display: none">
+                                        <td class="no-align">{{__('general.Delivery')}}</td>
+                                        <td>-</td>
+                                        <td><h4>$ {{number_format($branch->delivery_price, 0, '.', ',')}}</h4></td>
+                                    </tr>
                                     <tr>
                                         <td></td>
                                         <td><h4><strong>{{__('general.Total')}}</strong></h4></td>
-                                        <td><h4><strong>$ {{number_format($totalPrice, 0, '.', ',')}}</strong></h4></td>
+                                        <td><h4 id="totalPriceTable"><strong>$ {{number_format($totalPrice, 0, '.', ',')}}</strong></h4></td>
                                     </tr>
                                 </table>
                             </div>
@@ -149,11 +158,11 @@
                             <strong><legend class="col-form-label col-sm-2 pt-0">{{__('To')}}:</legend></strong>
                             <div class="col">
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="toWhere" id="toWhere1" value="table" required>
+                                    <input id="radioInSitu" onclick="updateDelivery(false,{{$branch->delivery_price}});" class="form-check-input" type="radio" name="toWhere" id="toWhere1" value="table" required>
                                     <label class="form-check-label" for="toWhere1">{{__('Table')}}</label>
                                 </div>
                                 <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="toWhere" id="toWhere2" value="delivery" required>
+                                    <input id="radioDelivery" onclick="updateDelivery(true,{{$branch->delivery_price}});" class="form-check-input" type="radio" name="toWhere" id="toWhere2" value="delivery" required>
                                     <label class="form-check-label" for="toWhere2">{{__('Delivery')}}</label>
                                 </div>
                                 <!-- <div class="form-check-inline">
