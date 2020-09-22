@@ -65,6 +65,7 @@ class Order extends Notification implements ShouldQueue
 
     public function toBroadcast($notifiable)
     {
+        $this->order->date = $this->order->created_at->format('Y-m-d H:i:s');
         $data = [
             'order' => $this->order,
             'items' => $this->order->items()->get()

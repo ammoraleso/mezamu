@@ -19,9 +19,9 @@
     </div>
     <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
       @if (Session::get('urlMenu'))
-        <a class="btn btn-danger" href={{Session::get('urlMenu')}}>Volver</a>
+        <a class="btn btn-danger" href={{Session::get('urlMenu')}}>Finalizar</a>
       @else
-        <a class="btn btn-danger" href="{{url()->previous()}}">Volver</a>
+        <a class="btn btn-danger" href="{{url()->previous()}}">Finalizar</a>
       @endif
     </div>
 @endsection

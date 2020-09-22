@@ -2069,6 +2069,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["branchid", "databaseorders"],
   data: function data() {
@@ -44681,6 +44699,14 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
+                          order.order.created_at != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Hora Creacion: " + _vm._s(order.order.date)
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
                           _c(
                             "button",
                             {
@@ -44800,6 +44826,14 @@ var render = function() {
                                 )
                             )
                           ]),
+                          _vm._v(" "),
+                          order.order.created_at != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Hora Creacion: " + _vm._s(order.order.date)
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "button",
@@ -44933,6 +44967,14 @@ var render = function() {
                                 )
                             )
                           ]),
+                          _vm._v(" "),
+                          order.order.created_at != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Hora Creacion: " + _vm._s(order.order.date)
+                                )
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "button",

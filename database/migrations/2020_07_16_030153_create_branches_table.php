@@ -21,6 +21,7 @@ class CreateBranchesTable extends Migration
             $table->unsignedInteger('tables');
             $table->String('telefono', 15);
             $table->boolean('disable_epay')->default(0);
+            $table->unsignedInteger('delivery_price');
             $table->string('email');
         });
     }

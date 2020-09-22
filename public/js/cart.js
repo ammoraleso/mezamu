@@ -6,15 +6,15 @@ async function addItem(dish, branchDish) {
     try {
         itemsCounter = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: addItemUrl,
             method: "POST",
             data: {
                 itemID: dish.id,
                 quantity: document.getElementById("quantity" + dish.id).value,
-                branchID: branchDish.branch_id
-            }
+                branchID: branchDish.branch_id,
+            },
         });
     } catch (error) {
         console.log("Error adding item " + error);
@@ -27,11 +27,11 @@ async function changeQuantity(item, quantity) {
     try {
         await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: changeQuantityUrl,
             method: "POST",
-            data: { itemID: item["id"], quantity: quantity }
+            data: { itemID: item["id"], quantity: quantity },
         });
     } catch (error) {
         console.log("Error changeQuantity " + error);
@@ -46,11 +46,11 @@ async function removeItem(item) {
     try {
         totalCartQuantity = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: removeItemUrl,
             method: "POST",
-            data: { itemID: item["id"] }
+            data: { itemID: item["id"] },
         });
     } catch (error) {
         console.log("Error removeItem " + error);
@@ -68,11 +68,13 @@ async function removeItem(item) {
 }
 
 function reloadSummary() {
-    $("#summary").fadeOut("slow", function() {
-        $("#summary").load(location.href + " #summary>*", function() {
+    $("#summary").fadeOut("slow", function () {
+        $("#summary").load(location.href + " #summary>*", function () {
             $("#summary").fadeIn("slow");
         });
     });
+    $("#radioInSitu").prop("checked", false);
+    $("#radioDelivery").prop("checked", false);
 }
 
 async function checkout() {
@@ -117,11 +119,11 @@ async function loadPerfil() {
     try {
         customer = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             url: findEmailUrl,
             data: { email: $email },
-            type: "post"
+            type: "post",
         });
     } catch (error) {
         return console.log("LoadPerfil error: " + error);
@@ -149,4 +151,27 @@ function collapseTab(id_target = "Prod") {
         $(target).attr("class", "collapse");
         return;
     }
+}
+
+async function updateDelivery(showDelivery, delivery) {
+    totalPrice = parseInt($("#totalPriceBase").val());
+    console.log(totalPrice);
+    let totalPriceDelivery = 0;
+    if (showDelivery) {
+        totalPriceDelivery = delivery + totalPrice;
+        $("#rowDelivery").removeAttr("style");
+    } else {
+        totalPriceDelivery = totalPrice;
+        $("#rowDelivery").attr("style", "display: none");
+    }
+    //To save
+    $("#totalPrice").val(totalPriceDelivery);
+    //To Show in the screen we need to format the number.
+    totalPriceDelivery =
+        "$ " + (totalPriceDelivery / 1000).toFixed(3).replace(".", ",");
+    $("#totalPriceTable").val(totalPriceDelivery);
+    await $("#totalPriceTable")
+        .html("<strong>" + $("#totalPriceTable").val() + "</strong>")
+        .fadeIn("slow");
+    await $("#totalPriceTable").fadeIn("slow");
 }
