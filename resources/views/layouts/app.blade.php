@@ -34,7 +34,11 @@
     @stack('stylesAndScripts')
 </head>
 <body>
-
+    
+    <!-- Floating flash message -->
+    <div id="success_message" class="ajax_response floating" ></div>
+    <div id="error_message" class="ajax_response red-floating" ></div>
+    
     <div id="app">
         <div style="height: 97px"><!--We need the hide to move content at the end of navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">

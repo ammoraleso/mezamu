@@ -21,9 +21,6 @@
         <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$restaurant->logo}}">
     </div>
     
-    <div id="success_message" class="ajax_response floating" >
-    </div>
-    
     @if (!$isScheduleValid)
         <h3 style="color: white; background-color: red;padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
     @endif

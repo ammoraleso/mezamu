@@ -1,6 +1,14 @@
 let email;
 let message;
 
+//""
+//"success_message"
+const success_flash_el = "success_message";
+const error_flash_el = "error_message";
+const add_item_message = "Producto(s) agregado(s)";
+const delete_item_message = "Producto(s) eliminado(s)";
+const prodcut_updated = "Producto actualizado";
+
 async function addItem(dish, branchDish) {
     let itemsCounter;
     try {
@@ -21,7 +29,7 @@ async function addItem(dish, branchDish) {
         return;
     }
     await reloadCartIcon(itemsCounter, true); //always has to reload only the badge
-    showFlashMessage();
+    showFlashMessage(success_flash_el, add_item_message);
 }
 
 async function changeQuantity(item, quantity) {
@@ -40,6 +48,7 @@ async function changeQuantity(item, quantity) {
     }
     reloadSummary();
     reloadCartIcon(1, false);
+    showFlashMessage(success_flash_el, prodcut_updated);
 }
 
 async function removeItem(item) {
@@ -66,6 +75,7 @@ async function removeItem(item) {
         reloadSummary();
     }
     reloadCartIcon(totalCartQuantity, false);
+    showFlashMessage(error_flash_el, delete_item_message);
 }
 
 function reloadSummary() {
@@ -177,11 +187,12 @@ async function updateDelivery(showDelivery, delivery) {
     await $("#totalPriceTable").fadeIn("slow");
 }
 
-function showFlashMessage() {
-    $("#success_message")
+function showFlashMessage(element, message) {
+    element = "#" + element;
+    $(element)
         .fadeIn()
-        .html("Producto(s) agregado(s)");
+        .html(message);
     setTimeout(function() {
-        $("#success_message").fadeOut("slow");
+        $(element).fadeOut("slow");
     }, 2000);
 }
