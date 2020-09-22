@@ -20,6 +20,7 @@
     <div class="pt-4 div-logo">
         <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$restaurant->logo}}">
     </div>
+    
     @if (!$isScheduleValid)
         <h3 style="color: white; background-color: red;padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
     @endif
@@ -39,7 +40,9 @@
                     <div id="collapse{{$categories[$i]->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             @foreach($branchDishes as $branchDish)
-                                @php($dish = $branchDish->dish)
+                                @php
+                                    $dish = $branchDish->dish
+                                @endphp
                                 @if($dish->category ==$categories[$i])
 
                                     <div class="d-flex p-3 ">

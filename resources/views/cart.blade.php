@@ -31,6 +31,7 @@
                     $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch);
                     $branch = Arr::first(Session::get('cart'))['item']->branch;
                 @endphp
+                
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
                         <div class="card" style="border-color: white">

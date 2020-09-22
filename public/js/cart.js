@@ -1,37 +1,46 @@
 let email;
 let message;
 
+//""
+//"success_message"
+const success_flash_el = "success_message";
+const error_flash_el = "error_message";
+const add_item_message = "Producto(s) agregado(s)";
+const delete_item_message = "Producto(s) eliminado(s)";
+const prodcut_updated = "Producto actualizado";
+
 async function addItem(dish, branchDish) {
     let itemsCounter;
     try {
         itemsCounter = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: addItemUrl,
             method: "POST",
             data: {
                 itemID: dish.id,
                 quantity: document.getElementById("quantity" + dish.id).value,
-                branchID: branchDish.branch_id,
-            },
+                branchID: branchDish.branch_id
+            }
         });
     } catch (error) {
         console.log("Error adding item " + error);
         return;
     }
     await reloadCartIcon(itemsCounter, true); //always has to reload only the badge
+    showFlashMessage(success_flash_el, add_item_message);
 }
 
 async function changeQuantity(item, quantity) {
     try {
         await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: changeQuantityUrl,
             method: "POST",
-            data: { itemID: item["id"], quantity: quantity },
+            data: { itemID: item["id"], quantity: quantity }
         });
     } catch (error) {
         console.log("Error changeQuantity " + error);
@@ -39,6 +48,7 @@ async function changeQuantity(item, quantity) {
     }
     reloadSummary();
     reloadCartIcon(1, false);
+    showFlashMessage(success_flash_el, prodcut_updated);
 }
 
 async function removeItem(item) {
@@ -46,11 +56,11 @@ async function removeItem(item) {
     try {
         totalCartQuantity = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: removeItemUrl,
             method: "POST",
-            data: { itemID: item["id"] },
+            data: { itemID: item["id"] }
         });
     } catch (error) {
         console.log("Error removeItem " + error);
@@ -65,11 +75,12 @@ async function removeItem(item) {
         reloadSummary();
     }
     reloadCartIcon(totalCartQuantity, false);
+    showFlashMessage(error_flash_el, delete_item_message);
 }
 
 function reloadSummary() {
-    $("#summary").fadeOut("slow", function () {
-        $("#summary").load(location.href + " #summary>*", function () {
+    $("#summary").fadeOut("slow", function() {
+        $("#summary").load(location.href + " #summary>*", function() {
             $("#summary").fadeIn("slow");
         });
     });
@@ -119,11 +130,11 @@ async function loadPerfil() {
     try {
         customer = await $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
             url: findEmailUrl,
             data: { email: $email },
-            type: "post",
+            type: "post"
         });
     } catch (error) {
         return console.log("LoadPerfil error: " + error);
@@ -174,4 +185,14 @@ async function updateDelivery(showDelivery, delivery) {
         .html("<strong>" + $("#totalPriceTable").val() + "</strong>")
         .fadeIn("slow");
     await $("#totalPriceTable").fadeIn("slow");
+}
+
+function showFlashMessage(element, message) {
+    element = "#" + element;
+    $(element)
+        .fadeIn()
+        .html(message);
+    setTimeout(function() {
+        $(element).fadeOut("slow");
+    }, 2000);
 }
