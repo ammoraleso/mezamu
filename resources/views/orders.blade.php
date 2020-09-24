@@ -43,6 +43,7 @@
                             <th style="width:20%;">Lugar</th>
                             <th style="width:20%;">Anotaciones</th>
                             <th style="width:auto;">Total</th>
+                            <th style="width:auto;">Tipo Pago</th>
                             <th style="width:20%;">Fecha Creación</th>
                         </tr>
                     
@@ -66,6 +67,7 @@
                                 <td>{{$order['order']->place}}</td>
                                 <td>{{$order['order']->annotations}}</td>
                                 <td>${{number_format($order['order']->total, 0, '.', ',')}}</td>
+                                <td>{{$order['order']->payment_type}}</td>
                                 <td>{{$order['order']->date}}</td>
                             </tr>
                         @endforeach

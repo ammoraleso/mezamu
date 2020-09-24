@@ -119,7 +119,8 @@ class CartController extends Controller
         $address = request()->address;
         $total = request()->total;
         $description = request()->description;
-        NotificationController::notify('delivery',$address, $total,$description);
+        $disableEpay = request()->disable_epay;
+        NotificationController::notify('delivery',$address, $total,$description,$disableEpay);
     }
 
 }
