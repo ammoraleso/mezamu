@@ -57,5 +57,7 @@ return [
     "Reserve_Form" => "Datos Reserva",
     "Reserve" => "Reservar",
     "Persons" => "Personas",    
-    "Delivery" => "Domicilio"
+    "Delivery" => "Domicilio",
+    "Orders" => "Ordenes",
+    "Date" => "Fecha"
 ];

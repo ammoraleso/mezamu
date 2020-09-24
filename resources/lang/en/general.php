@@ -55,5 +55,7 @@ return [
     "Reserve_Form" => "Reserve Form",
     "Reserve" => "Reserve",
     "Persons" => "Persons",
-    "Delivery" => "Delivery"
+    "Delivery" => "Delivery",
+    "Orders" => "Orders",
+    "Date" => "Date"
 ];
