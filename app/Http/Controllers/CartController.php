@@ -109,11 +109,18 @@ class CartController extends Controller
     public function checkOut(){
         $token = request()->token;
         if(Utils::isTokenValid($token)) {
-            //TODO leer el place del token, y traer el total del request.
-            NotificationController::notify('in-situ','Mesa '.Token::where('token',$token)->first()->table_number, request()->total);
+            NotificationController::notify('in-situ','Mesa '.Token::where('token',$token)->first()->table_number, request()->total,request()->description);
         }else{
             return response()->json(['error' => 'Invalid token'], 500); // Status code here
         }
+    }
+
+    public function checkOutDelivery(){
+        $address = request()->address;
+        $total = request()->total;
+        $description = request()->description;
+        $disableEpay = request()->disable_epay;
+        NotificationController::notify('delivery',$address, $total,$description,$disableEpay);
     }
 
 }

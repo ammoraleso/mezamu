@@ -10,15 +10,6 @@
             </div>
             <div class="modal-body m-auto">
                 <div id="reader"></div>
-            <!--
-                <hr>
-
-                <form onsubmit="return false">
-                    <label for="code">Code:</label>
-                    <input type="number" id="code" name="code" min="1" required/>
-                    <button type="submit" class="btn btn-success border-0">{{__('Validate')}}</button>
-                </form>
-            -->
             </div>
         </div>
     </div>

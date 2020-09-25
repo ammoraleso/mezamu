@@ -1,6 +1,14 @@
 let email;
 let message;
 
+//""
+//"success_message"
+const success_flash_el = "success_message";
+const error_flash_el = "error_message";
+const add_item_message = "Producto(s) agregado(s)";
+const delete_item_message = "Producto(s) eliminado(s)";
+const prodcut_updated = "Producto actualizado";
+
 async function addItem(dish, branchDish) {
     let itemsCounter;
     try {
@@ -21,6 +29,7 @@ async function addItem(dish, branchDish) {
         return;
     }
     await reloadCartIcon(itemsCounter, true); //always has to reload only the badge
+    showFlashMessage(success_flash_el, add_item_message);
 }
 
 async function changeQuantity(item, quantity) {
@@ -39,6 +48,7 @@ async function changeQuantity(item, quantity) {
     }
     reloadSummary();
     reloadCartIcon(1, false);
+    showFlashMessage(success_flash_el, prodcut_updated);
 }
 
 async function removeItem(item) {
@@ -65,6 +75,7 @@ async function removeItem(item) {
         reloadSummary();
     }
     reloadCartIcon(totalCartQuantity, false);
+    showFlashMessage(error_flash_el, delete_item_message);
 }
 
 function reloadSummary() {
@@ -73,6 +84,8 @@ function reloadSummary() {
             $("#summary").fadeIn("slow");
         });
     });
+    $("#radioInSitu").prop("checked", false);
+    $("#radioDelivery").prop("checked", false);
 }
 
 async function checkout() {
@@ -91,7 +104,7 @@ async function checkout() {
     }
     switch (selectedPlace) {
         case "table":
-            $("#modalTableToken").modal("show");
+            $("#modalDelivery").modal("show");
             break;
         case "delivery":
             $("#modalDelivery").modal("show");
@@ -110,7 +123,7 @@ async function loadPerfil(latitude, longitude) {
     }
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test($email)) {
-        alert("Por favor ingresa un menú válido.");
+        alert("Por favor ingresa un email válido.");
         return;
     }
 
@@ -161,4 +174,37 @@ function collapseTab(id_target = "Prod") {
         $(target).attr("class", "collapse");
         return;
     }
+}
+
+async function updateDelivery(showDelivery, delivery) {
+    totalPrice = parseInt($("#totalPriceBase").val());
+    console.log(totalPrice);
+    let totalPriceDelivery = 0;
+    if (showDelivery) {
+        totalPriceDelivery = delivery + totalPrice;
+        $("#rowDelivery").removeAttr("style");
+    } else {
+        totalPriceDelivery = totalPrice;
+        $("#rowDelivery").attr("style", "display: none");
+    }
+    //To save
+    $("#totalPrice").val(totalPriceDelivery);
+    //To Show in the screen we need to format the number.
+    totalPriceDelivery =
+        "$ " + (totalPriceDelivery / 1000).toFixed(3).replace(".", ",");
+    $("#totalPriceTable").val(totalPriceDelivery);
+    await $("#totalPriceTable")
+        .html("<strong>" + $("#totalPriceTable").val() + "</strong>")
+        .fadeIn("slow");
+    await $("#totalPriceTable").fadeIn("slow");
+}
+
+function showFlashMessage(element, message) {
+    element = "#" + element;
+    $(element)
+        .fadeIn()
+        .html(message);
+    setTimeout(function() {
+        $(element).fadeOut("slow");
+    }, 2000);
 }

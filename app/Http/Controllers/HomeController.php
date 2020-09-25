@@ -12,6 +12,7 @@ class HomeController extends Controller
         if (Auth::check()){
             $orders = [];
             foreach (Order::where('branch_id',Auth::user()->branch_id)->where('status', '<', '3')->get() as $order){
+                $order->date = $order->created_at->format('Y-m-d H:i:s');
                 array_push($orders, ['order' => $order, 'items' => $order->items()->get()]);
             }
             return view('/home', compact('orders'));

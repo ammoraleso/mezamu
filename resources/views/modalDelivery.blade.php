@@ -17,7 +17,7 @@
                                 <small>({{__('general.required')}})</small>
                             </label>
                             <input id="email" class="modal-input" type="text" placeholder="Search.." name="search">
-                            <button class="modal-button" type="button" onclick="loadPerfil({{Arr::first(Session::get('cart'))['item']->branch->latitude}}, {{Arr::first(Session::get('cart'))['item']->branch->longitude}})"><i class="fa fa-search"></i></button>
+                            <button class="modal-button" type="button" onclick="loadPerfil()"><i class="fa fa-search"></i></button>
 
                         </div>
                     </div>

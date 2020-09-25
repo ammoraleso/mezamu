@@ -11,7 +11,7 @@ async function onScanSuccess(qrMessage) {
                 data: {
                     token: qrMessage,
                     total: document.getElementById('totalPrice').value,
-                    options: document.getElementById('options').value
+                    description: document.getElementById("descriptionOrder").value,
                 },
                 type: "post"
             });

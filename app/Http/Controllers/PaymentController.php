@@ -38,6 +38,7 @@ class PaymentController extends Controller
         return $transaccion->exists();
     }
 
+    //ADD DESCRIPTION FROM DATA. data.description
     private function processPayment($data){
         $p_cust_id_cliente = '42053';
         $p_key = '03418afb5ef473a13f6f7c132ca9d139a258bb08';
@@ -58,7 +59,7 @@ class PaymentController extends Controller
         }
 
         $this->saveTransaction($data);
-        NotificationController::notify('delivery', $data->x_extra3, $x_amount);
+        NotificationController::notify('delivery', $data->x_extra3, $x_amount,$data->x_extra5,"0");
 
         return response()->json([
             'success' => true,

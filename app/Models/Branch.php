@@ -18,7 +18,11 @@ class Branch extends Model
     }
 
     public function branchDishes(){
-        return $this->hasMany(DishBranch::class);
+        return $this->hasMany(DishBranch::class)->where('disable','=', 0);
+    }
+
+    public function getDishBranch($branch_id, $dish_id) {
+        return $this->branchDishes()->where('branch_id','=', $branch_id)->where('dish_id','=',$dish_id)->get();
     }
 
     public function restaurant(){

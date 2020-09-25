@@ -6,9 +6,11 @@
 
 @push('stylesAndScripts')
     <link rel="stylesheet" href="{{asset('css/menu.css')}}">
+    <link rel="stylesheet" href="{{asset('css/cart.css')}}">
     <link rel="stylesheet" href="{{asset('css/input_number_spinner.css')}}">
     <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/menu.js')}}" type="text/javascript"></script>
     <script>
         //Route used in menu.js to call the post method addItem.
         var addItemUrl = '{{ route('addItem') }}';
@@ -17,9 +19,12 @@
 
 @section('content')
 
+    @include('modalDetails')
+
     <div class="pt-4 div-logo">
         <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$restaurant->logo}}">
     </div>
+    
     @if (!$isScheduleValid)
         <h3 style="color: white; background-color: red;padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
     @endif
@@ -40,11 +45,14 @@
                     <div id="collapse{{$categories[$i]->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             @foreach($branchDishes as $branchDish)
-                                @php($dish = $branchDish->dish)
+                                @php
+                                    $dish = $branchDish->dish
+                                @endphp
+
                                 @if($dish->category ==$categories[$i])
 
                                     <div class="d-flex p-3 ">
-                                        <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
+                                        <img onclick="showDetails({{$dish}})" alt="{{$dish->name}}" class="product-img" type="button" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
                                         <div class="ml-3 w-100 d-flex flex-column">
                                             <div>
                                                 <strong><p class="mb-0 d-inline-block">{{$dish->name}}

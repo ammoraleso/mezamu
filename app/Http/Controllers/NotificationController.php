@@ -14,21 +14,24 @@ use Illuminate\Support\Facades\Session;
 class NotificationController extends Controller
 {
 
-    public static function notify(String $type, $place, $total){
+    public static function notify(String $type, $place, $total, $description, $disableEpay = "1"){
         $order = new \App\Models\Order();
         $order->branch_id = Arr::first(Session::get('cart'))['item']->branch->id;
         $order->type = $type;
         $order->place = $place;
         $order->total = $total;
-        //$total = Session::get('totalPrice');
+        $order->annotations = $description;
         $total = 0;
         if($type === 'delivery'){
-            $order->payment_type = 'ecommerce';
-            $order->customer_id = Session::get('customer')->id;
-            $order->customer_id = Session::get('customer')->id;
+            if($disableEpay === "1"){
+                $order->payment_type = 'efectivo';
+            }else{
+                $order->payment_type = 'ecommerce';
+            }
         }else{
             $order->payment_type = 'in-situ';
         }
+        $order->customer_id = Session::get('customer')->id;
         $order->save();
 
         $items = array_values(Session::get('cart'));

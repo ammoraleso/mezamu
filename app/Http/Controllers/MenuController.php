@@ -14,7 +14,7 @@ class MenuController extends BaseController
     {
         $branch = Utils::verifyBranch($restaurant, $branchName);
         $dishes = $branch->dishes;
-        $categories = $this->loadCategories($dishes);
+        $categories = $this->loadCategories($dishes,$branch);
         $branchDishes = $branch->branchDishes;
         $urlMenu = $this->generate_url($restaurant->slug, $branchName);
         $isScheduleValid = Utils::validateSchedule($branch);
@@ -28,10 +28,13 @@ class MenuController extends BaseController
         return ($a->id < $b->id) ? -1 : 1;
     }
 
-    public function loadCategories($dishes){
+    public function loadCategories($dishes, $branch){
         $categories = array();
         foreach ($dishes as $dish) {
-            array_push($categories, $dish->category);
+            $dishBranch = $branch->getDishBranch($branch->id,$dish->id);
+            if(count($dishBranch)>0){
+                array_push($categories, $dish->category);
+            }
         }
         $categories = array_unique($categories);
         usort($categories, array($this,'sort_objects_by_id'));

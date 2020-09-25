@@ -2063,6 +2063,67 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["branchid", "databaseorders"],
   data: function data() {
@@ -44602,7 +44663,13 @@ var render = function() {
                       _c(
                         "div",
                         { staticClass: "card-header font-weight-bold" },
-                        [_vm._v("Orden: " + _vm._s(order.order.id))]
+                        [
+                          _vm._v(
+                            "\n            Orden: " +
+                              _vm._s(order.order.id) +
+                              "\n          "
+                          )
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -44612,9 +44679,11 @@ var render = function() {
                           return _c("div", [
                             _c("p", { staticClass: "card-text" }, [
                               _vm._v(
-                                _vm._s(item.quantity) +
+                                "\n                " +
+                                  _vm._s(item.quantity) +
                                   " | " +
-                                  _vm._s(item.dish_branch.dish.name)
+                                  _vm._s(item.dish_branch.dish.name) +
+                                  "\n              "
                               )
                             ])
                           ])
@@ -44622,57 +44691,97 @@ var render = function() {
                         0
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-footer" }, [
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Domicilio")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v(
-                                "Cliente: " +
-                                  _vm._s(order.order.customer.nombre)
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
-                        ]),
-                        _vm._v(" "),
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v(
-                                "Telefono: " +
-                                  _vm._s(order.order.customer.telefono)
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            "Total: $" +
-                              _vm._s(
-                                Intl.NumberFormat().format(order.order.total)
-                              )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            on: {
-                              click: function($event) {
-                                return _vm.forward(index)
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-footer",
+                          staticStyle: { "white-space": "initial" }
+                        },
+                        [
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Domicilio\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.customer
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Cliente: " +
+                                    _vm._s(order.order.customer.nombre) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v("Lugar: " + _vm._s(order.order.place))
+                          ]),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Telefono: " +
+                                    _vm._s(order.order.customer.telefono) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.annotations != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Anotaciones: " +
+                                    _vm._s(order.order.annotations) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "\n              Total: $" +
+                                _vm._s(
+                                  Intl.NumberFormat().format(order.order.total)
+                                ) +
+                                "\n            "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "\n              Tipo Pago: " +
+                                _vm._s(order.order.payment_type) +
+                                "\n            "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          order.order.created_at != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Hora Creacion: " +
+                                    _vm._s(order.order.date) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function($event) {
+                                  return _vm.forward(index)
+                                }
                               }
-                            }
-                          },
-                          [_vm._v("Continuar")]
-                        )
-                      ])
+                            },
+                            [_vm._v("\n              Continuar\n            ")]
+                          )
+                        ]
+                      )
                     ]
                   )
                 : _vm._e()
@@ -44706,7 +44815,13 @@ var render = function() {
                       _c(
                         "div",
                         { staticClass: "card-header font-weight-bold" },
-                        [_vm._v("Orden: " + _vm._s(order.order.id))]
+                        [
+                          _vm._v(
+                            "\n            Orden: " +
+                              _vm._s(order.order.id) +
+                              "\n          "
+                          )
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -44716,9 +44831,11 @@ var render = function() {
                           return _c("div", [
                             _c("p", { staticClass: "card-text" }, [
                               _vm._v(
-                                _vm._s(item.quantity) +
+                                "\n                " +
+                                  _vm._s(item.quantity) +
                                   " | " +
-                                  _vm._s(item.dish_branch.dish.name)
+                                  _vm._s(item.dish_branch.dish.name) +
+                                  "\n              "
                               )
                             ])
                           ])
@@ -44726,70 +44843,110 @@ var render = function() {
                         0
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-footer" }, [
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Domicilio")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v(
-                                "Cliente: " +
-                                  _vm._s(order.order.customer.nombre)
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
-                        ]),
-                        _vm._v(" "),
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v(
-                                "Telefono: " +
-                                  _vm._s(order.order.customer.telefono)
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            "Total: $" +
-                              _vm._s(
-                                Intl.NumberFormat().format(order.order.total)
-                              )
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-footer",
+                          staticStyle: { "white-space": "initial" }
+                        },
+                        [
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Domicilio\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.customer
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Cliente: " +
+                                    _vm._s(order.order.customer.nombre) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v("Lugar: " + _vm._s(order.order.place))
+                          ]),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Telefono: " +
+                                    _vm._s(order.order.customer.telefono) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.annotations != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Anotaciones: " +
+                                    _vm._s(order.order.annotations) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "\n              Total: $" +
+                                _vm._s(
+                                  Intl.NumberFormat().format(order.order.total)
+                                ) +
+                                "\n            "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "\n              Tipo Pago: " +
+                                _vm._s(order.order.payment_type) +
+                                "\n            "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          order.order.created_at != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Hora Creacion: " +
+                                    _vm._s(order.order.date) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              on: {
+                                click: function($event) {
+                                  return _vm.back(index)
+                                }
+                              }
+                            },
+                            [_vm._v("\n              Devolver\n            ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function($event) {
+                                  return _vm.forward(index)
+                                }
+                              }
+                            },
+                            [_vm._v("\n              Continuar\n            ")]
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-info",
-                            on: {
-                              click: function($event) {
-                                return _vm.back(index)
-                              }
-                            }
-                          },
-                          [_vm._v("Devolver")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            on: {
-                              click: function($event) {
-                                return _vm.forward(index)
-                              }
-                            }
-                          },
-                          [_vm._v("Continuar")]
-                        )
-                      ])
+                        ]
+                      )
                     ]
                   )
                 : _vm._e()
@@ -44823,7 +44980,13 @@ var render = function() {
                       _c(
                         "div",
                         { staticClass: "card-header font-weight-bold" },
-                        [_vm._v("Orden: " + _vm._s(order.order.id))]
+                        [
+                          _vm._v(
+                            "\n            Orden: " +
+                              _vm._s(order.order.id) +
+                              "\n          "
+                          )
+                        ]
                       ),
                       _vm._v(" "),
                       _c(
@@ -44833,9 +44996,11 @@ var render = function() {
                           return _c("div", [
                             _c("p", { staticClass: "card-text" }, [
                               _vm._v(
-                                _vm._s(item.quantity) +
+                                "\n                " +
+                                  _vm._s(item.quantity) +
                                   " | " +
-                                  _vm._s(item.dish_branch.dish.name)
+                                  _vm._s(item.dish_branch.dish.name) +
+                                  "\n              "
                               )
                             ])
                           ])
@@ -44843,70 +45008,110 @@ var render = function() {
                         0
                       ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "card-footer" }, [
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Domicilio")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v(
-                                "Cliente: " +
-                                  _vm._s(order.order.customer.nombre)
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Lugar: " + _vm._s(order.order.place))
-                        ]),
-                        _vm._v(" "),
-                        order.order.type == "delivery"
-                          ? _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v(
-                                "Telefono: " +
-                                  _vm._s(order.order.customer.telefono)
-                              )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            "Total: $" +
-                              _vm._s(
-                                Intl.NumberFormat().format(order.order.total)
-                              )
+                      _c(
+                        "div",
+                        {
+                          staticClass: "card-footer",
+                          staticStyle: { "white-space": "initial" }
+                        },
+                        [
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Domicilio\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.customer
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Cliente: " +
+                                    _vm._s(order.order.customer.nombre) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v("Lugar: " + _vm._s(order.order.place))
+                          ]),
+                          _vm._v(" "),
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Telefono: " +
+                                    _vm._s(order.order.customer.telefono) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          order.order.annotations != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Anotaciones: " +
+                                    _vm._s(order.order.annotations) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "\n              Total: $" +
+                                _vm._s(
+                                  Intl.NumberFormat().format(order.order.total)
+                                ) +
+                                "\n            "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-weight-bold" }, [
+                            _vm._v(
+                              "\n              Tipo Pago: " +
+                                _vm._s(order.order.payment_type) +
+                                "\n            "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          order.order.created_at != ""
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Hora Creacion: " +
+                                    _vm._s(order.order.date) +
+                                    "\n            "
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              on: {
+                                click: function($event) {
+                                  return _vm.back(index)
+                                }
+                              }
+                            },
+                            [_vm._v("\n              Devolver\n            ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              on: {
+                                click: function($event) {
+                                  return _vm.forward(index)
+                                }
+                              }
+                            },
+                            [_vm._v("\n              Continuar\n            ")]
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-info",
-                            on: {
-                              click: function($event) {
-                                return _vm.back(index)
-                              }
-                            }
-                          },
-                          [_vm._v("Devolver")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success",
-                            on: {
-                              click: function($event) {
-                                return _vm.forward(index)
-                              }
-                            }
-                          },
-                          [_vm._v("Continuar")]
-                        )
-                      ])
+                        ]
+                      )
                     ]
                   )
                 : _vm._e()

@@ -34,7 +34,11 @@
     @stack('stylesAndScripts')
 </head>
 <body>
-
+    
+    <!-- Floating flash message -->
+    <div id="success_message" class="ajax_response floating" ></div>
+    <div id="error_message" class="ajax_response red-floating" ></div>
+    
     <div id="app">
         <div style="height: 97px"><!--We need the hide to move content at the end of navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -92,25 +96,25 @@
                                 <a class="nav-link {{ request()->is('login') ? 'active' : ''  }}"  href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                     @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" aria-haspopup="true" aria-expanded="false">
+                                {{ Auth::user()->name }} 
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('register') ? 'active' : ''  }}" href="{{ route('orders') }}">{{__('general.Orders')}}</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('register') ? 'active' : ''  }}" href="{{ route('register') }}">{{ __('Registro') }}</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('register') ? 'active' : ''  }}" role="button" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     @endguest
                 </ul>
