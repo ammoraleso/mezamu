@@ -9,6 +9,21 @@ async function showPayModal(branch) {
     data.extra5 = document.getElementById("descriptionOrder").value;
     //Atributos cliente
     data.type_doc_billing = "cc";
+
+    const ele = document.getElementsByName("toWhere");
+    var selectedPlace = null;
+    for (let i = 0; i < ele.length; i++) {
+        if (ele[i].checked) {
+            selectedPlace = ele[i].value;
+            break;
+        }
+    }
+
+    if(!isCovered && selectedPlace === "delivery"){
+        alert('Tu ubicación está fuera del rango del restaurante');
+        return;
+    }
+
     try {
         await $.ajax({
             headers: {
@@ -27,14 +42,7 @@ async function showPayModal(branch) {
         console.log("Error saving Customer: " + error);
     }
 
-    const ele = document.getElementsByName("toWhere");
-    var selectedPlace = null;
-    for (let i = 0; i < ele.length; i++) {
-        if (ele[i].checked) {
-            selectedPlace = ele[i].value;
-            break;
-        }
-    }
+    
     $("#modalDelivery").modal("hide");
     if (selectedPlace === "table") {
         $("#modalTableToken").modal("show");
