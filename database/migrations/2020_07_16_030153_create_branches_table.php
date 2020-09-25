@@ -21,6 +21,11 @@ class CreateBranchesTable extends Migration
             $table->unsignedInteger('tables');
             $table->String('telefono', 15);
             $table->string('email');
+            $table->float('latitude','8','6');
+            $table->float('longitude','8','6');
+            $table->boolean('delivery_price_type');//0 fixed; 1 per meter
+            $table->unsignedInteger('delivery_price');
+            $table->unsignedInteger('coverage');
         });
     }
 

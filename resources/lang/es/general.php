@@ -32,6 +32,7 @@ return [
     'City' => 'Ciudad',
     'City/State' => 'Ciudad/Municipio',
     'Address' => 'Dirección',
+    'Aditional_address' => 'Adicional',
     'required' => 'requerido',
     'Continue' => 'Continuar',
     'transaction_name' => 'Compra Mayorista',

@@ -23,6 +23,7 @@
     @if (!$isScheduleValid)
         <h3 style="color: white; background-color: red;padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
     @endif
+
     <div class="panel-group">
         <div class="accordion" id="accordionExample">
             @for($i =0; $i <count($categories); $i++)
@@ -33,7 +34,7 @@
                             {{$categories[$i]->description }}
                             <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
                         </button>
-                        
+
                         </h5>
                     </div>
                     <div id="collapse{{$categories[$i]->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
