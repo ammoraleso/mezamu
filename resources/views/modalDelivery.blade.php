@@ -76,14 +76,13 @@
         function initMap() {
             var input = document.getElementById('address');
             var autocomplete = new google.maps.places.Autocomplete(input);
-
-            document.getElementById("submitButton").disabled = isCovered;
-
             autocomplete.addListener("place_changed", () => {
                 var deliveryAddress = autocomplete.getPlace().geometry.location;
                 distance = google.maps.geometry.spherical.computeDistanceBetween(deliveryAddress, new google.maps.LatLng({{Arr::first(Session::get('cart'))['item']->branch->latitude}}, {{Arr::first(Session::get('cart'))['item']->branch->longitude}}));
-                isCovered = distance < {{Arr::first(Session::get('cart'))['item']->branch->coverage}};
+                
             });
+            isCovered = distance < {{Arr::first(Session::get('cart'))['item']->branch->coverage}};
+            document.getElementById("submitButton").disabled = !isCovered;
         }
         <!--prevents browser to autocomplete-->
         function changeAutocomplete() {

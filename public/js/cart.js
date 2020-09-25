@@ -144,10 +144,12 @@ async function loadPerfil(latitude, longitude) {
         $("#address").val(customer.direccion);
         codeAddress(customer.direccion, latitude, longitude);
         $("#phone").val(customer.telefono);
+        $("#aditional_address").val(customer.direccion_adicional);
     } else {
         $("#name").val("");
         $("#address").val("");
         $("#phone").val("");
+        $("#aditional_address").val("");
     }
     $("#perfil-form").removeAttr("style");
     $("perfil-form").show();
@@ -155,11 +157,16 @@ async function loadPerfil(latitude, longitude) {
 
 function codeAddress(address, latitude, longitude) {
     geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == 'OK') {
-            distance = google.maps.geometry.spherical.computeDistanceBetween(results[0].geometry.location, new google.maps.LatLng(latitude, longitude));
+    geocoder.geocode({ address: address }, function(results, status) {
+        if (status == "OK") {
+            distance = google.maps.geometry.spherical.computeDistanceBetween(
+                results[0].geometry.location,
+                new google.maps.LatLng(latitude, longitude)
+            );
         } else {
-            console.log('Geocode was not successful for the following reason: ' + status);
+            console.log(
+                "Geocode was not successful for the following reason: " + status
+            );
         }
     });
 }
