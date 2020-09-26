@@ -102,8 +102,9 @@ class CartController extends Controller
         $telefono = request()->phone;
         $direccion = request()->address;
         $email = request()->email;
+        $aditional_address = request()->aditional_address;
 
-        return Customer::updateOrCreate(['email' => $email],['nombre' => $nombre,'direccion' => $direccion,'telefono' => $telefono]);
+        return Customer::updateOrCreate(['email' => $email],['nombre' => $nombre,'direccion' => $direccion, 'direccion_adicional' => $aditional_address,'telefono' => $telefono]);
     }
 
     public function checkOut(){
@@ -119,7 +120,8 @@ class CartController extends Controller
         $address = request()->address;
         $total = request()->total;
         $description = request()->description;
-        NotificationController::notify('delivery',$address, $total,$description);
+        $disableEpay = request()->disable_epay;
+        NotificationController::notify('delivery',$address, $total,$description,$disableEpay);
     }
 
 }

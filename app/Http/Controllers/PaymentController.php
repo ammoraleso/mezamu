@@ -59,7 +59,7 @@ class PaymentController extends Controller
         }
 
         $this->saveTransaction($data);
-        NotificationController::notify('delivery', $data->x_extra3, $x_amount,$data->x_extra5);
+        NotificationController::notify('delivery', $data->x_extra3, $x_amount,$data->x_extra5,"0");
 
         return response()->json([
             'success' => true,

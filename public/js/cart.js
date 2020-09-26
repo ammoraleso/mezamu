@@ -104,7 +104,7 @@ async function checkout() {
     }
     switch (selectedPlace) {
         case "table":
-            $("#modalTableToken").modal("show");
+            $("#modalDelivery").modal("show");
             break;
         case "delivery":
             $("#modalDelivery").modal("show");
@@ -112,7 +112,7 @@ async function checkout() {
     }
 }
 
-async function loadPerfil() {
+async function loadPerfil(latitude, longitude) {
     $email = $("#email").val();
     let customer;
     $("#email").removeClass("is-invalid");
@@ -142,14 +142,33 @@ async function loadPerfil() {
     if (customer) {
         $("#name").val(customer.nombre);
         $("#address").val(customer.direccion);
+        codeAddress(customer.direccion, latitude, longitude);
         $("#phone").val(customer.telefono);
+        $("#aditional_address").val(customer.direccion_adicional);
     } else {
         $("#name").val("");
         $("#address").val("");
         $("#phone").val("");
+        $("#aditional_address").val("");
     }
     $("#perfil-form").removeAttr("style");
     $("perfil-form").show();
+}
+
+function codeAddress(address, latitude, longitude) {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: address }, function(results, status) {
+        if (status == "OK") {
+            distance = google.maps.geometry.spherical.computeDistanceBetween(
+                results[0].geometry.location,
+                new google.maps.LatLng(latitude, longitude)
+            );
+        } else {
+            console.log(
+                "Geocode was not successful for the following reason: " + status
+            );
+        }
+    });
 }
 
 function collapseTab(id_target = "Prod") {

@@ -102,6 +102,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->is('register') ? 'active' : ''  }}" href="{{ route('orders') }}">{{__('general.Orders')}}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->is('register') ? 'active' : ''  }}" href="{{ route('register') }}">{{ __('Registro') }}</a>
                         </li>
                         <li class="nav-item">

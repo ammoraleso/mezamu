@@ -17,4 +17,18 @@ class OrderController extends Controller
         Order::where('id',  $order["id"])->update(['status' =>  $order["status"]]);
 
     }
+
+    public function loadOrders(){
+        $date = request()->dateInput;
+        $userLogged = auth()->user();
+        $orders = [];
+        if(!$date){
+            return view('orders');
+        }
+        foreach ( Order::where('branch_id',$userLogged->branch_id)->where('created_at', 'like',"%".$date."%")->get() as $order){
+            $order->date = $order->created_at->format('Y-m-d H:i:s');
+            array_push($orders, ['order' => $order, 'items' => $order->items()->get()]);
+        }
+        return view('orders', compact('orders'));
+    }
 }

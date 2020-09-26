@@ -37,7 +37,14 @@
                                 <label class="control-label">{{__('general.Address')}}
                                     <small>({{__('general.required')}})</small>
                                 </label>
-                                <input id="address" name="address" type="text" class="form-control" required style="background-image: none!important;">
+                                <input onfocus="changeAutocomplete()" onchange="resetDistance()" id="address" name="address" autocomplete="nope" type="text" class="form-control" required style="background-image: none!important;" size="50">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="form-group flex-grow-1">
+                                <label class="control-label">{{__('general.Aditional_address')}}</label>
+                                <input id="aditional_address" name="aditional_address" type="text" class="form-control" required style="background-image: none!important;" placeholder="Ej: Interior 1 Apto 101">
                             </div>
                         </div>
 
@@ -51,8 +58,8 @@
                         </div>
 
                         <div class="flex-grow-1 mx-auto mt-3">
-                            <button id="submitButton" class="btn bg-base w-100 mb-3 btn-success"
-                                    onclick="showPayModal({{$branch}})" type="button">{{__('general.Continue')}}</button>
+                            <button id="submitButton" disabled class="btn bg-base w-100 mb-3 btn-success"
+                                    onclick="showPayModal({{$branch }})" type="button">{{__('general.Continue')}}</button>
                         </div>
                     </div>
                 </form>
@@ -61,7 +68,34 @@
     </div>
 </div>
 
-    <script type="application/javascript" src="https://checkout.epayco.co/checkout.js">   </script>
+    <!--maps-->
+    <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPX6_gpXpuH1S288yA_Ip9tR-YSqVy2Dk&callback=initMap&libraries=places,geometry" async defer></script>
+    <script type="application/javascript">
+        let distance = 0;
+        let isCovered = false;
+        function initMap() {
+            var input = document.getElementById('address');
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.addListener("place_changed", () => {
+                var deliveryAddress = autocomplete.getPlace().geometry.location;
+                distance = google.maps.geometry.spherical.computeDistanceBetween(deliveryAddress, new google.maps.LatLng({{Arr::first(Session::get('cart'))['item']->branch->latitude}}, {{Arr::first(Session::get('cart'))['item']->branch->longitude}}));
+                
+            });
+            isCovered = distance < {{Arr::first(Session::get('cart'))['item']->branch->coverage}};
+            document.getElementById("submitButton").disabled = !isCovered;
+        }
+        <!--prevents browser to autocomplete-->
+        function changeAutocomplete() {
+            document.getElementById('address').autocomplete = "invalid";
+        }
+        function resetDistance() {
+            distance = 0;
+        }
+
+    </script>
+    <link rel="stylesheet" href="{{asset('css/maps.css')}}">
+
+    <script type="application/javascript" src="https://checkout.epayco.co/checkout.js"></script>
     <!-- Script to use Input Email pattern Property -->
     <script type="application/javascript">
         function myGeeks() {
