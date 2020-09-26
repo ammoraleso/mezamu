@@ -31,23 +31,6 @@ async function loadOrders() {
 }
 
 function myFunction() {
-    // var input, filter, table, tr, td, i, txtValue;
-    // input = document.getElementById("myInput");
-    // filter = input.value.toUpperCase();
-    // table = document.getElementById("myTable");
-    // tr = table.getElementsByTagName("tr");
-    // for (i = 0; i < tr.length; i++) {
-    //     td = tr[i].getElementsByTagName("td")[0];
-    //     if (td) {
-    //         txtValue = td.textContent || td.innerText;
-    //         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    //             tr[i].style.display = "";
-    //         } else {
-    //             tr[i].style.display = "none";
-    //         }
-    //     }
-    // }
-
     var input, filter, table, tr, td, i;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
@@ -71,4 +54,23 @@ function myFunction() {
             }
         }
     }
+}
+
+function showDetails(customerToDetail) {
+    document.getElementById("header-tittle").innerHTML =
+        customerToDetail.nombre;
+
+    document.getElementById("email").innerHTML =
+        "<strong>Email: </strong>" + customerToDetail.email;
+
+    document.getElementById("phone").innerHTML =
+        "<strong>Telefono: </strong>" + customerToDetail.telefono;
+
+    document.getElementById("address").innerHTML =
+        "<strong>Dirección: </strong>" + customerToDetail.direccion;
+
+    document.getElementById("address_add").innerHTML =
+        "<strong>Adicion Dirección: </strong>" +
+        customerToDetail.direccion_adicional;
+    $("#modalDetailsCustomer").modal("show");
 }
