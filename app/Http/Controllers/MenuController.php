@@ -6,6 +6,7 @@ use App\Models\Restaurant;
 use App\Utils\Utils;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Session;
+use App\Models\DishBranch;
 
 class MenuController extends BaseController
 {
@@ -21,6 +22,14 @@ class MenuController extends BaseController
         Session::put('urlMenu', $urlMenu);
         Session::save();
         return view('menu', compact('restaurant','branchDishes', 'categories','isScheduleValid'));
+    }
+
+    public function showAdmin()
+    {
+        $userLogged =auth()->user();
+        $branch = $userLogged->branch;
+        $branchDishes = $branch->branchDishesAdmin;
+        return view('menuAdmin', compact('branchDishes','branch'));
     }
 
     public function sort_objects_by_id($a, $b) {
@@ -58,5 +67,16 @@ class MenuController extends BaseController
         }
         $uriRestaurant = '/'.$restaurantName.'/'.$branchName;
         return $scheme.'://'.$server_name.$port.$uriRestaurant;
+    }
+
+    public function udpateDishStatus(){
+        $dishStatus = request()->dishStatus;
+        $dishBranchId =  request()->dishBranchId;
+
+        $dishBranch = DishBranch::find($dishBranchId);
+        if($dishBranch) {
+            $dishBranch->disable = $dishStatus;
+            $dishBranch->save();
+        }
     }
 }
