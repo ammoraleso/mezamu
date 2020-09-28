@@ -1,6 +1,4 @@
 async function updateStatus(order) {
-    console.log("La routa que llamarré : " + updateStatusUrl);
-    console.log("El nuevo status de la orden es : " + order.status);
     try {
         itemsCounter = await $.ajax({
             headers: {
