@@ -149,7 +149,7 @@ body{
 }
 #welcome::after {
     content: "";
-    background: url("../images/welcomeBackground.jpg") no-repeat center center fixed;
+    /*background: url("../images/welcomebackground.jpg") no-repeat center center fixed;*/
     background-size: 100% 100%;
     opacity: 0.4;
     top: 0;
