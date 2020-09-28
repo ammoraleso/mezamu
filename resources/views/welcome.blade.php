@@ -19,7 +19,7 @@
                 <div class="title mb-3">
                     MezamÜ
                 </div>
-                <h2 class="mb-5">Tu tienda a un click</h2>
+                <h2 class="mb-5">Tu Restaurante a un click</h2>
                 <a class="btn btn-success" style="font-size: 20px; padding: 7px 35px;" href="{{ route('register') }}">
                     Quiero mi código
                 </a>
