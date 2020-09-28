@@ -72,6 +72,8 @@ function showDetails(customerToDetail) {
         document.getElementById("address_add").innerHTML =
             "<strong>Adicion Dirección: </strong>" +
             customerToDetail.direccion_adicional;
+    } else {
+        document.getElementById("address_add").innerHTML = "";
     }
     $("#modalDetailsCustomer").modal("show");
 }
