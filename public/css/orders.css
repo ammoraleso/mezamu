@@ -1,12 +1,12 @@
 /* mixin for multiline */
 @media (max-width: 768px) {
     .horizontal-scrollable {
-        width: 400%;
+        width: 300%;
     }
 }
 @media (min-width: 768px) {
     .horizontal-scrollable {
-        width: 150%;
+        width: 100%;
     }
 }
 .horizontal-scrollable > .row {
