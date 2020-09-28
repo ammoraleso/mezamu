@@ -68,9 +68,12 @@ function showDetails(customerToDetail) {
 
     document.getElementById("address").innerHTML =
         "<strong>Dirección: </strong>" + customerToDetail.direccion;
-
-    document.getElementById("address_add").innerHTML =
-        "<strong>Adicion Dirección: </strong>" +
-        customerToDetail.direccion_adicional;
+    if (customerToDetail.direccion_adicional) {
+        document.getElementById("address_add").innerHTML =
+            "<strong>Adicion Dirección: </strong>" +
+            customerToDetail.direccion_adicional;
+    } else {
+        document.getElementById("address_add").innerHTML = "";
+    }
     $("#modalDetailsCustomer").modal("show");
 }

@@ -29,7 +29,7 @@
                 Cliente: {{ order.order.customer.nombre }}
               </p>
               <p
-                v-if="order.order.customer && order.order.type == 'delivery'"
+                v-if="order.order.customer.direccion_adicional && order.order.type == 'delivery'"
                 class="font-weight-bold"
               >
                 Lugar: {{ order.order.place }} -
@@ -89,7 +89,7 @@
                 Cliente: {{ order.order.customer.nombre }}
               </p>
               <p
-                v-if="order.order.customer && order.order.type == 'delivery'"
+                v-if="order.order.customer.direccion_adicional && order.order.type == 'delivery'"
                 class="font-weight-bold"
               >
                 Lugar: {{ order.order.place }} -
@@ -151,7 +151,7 @@
                 Cliente: {{ order.order.customer.nombre }}
               </p>
               <p
-                v-if="order.order.customer && order.order.type == 'delivery'"
+                v-if="order.order.customer.direccion_adicional && order.order.type == 'delivery'"
                 class="font-weight-bold"
               >
                 Lugar: {{ order.order.place }} -

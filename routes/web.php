@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@show')->name('home');
 Route::get('/{restaurant}/{branch}', 'MenuController@show')->name('menu');
 Route::get('/{restaurant}/{branch}/reserva', 'ReservationController@show')->name('reservation');
 Route::post('/waiter', 'WaiterController@generateCode')->name('generateCode');
+Route::get('/menuAdmin', 'MenuController@showAdmin')->name('menuAdmin');
 
 //Cart Controller
 Route::get('/mycart', 'CartController@showCart')->name('cart');
@@ -28,6 +29,7 @@ Route::post('/checkOutDelivery', 'CartController@checkOutDelivery')->name('check
 Route::post('/findEmail', 'CartController@findEmail')->name('findEmail');
 Route::post('/saveCustomer', 'CartController@uploadCustomer')->name('saveCustomer');
 Route::post('/uploadOrder', 'OrderController@uploadOrder')->name('uploadOrder');
+Route::post('/udpateDishStatus', 'MenuController@udpateDishStatus')->name('udpateDishStatus');
 Route::get('/successfulPurchase', function () {return view('/successfulPurchase');});
 Route::get('/orders','OrderController@loadOrders')->name('orders');
 Route::get('/rejectedPurchase', function () {return view('/successfulPurchase');});

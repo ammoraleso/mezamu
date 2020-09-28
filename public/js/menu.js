@@ -13,3 +13,23 @@ function showDetails(dishToDetail) {
 
     $("#modalDetails").modal("show");
 }
+
+async function changeStatusDish(dishBranchId, dishStatus) {
+    try {
+        await $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            url: udpateDishStatusUrl,
+            method: "POST",
+            data: {
+                dishStatus,
+                dishBranchId
+            }
+        });
+    } catch (error) {
+        console.log("Error removeItem " + error);
+        return;
+    }
+    window.location.replace("menuAdmin");
+}
