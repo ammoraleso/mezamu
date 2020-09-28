@@ -85,18 +85,7 @@
 
     </footer>
 
-    <script type="application/javascript">
-        var rotated = false;
-
-        window.setInterval(function(){
-            if(rotated){
-                document.getElementById('flip-card-inner').style.transform = 'rotateY(0)';
-            }else{
-                document.getElementById('flip-card-inner').style.transform = 'rotateY(180deg)';
-            }
-            rotated = !rotated;
-        }, 3000);
-    </script>
+    <script type="application/javascript" src="{{asset('js/qrRotation.js')}}"></script>
 
     <!--subscribers-->
     <script type="application/javascript">
