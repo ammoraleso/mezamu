@@ -1,6 +1,4 @@
 async function updateStatus(order) {
-    console.log("La routa que llamarré : " + updateStatusUrl);
-    console.log("El nuevo status de la orden es : " + order.status);
     try {
         itemsCounter = await $.ajax({
             headers: {
@@ -72,6 +70,8 @@ function showDetails(customerToDetail) {
         document.getElementById("address_add").innerHTML =
             "<strong>Adicion Dirección: </strong>" +
             customerToDetail.direccion_adicional;
+    } else {
+        document.getElementById("address_add").innerHTML = "";
     }
     $("#modalDetailsCustomer").modal("show");
 }
