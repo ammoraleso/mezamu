@@ -18,7 +18,7 @@ async function showPayModal(branch) {
         }
     }
 
-    if (!isCovered && selectedPlace === "delivery") {
+    if (distance > branch.coverage && selectedPlace === "delivery") {
         alert("Tu ubicación está fuera del rango del restaurante");
         return;
     }
