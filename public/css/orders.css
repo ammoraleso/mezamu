@@ -1,12 +1,12 @@
 /* mixin for multiline */
 @media (max-width: 768px) {
     .horizontal-scrollable {
-        width: 300%;
+        width: 400%;
     }
 }
 @media (min-width: 768px) {
     .horizontal-scrollable {
-        width: 100%;
+        width: 150%;
     }
 }
 .horizontal-scrollable > .row {
@@ -35,29 +35,24 @@
     margin-bottom: 12px;
 }
 
-#myInput2 {
-    background-image: url("https://mezamublobstorage.blob.core.windows.net/images/search-Icon.png");
-    background-size: 20px auto;
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-}
-
 #myTable {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #ddd;
     font-size: 18px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+}
+
+#myTable th {
+    background-color: #343a40;
+    color: white;
 }
 
 #myTable th,
 #myTable td {
     text-align: left;
     padding: 12px;
+    border-bottom: 1px solid #ddd;
 }
 
 #myTable tr {

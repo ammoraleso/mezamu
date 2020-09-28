@@ -16,6 +16,9 @@
 @endpush
 
 @section('content')
+
+    @include('modalDetailsCustomer')
+
     <form id="myForm" method="GET" action="{{ route('orders') }}" onsubmit="return loadOrders()">
         <div class="input-group search-box">
             
@@ -39,7 +42,6 @@
                             <th style="width:28%;">Items</th>
                             <th style="width:auto;">Tipo</th>
                             <th style="width:15%;">Cliente</th>
-                            <th style="width:auto;">Teléfono</th>
                             <th style="width:20%;">Lugar</th>
                             <th style="width:20%;">Anotaciones</th>
                             <th style="width:auto;">Total</th>
@@ -58,13 +60,20 @@
                                 </td>
                                 <td>{{$order['order']->type}}</td>
                                 @if($order['order']->customer_id)
-                                    <td>{{$order['order']->customer->nombre}}</td>
-                                    <td>{{$order['order']->customer->telefono}}</td>
+                                    <td> <p style="color: #2196f3; text-decoration:underline;" onclick="showDetails({{$order['order']->customer}})" type="button">{{$order['order']->customer->nombre}} <p></td>
                                 @else 
                                     <td>-</td>
                                     <td>-</td>
                                 @endif
-                                <td>{{$order['order']->place}}</td>
+                                @if($order['order']->customer_id && $order['order']->type == 'delivery')
+                                    @if($order['order']->customer->direccion_adicional != null && $order['order']->customer->direccion_adicional != "")
+                                        <td>{{$order['order']->place}} - {{$order['order']->customer->direccion_adicional}}</td>
+                                    @else 
+                                        <td>{{$order['order']->place}}</td>
+                                    @endif
+                                @else 
+                                    <td>{{$order['order']->place}}</td>
+                                @endif
                                 <td>{{$order['order']->annotations}}</td>
                                 <td>${{number_format($order['order']->total, 0, '.', ',')}}</td>
                                 <td>{{$order['order']->payment_type}}</td>

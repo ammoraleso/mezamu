@@ -59,7 +59,7 @@
 
                         <div class="flex-grow-1 mx-auto mt-3">
                             <button id="submitButton" disabled class="btn bg-base w-100 mb-3 btn-success"
-                                    onclick="showPayModal()" type="button">{{__('general.Continue')}}</button>
+                                    onclick="showPayModal({{$branch }})" type="button">{{__('general.Continue')}}</button>
                         </div>
                     </div>
                 </form>
@@ -76,14 +76,13 @@
         function initMap() {
             var input = document.getElementById('address');
             var autocomplete = new google.maps.places.Autocomplete(input);
-
-            document.getElementById("submitButton").disabled = isCovered;
-
             autocomplete.addListener("place_changed", () => {
                 var deliveryAddress = autocomplete.getPlace().geometry.location;
                 distance = google.maps.geometry.spherical.computeDistanceBetween(deliveryAddress, new google.maps.LatLng({{Arr::first(Session::get('cart'))['item']->branch->latitude}}, {{Arr::first(Session::get('cart'))['item']->branch->longitude}}));
-                isCovered = distance < {{Arr::first(Session::get('cart'))['item']->branch->coverage}};
+                
             });
+            isCovered = distance < {{Arr::first(Session::get('cart'))['item']->branch->coverage}};
+            document.getElementById("submitButton").disabled = !isCovered;
         }
         <!--prevents browser to autocomplete-->
         function changeAutocomplete() {
@@ -131,77 +130,6 @@
             //atributo deshabilitación metodo de pago
             methodsDisable: ["SP","CASH"],
         };
-
-        async function showPayModal() {
-            $name = $('#name').val();
-            //$city = $('#city').val();
-            $city = 1;
-            $address = $('#address').val();
-            $aditionalAddress = $('#aditional_address').val();
-            $phone = $('#phone').val();
-            if(!$name) {
-                $('#name').focus();
-                $('#name').addClass('is-invalid');
-                return;
-            }else{
-                $('#name').removeClass('is-invalid');
-            }
-
-            if(!$city){
-                $('#city').focus();
-                $('#city').addClass('is-invalid');
-                return;
-            }else{
-                $('#city').removeClass('is-invalid');
-            }
-            if(!$address || distance === 0){
-                $('#address').focus();
-                $('#address').addClass('is-invalid');
-                if(distance === 0){
-                    alert('Por favor seleccione una dirección valida')
-                }
-                return;
-            }else{
-                $('#address').removeClass('is-invalid');
-            }
-            if(!$phone){
-                $('#phone').focus();
-                $('#phone').addClass('is-invalid');
-                return;
-            }else{
-                $('#phone').removeClass('is-invalid');
-            }
-            if(!isCovered){
-                alert('Tu ubicación está fuera del rango del restaurante');
-                return;
-            }
-
-            data.amount='{{$totalPrice}}';
-            data.extra1= '{!! json_encode($paymentCart)!!}'.replace(/"/g, "'");
-            data.extra2= $city;
-            data.extra3= $address;
-            data.extra4= $name;
-            //Atributos cliente
-            data.type_doc_billing= "cc";
-            try {
-                await $.ajax({
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    url: saveCustomerUrl,
-                    data: {
-                        email: $email,
-                        name: $name,
-                        address: $address,
-                        phone: $phone
-                    },
-                    type: "post"
-                });
-            } catch (error) {
-                console.log("Error saving Customer: " + error);
-            }
-            handler.open(data)
-        }
     </script>
     <!--PAYMENT-->
 

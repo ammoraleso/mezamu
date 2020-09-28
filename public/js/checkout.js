@@ -1,6 +1,5 @@
 async function showPayModal(branch) {
     validateFields();
-
     data.amount = document.getElementById("totalPrice").value;
     data.extra1 = "{!! json_encode($paymentCart)!!}".replace(/"/g, "'");
     data.extra2 = $city;
@@ -9,6 +8,21 @@ async function showPayModal(branch) {
     data.extra5 = document.getElementById("descriptionOrder").value;
     //Atributos cliente
     data.type_doc_billing = "cc";
+
+    const ele = document.getElementsByName("toWhere");
+    var selectedPlace = null;
+    for (let i = 0; i < ele.length; i++) {
+        if (ele[i].checked) {
+            selectedPlace = ele[i].value;
+            break;
+        }
+    }
+
+    if (!isCovered && selectedPlace === "delivery") {
+        alert("Tu ubicación está fuera del rango del restaurante");
+        return;
+    }
+
     try {
         await $.ajax({
             headers: {
@@ -19,6 +33,7 @@ async function showPayModal(branch) {
                 email: $email,
                 name: $name,
                 address: $address,
+                aditional_address: $aditional_address,
                 phone: $phone
             },
             type: "post"
@@ -27,14 +42,6 @@ async function showPayModal(branch) {
         console.log("Error saving Customer: " + error);
     }
 
-    const ele = document.getElementsByName("toWhere");
-    var selectedPlace = null;
-    for (let i = 0; i < ele.length; i++) {
-        if (ele[i].checked) {
-            selectedPlace = ele[i].value;
-            break;
-        }
-    }
     $("#modalDelivery").modal("hide");
     if (selectedPlace === "table") {
         $("#modalTableToken").modal("show");
@@ -52,11 +59,12 @@ async function showPayModal(branch) {
                     email: $email,
                     name: $name,
                     address: $address,
+                    aditional_address: $aditional_address,
                     phone: $phone,
                     description: document.getElementById("descriptionOrder")
                         .value,
                     total: document.getElementById("totalPrice").value,
-                    disable_epay : branch.disable_epay
+                    disable_epay: branch.disable_epay
                 },
                 type: "post"
             });
@@ -73,10 +81,10 @@ async function showPayModal(branch) {
 
 async function validateFields() {
     $name = $("#name").val();
-    //$city = $('#city').val();
     $city = 1;
     $address = $("#address").val();
     $phone = $("#phone").val();
+    $aditional_address = $("#aditional_address").val();
     if (!$name) {
         $("#name").focus();
         $("#name").addClass("is-invalid");
