@@ -30,6 +30,7 @@
                 @php
                     $isScheduleValid = App\Utils\Utils::validateSchedule(Arr::first(Session::get('cart'))['item']->branch);
                     $branch = Arr::first(Session::get('cart'))['item']->branch;
+                    $restaurant = $branch->restaurant
                 @endphp
                 
                 <div class="grid">
@@ -54,7 +55,7 @@
                                                 @endphp
                                                 <span id="cartItem{{$dish['id']}}">
                                                     <div class="d-flex p-3 ">
-                                                        <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
+                                                    <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/{{$restaurant->slug}}/{{$dish->photo}}">
                                                         <div class="ml-3 w-100 d-flex flex-column">
                                                             <div>
                                                                 <strong>
