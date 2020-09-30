@@ -1,6 +1,6 @@
 let dish;
 
-function showDetails(dishToDetail) {
+function showDetails(dishToDetail, restaurant) {
     dish = dishToDetail;
 
     document.getElementById("header-tittle").innerHTML = dish.name;
@@ -8,7 +8,10 @@ function showDetails(dishToDetail) {
         "<strong>Descripción: </strong>" + dish.description;
     let divImage = document.getElementById("product-image");
     imageUrl =
-        "https://mezamublobstorage.blob.core.windows.net/images/" + dish.photo;
+        "https://mezamublobstorage.blob.core.windows.net/" +
+        restaurant.slug +
+        "/" +
+        dish.photo;
     divImage.innerHTML = "<img src=" + imageUrl + ' width="85%">';
 
     $("#modalDetails").modal("show");
