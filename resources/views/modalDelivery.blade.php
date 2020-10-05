@@ -103,7 +103,7 @@
         var handler = ePayco.checkout.configure({
             key:'f2896c38764f97526a193f24de170b96',
             //key: '71c83236ba0231c2d3e4048be66fc298',//intraining
-            test: true
+            test: false
         });
         var data={
             //Parametros compra (obligatorio)
