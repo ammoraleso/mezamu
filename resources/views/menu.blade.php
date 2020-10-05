@@ -22,7 +22,7 @@
     @include('modalDetails')
 
     <div class="pt-4 div-logo">
-        <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$restaurant->logo}}">
+        <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/{{$restaurant->slug}}/{{$restaurant->logo}}">
     </div>
     
     @if (!$isScheduleValid)
@@ -52,7 +52,7 @@
                                 @if($dish->category ==$categories[$i])
 
                                     <div class="d-flex p-3 ">
-                                        <img onclick="showDetails({{$dish}})" alt="{{$dish->name}}" class="product-img" type="button" src="https://mezamublobstorage.blob.core.windows.net/images/{{$dish->photo}}">
+                                        <img onclick="showDetails({{$dish}},{{$restaurant}})" alt="{{$dish->name}}" class="product-img" type="button" src="https://mezamublobstorage.blob.core.windows.net/{{$restaurant->slug}}/{{$dish->photo}}">
                                         <div class="ml-3 w-100 d-flex flex-column">
                                             <div>
                                                 <strong><p class="mb-0 d-inline-block">{{$dish->name}}
