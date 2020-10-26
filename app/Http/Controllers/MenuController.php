@@ -7,6 +7,7 @@ use App\Utils\Utils;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Session;
 use App\Models\DishBranch;
+use App\Models\Dish;
 
 class MenuController extends BaseController
 {
@@ -77,6 +78,18 @@ class MenuController extends BaseController
         if($dishBranch) {
             $dishBranch->disable = $dishStatus;
             $dishBranch->save();
+        }
+    }
+
+    public function udpateDish(){
+        $dishToUpdate = request()->dish;
+        $dishId =  $dishToUpdate["id"];
+        $dish = Dish::find($dishId);
+        if($dish) {
+            $dish->name = $dishToUpdate["name"];
+            $dish->description = $dishToUpdate["description"];
+            $dish->price = $dishToUpdate["price"];
+            $dish->save();
         }
     }
 }

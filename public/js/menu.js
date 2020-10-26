@@ -36,3 +36,35 @@ async function changeStatusDish(dishBranchId, dishStatus) {
     }
     window.location.replace("menuAdmin");
 }
+
+function showDetailsDishAdmin(dishToUpdate) {
+    dish = dishToUpdate;
+    document.getElementById("header-tittle").innerHTML = dishToUpdate.name;
+
+    $("#name").val(dishToUpdate.name);
+    $("#description").val(dishToUpdate.description);
+    $("#price").val(dishToUpdate.price);
+    $("#modalDetailsAdminMenu").modal("show");
+}
+
+async function updateDish() {
+    try {
+        dish.name = $("#name").val();
+        dish.description = $("#description").val();
+        dish.price = $("#price").val();
+        await $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            url: udpateDishUrl,
+            method: "POST",
+            data: {
+                dish
+            }
+        });
+    } catch (error) {
+        console.log("Error udpateDish " + error);
+        return;
+    }
+    window.location.replace("menuAdmin");
+}
