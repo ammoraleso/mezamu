@@ -13,10 +13,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
         var udpateDishStatusUrl = '{{ route('udpateDishStatus') }}';
+        var udpateDishUrl = '{{ route('udpateDish') }}';
     </script>
 @endpush
 
 @section('content')
+
+    @include('modalDetailsAdminMenu')
+
     <div id="back" class="pt-3"style="justify-content: center; display: flex; padding-bottom: 1%;">
         <h3><strong>{{$branch->restaurant->name}} - {{$branch->location}}</strong><h3>
     </div>
@@ -37,7 +41,7 @@
                             $dish = $branchDish->dish;
                         @endphp
                         <tr>
-                            <td>{{$dish->name}}</td>
+                            <td> <p style="color: #2196f3; text-decoration:underline;"type="button" onclick="showDetailsDishAdmin({{$dish}});">{{$dish->name}} <p></td>
                             <td>{{$dish->category->description}}</td>
                             <td>${{number_format($dish->price, 0, '.', ',')}}</td>
                             <td> 
