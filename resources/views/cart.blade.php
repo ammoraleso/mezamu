@@ -190,6 +190,7 @@
 
                 @include('modalConfirmRequest')
                 @include('modalDelivery')
+                @include('modalTerms')
             @else
                 <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                     <img alt="empty_cart" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/empty-cart.png">

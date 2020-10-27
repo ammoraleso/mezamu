@@ -215,3 +215,7 @@ function showFlashMessage(element, message) {
         $(element).fadeOut("slow");
     }, 2000);
 }
+
+function showModalTerms() {
+    $("#modalTerms").modal("show");
+}
