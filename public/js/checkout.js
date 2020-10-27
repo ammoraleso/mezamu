@@ -1,5 +1,7 @@
 async function showPayModal(branch) {
-    validateFields();
+    if (!validateFields()) {
+        return;
+    }
     data.amount = document.getElementById("totalPrice").value;
     data.extra1 = "{!! json_encode($paymentCart)!!}".replace(/"/g, "'");
     data.extra2 = $city;
@@ -79,16 +81,17 @@ async function showPayModal(branch) {
     handler.open(data);
 }
 
-async function validateFields() {
+function validateFields() {
     $name = $("#name").val();
     $city = 1;
     $address = $("#address").val();
     $phone = $("#phone").val();
     $aditional_address = $("#aditional_address").val();
+    acceptTerms = $("#cbTerms").is(":checked");
     if (!$name) {
         $("#name").focus();
         $("#name").addClass("is-invalid");
-        return;
+        return false;
     } else {
         $("#name").removeClass("is-invalid");
     }
@@ -96,22 +99,29 @@ async function validateFields() {
     if (!$city) {
         $("#city").focus();
         $("#city").addClass("is-invalid");
-        return;
+        return false;
     } else {
         $("#city").removeClass("is-invalid");
     }
     if (!$address) {
         $("#address").focus();
         $("#address").addClass("is-invalid");
-        return;
+        return false;
     } else {
         $("#address").removeClass("is-invalid");
     }
     if (!$phone) {
         $("#phone").focus();
         $("#phone").addClass("is-invalid");
-        return;
+        return false;
     } else {
         $("#phone").removeClass("is-invalid");
     }
+    if (!acceptTerms) {
+        alert("Debes aceptar términos y condiciones para continuar!!");
+        return false;
+    } else {
+        $("#cbTerms").removeClass("is-invalid");
+    }
+    return true;
 }

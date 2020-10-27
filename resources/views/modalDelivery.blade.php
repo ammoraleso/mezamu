@@ -57,6 +57,8 @@
                             </div>
                         </div>
 
+                        <input type="checkbox" id="cbTerms" value="second_checkbox" required> <label style="color: #2196f3; text-decoration:underline;" type="button" for="cbox2" onclick="showModalTerms();">Aceptar Terminos y Condiciones</label>
+
                         <div class="flex-grow-1 mx-auto mt-3">
                             <button id="submitButton" class="btn bg-base w-100 mb-3 btn-success"
                                     onclick="showPayModal({{$branch }})" type="button">{{__('general.Continue')}}</button>
