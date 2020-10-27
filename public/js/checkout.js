@@ -44,8 +44,8 @@ async function showPayModal(branch) {
         console.log("Error saving Customer: " + error);
     }
 
-    
     if (selectedPlace === "table") {
+        $("#modalDelivery").modal("hide");
         $("#modalTableToken").modal("show");
         return;
     }
