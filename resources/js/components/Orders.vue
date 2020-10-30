@@ -146,7 +146,7 @@
               Orden: {{ order.order.id }}
             </div>
             <div class="card-body">
-              <div class="row" style="justify-content: space-between;" v-for="item in order.items">
+              <div class="row" style="justify-content: space-between; " v-for="item in order.items">
                 <div class="column">
                   <p class="card-text" id="nameDish1">
                     {{ item.quantity }} | {{ item.dish_branch.dish.name }}

@@ -2124,6 +2124,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["branchid", "databaseorders"],
   data: function data() {
@@ -2183,6 +2225,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee2);
+      }))();
+    },
+    updateCheck: function updateCheck(orderDish) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (orderDish.delivered == 1) {
+                  orderDish.delivered = 0;
+                } else {
+                  orderDish.delivered = 1;
+                }
+
+                _context3.next = 3;
+                return updateDelivery(orderDish);
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   }
@@ -44676,17 +44741,51 @@ var render = function() {
                         "div",
                         { staticClass: "card-body" },
                         _vm._l(order.items, function(item) {
-                          return _c("div", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(item.quantity) +
-                                  " | " +
-                                  _vm._s(item.dish_branch.dish.name) +
-                                  "\n              "
-                              )
-                            ])
-                          ])
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "row",
+                              staticStyle: {
+                                "justify-content": "space-between"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "column" }, [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "card-text",
+                                    attrs: { id: "nameDish1" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(item.quantity) +
+                                        " | " +
+                                        _vm._s(item.dish_branch.dish.name) +
+                                        "\n                "
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              order.order.type != "delivery"
+                                ? _c("div", { staticClass: "column" }, [
+                                    _c("input", {
+                                      attrs: { type: "checkbox" },
+                                      domProps: {
+                                        checked: item.delivered == 1
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.updateCheck(item)
+                                        }
+                                      }
+                                    })
+                                  ])
+                                : _vm._e()
+                            ]
+                          )
                         }),
                         0
                       ),
@@ -44706,6 +44805,27 @@ var render = function() {
                               ])
                             : _vm._e(),
                           _vm._v(" "),
+                          order.order.customer.direccion_adicional &&
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Lugar: " +
+                                    _vm._s(order.order.place) +
+                                    " -\n              " +
+                                    _vm._s(
+                                      order.order.customer.direccion_adicional
+                                    ) +
+                                    "\n            "
+                                )
+                              ])
+                            : _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Lugar: " +
+                                    _vm._s(order.order.place) +
+                                    "\n            "
+                                )
+                              ]),
+                          _vm._v(" "),
                           order.order.customer
                             ? _c("p", { staticClass: "font-weight-bold" }, [
                                 _vm._v(
@@ -44715,10 +44835,6 @@ var render = function() {
                                 )
                               ])
                             : _vm._e(),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Lugar: " + _vm._s(order.order.place))
-                          ]),
                           _vm._v(" "),
                           order.order.type == "delivery"
                             ? _c("p", { staticClass: "font-weight-bold" }, [
@@ -44828,17 +44944,51 @@ var render = function() {
                         "div",
                         { staticClass: "card-body" },
                         _vm._l(order.items, function(item) {
-                          return _c("div", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(item.quantity) +
-                                  " | " +
-                                  _vm._s(item.dish_branch.dish.name) +
-                                  "\n              "
-                              )
-                            ])
-                          ])
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "row",
+                              staticStyle: {
+                                "justify-content": "space-between"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "column" }, [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "card-text",
+                                    attrs: { id: "nameDish2" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(item.quantity) +
+                                        " | " +
+                                        _vm._s(item.dish_branch.dish.name) +
+                                        "\n                "
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              order.order.type != "delivery"
+                                ? _c("div", { staticClass: "column" }, [
+                                    _c("input", {
+                                      attrs: { type: "checkbox" },
+                                      domProps: {
+                                        checked: item.delivered == 1
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.updateCheck(item)
+                                        }
+                                      }
+                                    })
+                                  ])
+                                : _vm._e()
+                            ]
+                          )
                         }),
                         0
                       ),
@@ -44858,6 +45008,27 @@ var render = function() {
                               ])
                             : _vm._e(),
                           _vm._v(" "),
+                          order.order.customer.direccion_adicional &&
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Lugar: " +
+                                    _vm._s(order.order.place) +
+                                    " -\n              " +
+                                    _vm._s(
+                                      order.order.customer.direccion_adicional
+                                    ) +
+                                    "\n            "
+                                )
+                              ])
+                            : _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Lugar: " +
+                                    _vm._s(order.order.place) +
+                                    "\n            "
+                                )
+                              ]),
+                          _vm._v(" "),
                           order.order.customer
                             ? _c("p", { staticClass: "font-weight-bold" }, [
                                 _vm._v(
@@ -44867,10 +45038,6 @@ var render = function() {
                                 )
                               ])
                             : _vm._e(),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Lugar: " + _vm._s(order.order.place))
-                          ]),
                           _vm._v(" "),
                           order.order.type == "delivery"
                             ? _c("p", { staticClass: "font-weight-bold" }, [
@@ -44993,17 +45160,51 @@ var render = function() {
                         "div",
                         { staticClass: "card-body" },
                         _vm._l(order.items, function(item) {
-                          return _c("div", [
-                            _c("p", { staticClass: "card-text" }, [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(item.quantity) +
-                                  " | " +
-                                  _vm._s(item.dish_branch.dish.name) +
-                                  "\n              "
-                              )
-                            ])
-                          ])
+                          return _c(
+                            "div",
+                            {
+                              staticClass: "row",
+                              staticStyle: {
+                                "justify-content": "space-between"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "column" }, [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "card-text",
+                                    attrs: { id: "nameDish1" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(item.quantity) +
+                                        " | " +
+                                        _vm._s(item.dish_branch.dish.name) +
+                                        "\n                "
+                                    )
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              order.order.type != "delivery"
+                                ? _c("div", { staticClass: "column" }, [
+                                    _c("input", {
+                                      attrs: { type: "checkbox" },
+                                      domProps: {
+                                        checked: item.delivered == 1
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.updateCheck(item)
+                                        }
+                                      }
+                                    })
+                                  ])
+                                : _vm._e()
+                            ]
+                          )
                         }),
                         0
                       ),
@@ -45023,6 +45224,27 @@ var render = function() {
                               ])
                             : _vm._e(),
                           _vm._v(" "),
+                          order.order.customer.direccion_adicional &&
+                          order.order.type == "delivery"
+                            ? _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Lugar: " +
+                                    _vm._s(order.order.place) +
+                                    " -\n              " +
+                                    _vm._s(
+                                      order.order.customer.direccion_adicional
+                                    ) +
+                                    "\n            "
+                                )
+                              ])
+                            : _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "\n              Lugar: " +
+                                    _vm._s(order.order.place) +
+                                    "\n            "
+                                )
+                              ]),
+                          _vm._v(" "),
                           order.order.customer
                             ? _c("p", { staticClass: "font-weight-bold" }, [
                                 _vm._v(
@@ -45032,10 +45254,6 @@ var render = function() {
                                 )
                               ])
                             : _vm._e(),
-                          _vm._v(" "),
-                          _c("p", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Lugar: " + _vm._s(order.order.place))
-                          ]),
                           _vm._v(" "),
                           order.order.type == "delivery"
                             ? _c("p", { staticClass: "font-weight-bold" }, [
@@ -57536,8 +57754,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\c.hernandez\Documents\mezamu\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\c.hernandez\Documents\mezamu\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Andres Morales\Desktop\Andres\PHP\mezamu\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Andres Morales\Desktop\Andres\PHP\mezamu\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
