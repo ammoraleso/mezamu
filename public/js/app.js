@@ -44805,6 +44805,7 @@ var render = function() {
                               ])
                             : _vm._e(),
                           _vm._v(" "),
+                          order.order.customer &&
                           order.order.customer.direccion_adicional &&
                           order.order.type == "delivery"
                             ? _c("p", { staticClass: "font-weight-bold" }, [
@@ -45008,6 +45009,7 @@ var render = function() {
                               ])
                             : _vm._e(),
                           _vm._v(" "),
+                          order.order.customer &&
                           order.order.customer.direccion_adicional &&
                           order.order.type == "delivery"
                             ? _c("p", { staticClass: "font-weight-bold" }, [
@@ -45224,6 +45226,7 @@ var render = function() {
                               ])
                             : _vm._e(),
                           _vm._v(" "),
+                          order.order.customer &&
                           order.order.customer.direccion_adicional &&
                           order.order.type == "delivery"
                             ? _c("p", { staticClass: "font-weight-bold" }, [
