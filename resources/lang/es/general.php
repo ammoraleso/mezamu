@@ -60,5 +60,6 @@ return [
     "Persons" => "Personas",    
     "Delivery" => "Domicilio",
     "Orders" => "Ordenes",
-    "Date" => "Fecha"
+    "Date" => "Fecha",
+    "Edit_Order"  => "Editar Orden (Click Aquí)",
 ];

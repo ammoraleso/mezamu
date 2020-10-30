@@ -57,5 +57,6 @@ return [
     "Persons" => "Persons",
     "Delivery" => "Delivery",
     "Orders" => "Orders",
-    "Date" => "Date"
+    "Date" => "Date",
+    "Edit_Order"  => "Edit Order (Click Here)"
 ];

@@ -39,7 +39,7 @@
                             <div class="card-header tab-header">
                                 <h5 class="mb-0">
                                <button class="btn btn-link tab-category" onclick="collapseTab()" type="button">
-                                    {{__('general.Products')}}
+                                    {{__('general.Edit_Order')}}
                                     <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
                                 </button>
                                 </h5>
