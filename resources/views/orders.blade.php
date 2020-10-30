@@ -63,7 +63,6 @@
                                     <td> <p style="color: #2196f3; text-decoration:underline;" onclick="showDetails({{$order['order']->customer}})" type="button">{{$order['order']->customer->nombre}} <p></td>
                                 @else 
                                     <td>-</td>
-                                    <td>-</td>
                                 @endif
                                 @if($order['order']->customer_id && $order['order']->type == 'delivery')
                                     @if($order['order']->customer->direccion_adicional != null && $order['order']->customer->direccion_adicional != "")
@@ -82,7 +81,7 @@
                         @endforeach
                     </table>
                 @else
-                    <p>No hay ordenes para mostrar</p>
+                    <p style="margin-left: 2%">No hay ordenes para mostrar</p>
                 @endif
             </div>
         </div>
