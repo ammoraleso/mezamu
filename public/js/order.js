@@ -16,6 +16,24 @@ async function updateStatus(order) {
     }
 }
 
+async function updateDelivery(orderDish) {
+    try {
+        itemsCounter = await $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            url: updateDeliveredUrl,
+            method: "POST",
+            data: {
+                orderDish
+            }
+        });
+    } catch (error) {
+        alert("Error updating  order " + error.message);
+        return;
+    }
+}
+
 async function loadOrders() {
     $date = $("#dateInput").val();
     $("#dateInput").removeClass("is-invalid");

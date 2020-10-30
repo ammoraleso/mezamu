@@ -29,6 +29,7 @@ Route::post('/checkOutDelivery', 'CartController@checkOutDelivery')->name('check
 Route::post('/findEmail', 'CartController@findEmail')->name('findEmail');
 Route::post('/saveCustomer', 'CartController@uploadCustomer')->name('saveCustomer');
 Route::post('/uploadOrder', 'OrderController@uploadOrder')->name('uploadOrder');
+Route::post('/updateDelivered', 'OrderController@updateDelivered')->name('updateDelivered');
 Route::post('/udpateDishStatus', 'MenuController@udpateDishStatus')->name('udpateDishStatus');
 Route::post('/udpateDish', 'MenuController@udpateDish')->name('udpateDish');
 Route::get('/successfulPurchase', function () {return view('/successfulPurchase');});

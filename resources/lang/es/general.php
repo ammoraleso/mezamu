@@ -51,7 +51,7 @@ return [
     'GoBack' => 'Volver',
     'Order' => 'Ordenar',
     "Ask code" => "Escanea o solicita el código de verificación",
-    "Delivery_Form" => "Datos Domicilio",
+    "Delivery_Form" => "Datos Cliente",
     "No_valid_Schedule" => "Actualmente el restaurante está cerrado.",
     "Email" => "Email",
     "Phone" => "Teléfono",

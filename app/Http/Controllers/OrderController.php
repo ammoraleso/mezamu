@@ -18,6 +18,13 @@ class OrderController extends Controller
 
     }
 
+    public function updateDelivered(){
+
+        $orderDish = request()->orderDish;
+        OrderDish::where('id',  $orderDish["id"])->update(['delivered' =>  $orderDish["delivered"]]);
+
+    }
+
     public function loadOrders(){
         $date = request()->dateInput;
         $userLogged = auth()->user();
