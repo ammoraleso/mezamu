@@ -23,6 +23,7 @@ class NotificationController extends Controller
         $order->annotations = $description;
         $total = 0;
         if($type === 'delivery'){
+            $order->customer_id = Session::get('customer')->id;
             if($disableEpay === "1"){
                 $order->payment_type = 'efectivo';
             }else{
@@ -31,7 +32,6 @@ class NotificationController extends Controller
         }else{
             $order->payment_type = 'in-situ';
         }
-        $order->customer_id = Session::get('customer')->id;
         $order->save();
 
         $items = array_values(Session::get('cart'));

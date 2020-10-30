@@ -104,7 +104,7 @@ async function checkout() {
     }
     switch (selectedPlace) {
         case "table":
-            $("#modalDelivery").modal("show");
+            $("#modalTableToken").modal("show");
             break;
         case "delivery":
             $("#modalDelivery").modal("show");
