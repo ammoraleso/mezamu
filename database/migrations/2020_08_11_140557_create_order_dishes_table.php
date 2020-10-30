@@ -19,6 +19,7 @@ class CreateOrderDishesTable extends Migration
             $table->unsignedBigInteger('order_id');//foreign
             $table->unsignedBigInteger('dish_branch_id');//foreign
             $table->unsignedInteger('quantity');
+            $delivered->unsignedInteger('status')->default(0)->nulla;
         });
     }
 

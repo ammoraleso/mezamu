@@ -15,18 +15,20 @@
               Orden: {{ order.order.id }}
             </div>
             <div class="card-body">
-              <div v-for="item in order.items">
-                <p class="card-text">
-                  {{ item.quantity }} | {{ item.dish_branch.dish.name }}
-                </p>
+              <div class="row" style="justify-content: space-between;" v-for="item in order.items">
+                <div class="column">
+                  <p class="card-text" id="nameDish1">
+                    {{ item.quantity }} | {{ item.dish_branch.dish.name }}
+                  </p>
+                </div>
+                <div v-if="order.order.type != 'delivery'" class="column">
+                  <input  @click="updateCheck(item)"  type="checkbox" :checked="item.delivered == 1">
+                </div>
               </div>
             </div>
             <div class="card-footer" style="white-space: initial">
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
                 Domicilio
-              </p>
-              <p v-if="order.order.customer" class="font-weight-bold">
-                Cliente: {{ order.order.customer.nombre }}
               </p>
               <p
                 v-if="order.order.customer.direccion_adicional && order.order.type == 'delivery'"
@@ -38,7 +40,9 @@
               <p v-else class="font-weight-bold">
                 Lugar: {{ order.order.place }}
               </p>
-
+              <p v-if="order.order.customer" class="font-weight-bold">
+                Cliente: {{ order.order.customer.nombre }}
+              </p>
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
                 Telefono: {{ order.order.customer.telefono }}
               </p>
@@ -75,18 +79,20 @@
               Orden: {{ order.order.id }}
             </div>
             <div class="card-body">
-              <div v-for="item in order.items">
-                <p class="card-text">
-                  {{ item.quantity }} | {{ item.dish_branch.dish.name }}
-                </p>
+             <div class="row" style="justify-content: space-between;" v-for="item in order.items">
+                <div class="column">
+                  <p class="card-text" id="nameDish2">
+                    {{ item.quantity }} | {{ item.dish_branch.dish.name }}
+                  </p>
+                </div>
+                <div v-if="order.order.type != 'delivery'" class="column">
+                  <input  @click="updateCheck(item)"  type="checkbox" :checked="item.delivered == 1">
+                </div>
               </div>
             </div>
             <div class="card-footer" style="white-space: initial">
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
                 Domicilio
-              </p>
-              <p v-if="order.order.customer" class="font-weight-bold">
-                Cliente: {{ order.order.customer.nombre }}
               </p>
               <p
                 v-if="order.order.customer.direccion_adicional && order.order.type == 'delivery'"
@@ -97,6 +103,9 @@
               </p>
               <p v-else class="font-weight-bold">
                 Lugar: {{ order.order.place }}
+              </p>
+              <p v-if="order.order.customer" class="font-weight-bold">
+                Cliente: {{ order.order.customer.nombre }}
               </p>
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
                 Telefono: {{ order.order.customer.telefono }}
@@ -137,18 +146,20 @@
               Orden: {{ order.order.id }}
             </div>
             <div class="card-body">
-              <div v-for="item in order.items">
-                <p class="card-text">
-                  {{ item.quantity }} | {{ item.dish_branch.dish.name }}
-                </p>
+              <div class="row" style="justify-content: space-between; " v-for="item in order.items">
+                <div class="column">
+                  <p class="card-text" id="nameDish1">
+                    {{ item.quantity }} | {{ item.dish_branch.dish.name }}
+                  </p>
+                </div>
+                <div v-if="order.order.type != 'delivery'" class="column">
+                  <input  @click="updateCheck(item)"  type="checkbox" :checked="item.delivered == 1">
+                </div>
               </div>
             </div>
             <div class="card-footer" style="white-space: initial">
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
                 Domicilio
-              </p>
-              <p v-if="order.order.customer" class="font-weight-bold">
-                Cliente: {{ order.order.customer.nombre }}
               </p>
               <p
                 v-if="order.order.customer.direccion_adicional && order.order.type == 'delivery'"
@@ -159,6 +170,9 @@
               </p>
               <p v-else class="font-weight-bold">
                 Lugar: {{ order.order.place }}
+              </p>
+              <p v-if="order.order.customer" class="font-weight-bold">
+                Cliente: {{ order.order.customer.nombre }}
               </p>
               <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
                 Telefono: {{ order.order.customer.telefono }}
@@ -219,6 +233,14 @@ export default {
       order.order.status -= 1;
       await updateStatus(order.order);
     },
+    async updateCheck(orderDish){
+      if(orderDish.delivered==1){
+        orderDish.delivered = 0;
+      }else{
+        orderDish.delivered = 1;
+      }
+      await updateDelivery(orderDish);
+    }
   },
 };
 </script>

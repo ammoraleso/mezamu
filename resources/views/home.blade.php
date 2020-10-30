@@ -10,6 +10,7 @@
     <script src="{{asset('js/order.js')}}" type="text/javascript"></script>
     <script type="text/javascript">
         var updateStatusUrl = '{{route('uploadOrder')}}';
+        var updateDeliveredUrl = '{{route('updateDelivered')}}';
     </script>
 @endpush
 
