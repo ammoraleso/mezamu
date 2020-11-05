@@ -65,3 +65,11 @@ composer dump-autoload
 
 -   npm install --save laravel-echo pusher-js
 -   npm run watch
+
+
+## Add Sound
+
+- app.js
+- let x = document.getElementById("myAudio"); 
+  x.play();
+- 2602 line 
