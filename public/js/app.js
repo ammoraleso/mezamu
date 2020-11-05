@@ -2599,8 +2599,10 @@
                             "App.Models.Branch." + this.branchid
                         ).notification(function(notification) {
                             //console.log(notification.items[0].dishBranch);//For debug
-                            let x = document.getElementById("myAudio"); 
-                            x.play(); 
+                            if(notification.order.type==="delivery"){
+                              let x = document.getElementById("myAudio"); 
+                              x.play(); 
+                            }
                             _this.orders.push(notification);
                         });
                     },
