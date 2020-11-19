@@ -102,4 +102,12 @@ class Utils
         Session::save();
     }
 
+    public static function cleanFinalOrder(){
+        Session::forget('finalOrder');
+        Session::forget('finalPrice');
+        Session::forget('finaltotalQuantity');
+        Session::forget('deliveryPrice');
+        Session::save();
+    }
+
 }

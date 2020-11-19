@@ -125,3 +125,23 @@ function validateFields() {
     }
     return true;
 }
+
+function showModalFinalOrder() {
+    $("#modalDetailsFinalOrder").modal("show");
+}
+
+function generatePDF() {
+    var doc = new jsPDF();
+    var elementHandler = {
+        "#ignorePDF": function(element, renderer) {
+            return true;
+        }
+    };
+    doc.text(20, 10, "Orden Creada Por MezamÜ: ");
+    var source = window.document.getElementById("orderTable");
+    doc.fromHTML(source, 15, 15, {
+        width: 180,
+        elementHandlers: elementHandler
+    });
+    doc.save("order.pdf");
+}

@@ -32,7 +32,7 @@ Route::post('/uploadOrder', 'OrderController@uploadOrder')->name('uploadOrder');
 Route::post('/updateDelivered', 'OrderController@updateDelivered')->name('updateDelivered');
 Route::post('/udpateDishStatus', 'MenuController@udpateDishStatus')->name('udpateDishStatus');
 Route::post('/udpateDish', 'MenuController@udpateDish')->name('udpateDish');
-Route::get('/successfulPurchase', function () {return view('/successfulPurchase');});
+Route::get('/successfulPurchase', 'successfulPurchaseController@show')->name('successfulPurchase');
 Route::get('/orders','OrderController@loadOrders')->name('orders');
 Route::get('/rejectedPurchase', function () {return view('/successfulPurchase');});
 Route::get('/pendingPurchase', function () {return view('/successfulPurchase');});

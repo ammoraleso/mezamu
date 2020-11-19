@@ -14,6 +14,7 @@ class MenuController extends BaseController
 
     public function show(Restaurant $restaurant, $branchName)
     {
+        Utils::cleanFinalOrder();
         $branch = Utils::verifyBranch($restaurant, $branchName);
         $dishes = $branch->dishes;
         $categories = $this->loadCategories($dishes,$branch);
