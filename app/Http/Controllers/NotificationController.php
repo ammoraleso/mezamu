@@ -29,6 +29,7 @@ class NotificationController extends Controller
             }else{
                 $order->payment_type = 'ecommerce';
             }
+            Session::put('deliveryPrice', Arr::first(Session::get('cart'))['item']->branch->delivery_price);
         }else{
             $order->payment_type = 'in-situ';
         }
@@ -43,6 +44,9 @@ class NotificationController extends Controller
             $orderDish->save();
         }
         Arr::first(Session::get('cart'))['item']->branch->notify(new Order($order));
+        Session::put('finalOrder', Session::get('cart'));
+        Session::put('finalPrice', $order->total);
+        Session::put('finaltotalQuantity', Session::get('totalQuantity'));
         Utils::cleanCart();
     }
 }
