@@ -17,6 +17,11 @@ class Branch extends Model
         return $this->hasMany(ScheduleBranch::class);
     }
 
+    public function PaymentType(){
+        return $this->hasMany(PaymentType::class);
+    }
+
+
     public function branchDishes(){
         return $this->hasMany(DishBranch::class)->where('disable','=', 0);
     }

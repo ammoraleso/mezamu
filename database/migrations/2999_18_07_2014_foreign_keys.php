@@ -40,6 +40,10 @@ class ForeignKeys extends Migration
             $table->foreign('branch_id')->references('id')->on('branches');
         });
 
+        Schema::table('payment_type', function (Blueprint $table) {
+            $table->foreign('branch_id')->references('id')->on('branches');
+        });
+
         Schema::table('tag_dish', function (Blueprint $table) {
             $table->foreign('tag_id')->references('id')->on('tags');
             $table->foreign('dish_id')->references('id')->on('dishes');
@@ -90,6 +94,11 @@ class ForeignKeys extends Migration
         });
 
         Schema::table('schedule_branch', function (Blueprint $table) {
+            $table->dropForeign('branch_id');
+            $table->dropColumn('branch_id');
+        });
+
+        Schema::table('payment_type', function (Blueprint $table) {
             $table->dropForeign('branch_id');
             $table->dropColumn('branch_id');
         });

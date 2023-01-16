@@ -31,9 +31,9 @@ INSERT INTO `mezamu`.`dishes` (`category_id`, `name`, `description`, `price`, `p
 Nativas y Guacamole.', '20000', 'superchicharron.png');
 INSERT INTO `mezamu`.`dishes` (`category_id`, `name`, `description`, `price`, `photo`) VALUES ('1', 'Chorizos Aguarapados', 'Base de Papa Criolla Con
 Chorizos Salteados en Reducción de Guarapo.', '15000', 'default.png');
-INSERT INTO `mezamu`.`dishes` (`category_id`, `name`, `description`, `price`, `photo`) VALUES ('1', 'Sopa de Cebolla Puerro y Espárragos', 'Con Queso, Setas y Pan
+INSERT INTO `mezamu`.`dishes` (`category_id`, `name`, `description`, `price`, `photo`) VALUES ('1', 'Sopa de Cebolla', 'Con Queso, Setas y Pan
 Fresco.', '16000', 'default.png');
-INSERT INTO `mezamu`.`dishes` (`category_id`, `name`, `description`, `price`, `photo`) VALUES ('2', 'Pasta Fesca Con Salsa De Quesos Colombianos', 'Pasta Artesanal
+INSERT INTO `mezamu`.`dishes` (`category_id`, `name`, `description`, `price`, `photo`) VALUES ('2', 'Pasta Fesca Con Queso', 'Pasta Artesanal
 Acompañada de Pan.', '25000', 'pasta-quesos.png');
 
 
