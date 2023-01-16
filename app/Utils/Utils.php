@@ -61,7 +61,7 @@ class Utils
         // Validate if schedule of yesterday is [00:00-11:59] and
         // Current time is less than yesterday close schedule
         // No use Schedule of yesterday to assign tomorrow day
-        if($schedule->close>="00:00:00" & $schedule->close<="11:59:59" & !$useScheduleYesterday){
+        if($schedule->close>="00:00:00" & $schedule->close<="11:59:59" & $useScheduleYesterday){
             $closeDate = new DateTime($tomorrow . " " . $schedule->close );
         }
         if ($currentDate >= $openDate && $currentDate <= $closeDate) {

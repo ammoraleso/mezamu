@@ -3,7 +3,7 @@
 -   Correr el siguiente comando:
     git clone https://github.com/ammoraleso/mezamu.git
 
--   Instalar composer y verificar version con
+-   Instalar composer (pagina web) (PHP con XAMP) y verificar version con
     composer -v
 -   Correr el siguiente comando para instalar dependencias
     composer install
@@ -16,6 +16,7 @@
 
 -   Para crear la base de datos vaya a http://localhost/phpmyadmin/
 -   Ejecute el siguiente comando php artisan migrate:fresh
+-   Comenter la linea extension=gd en php.ini
 
 ## Script Mezamu
 
@@ -66,10 +67,9 @@ composer dump-autoload
 -   npm install --save laravel-echo pusher-js
 -   npm run watch
 
-
 ## Add Sound
 
-- app.js
-- let x = document.getElementById("myAudio"); 
-  x.play();
-- 2602 line 
+-   app.js
+-   let x = document.getElementById("myAudio");
+    x.play();
+-   2602 line
