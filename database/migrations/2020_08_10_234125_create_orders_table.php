@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment_type');
             $table->unsignedBigInteger('customer_id')->nullable();//foreign
             $table->string('place');
-            $table->string('annotations');
+            $table->string('annotations')->nullable();
             $table->unsignedInteger('status')->default(0);//0 new; 1 preparing; 2 Ready
             $table->unsignedInteger('total');
         });

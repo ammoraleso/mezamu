@@ -34,7 +34,7 @@ class Utils
         date("l", strtotime('yesterday'));
 
         $schedule = Utils::getSchedule($branch, date("l"));
-        //If the open shcedule is 00:00:00 we assume that the restaurant that day will not open that day
+        //If the open schedule is 00:00:00 we assume that the restaurant will not open that day
         if($schedule->open =="00:00:00"){
             return false;
         }
