@@ -20,16 +20,16 @@ class CartController extends Controller
         $paymentTypeArray=array();
         if (!is_null($paymentType)) {
             if ($paymentType->online == 1) {
-                array_push($paymentTypeArray, $paymentType->online_description);
+                $paymentTypeArray["Online"] = $paymentType->online_description;
             }
             if ($paymentType->checkout  == 1) {
-                array_push($paymentTypeArray, $paymentType->checkout_description);
+                $paymentTypeArray["Checkout"] = $paymentType->checkout_description;
             }
             if ($paymentType->efectivo  == 1) {
-                array_push($paymentTypeArray, $paymentType->efectivo_description);
+                $paymentTypeArray["Efectivo"] = $paymentType->efectivo_description;
             }
             if ($paymentType->datafono  == 1) {
-                array_push($paymentTypeArray, $paymentType->datafono_description);
+                $paymentTypeArray["Datafono"] = $paymentType->datafono_description;
             }
         }
         return view('cart', compact('paymentTypeArray'));
@@ -126,7 +126,7 @@ class CartController extends Controller
     public function checkOut(){
         // TODO CHANGE IN SITU TO PAYMENT TYPE
         $habitacion = "1";
-       NotificationController::notify('in-situ','Habitación '.$habitacion,request()->total,request()->description);
+       NotificationController::notify(request()->paymentType,'Habitación '.$habitacion,request()->total,request()->description);
     }
 
     public function checkOutDelivery(){

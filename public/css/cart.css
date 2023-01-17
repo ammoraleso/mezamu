@@ -81,3 +81,10 @@ tr:nth-child(even) {
 .modal-button button:hover {
     background: #0b7dda !important;
 }
+
+.centerText {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}

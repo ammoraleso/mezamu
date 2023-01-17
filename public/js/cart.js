@@ -91,43 +91,42 @@ function reloadSummary() {
 async function checkout() {
     // TODO MODIFTY TO GET PAYMENT TYPE INPUT
     //we will send data and get data fom our AjaxController
-    if (typeof $("input[name='toWhere']:checked").val() === "undefined") {
+    paymentTypeSelected = $("#paymentType").val();
+    paymentTypeSelectedText = $("#paymentType :selected").text();
+
+    if (paymentTypeSelected === "") {
         return;
     }
 
-    const ele = document.getElementsByName("toWhere");
-    var selectedPlace = null;
-    for (let i = 0; i < ele.length; i++) {
-        if (ele[i].checked) {
-            selectedPlace = ele[i].value;
-            break;
+    if (paymentTypeSelected != "Online") {
+        try {
+            await $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                },
+                url: checkOutUrl,
+                data: {
+                    paymentType: paymentTypeSelectedText,
+                    total: document.getElementById("totalPrice").value,
+                    description: document.getElementById("descriptionOrder")
+                        .value
+                },
+                type: "post"
+            });
+        } catch (error) {
+            console.log("Error goCheckout put headers" + error);
+            continueScanning = true;
+            return;
         }
-    }
-    switch (selectedPlace) {
-        // TODO VALIDATE PAYMENT TYPE
-        case "table":
-            try {
-                await $.ajax({
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    },
-                    url: checkOutUrl,
-                    data: {
-                        total: document.getElementById('totalPrice').value,
-                        description: document.getElementById("descriptionOrder").value,
-                    },
-                    type: "post"
-                });
-            } catch (error) {
-                console.log("Error goCheckout put headers" + error);
-                continueScanning = true;
-                return
-            }
-            window.location.replace("successfulPurchase");
-            break;
-        case "delivery":
-            $("#modalDelivery").modal("show");
-            break;
+        window.location.replace("successfulPurchase");
+    } else {
+        data.amount = document.getElementById("totalPrice").value;
+        data.extra1 = "{!! json_encode($paymentCart)!!}".replace(/"/g, "'");
+        data.extra5 = document.getElementById("descriptionOrder").value;
+        //Atributos cliente
+        data.type_doc_billing = "cc";
+        handler.open(data);
+        // $("#modalDelivery").modal("show");
     }
 }
 

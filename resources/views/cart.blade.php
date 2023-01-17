@@ -157,9 +157,9 @@
                 <form onsubmit="return false">
                     <fieldset class="form-group mt-3">
                         <div class="row m-auto" style="width: fit-content">
-                            <strong><legend class="col-form-label col-sm-2 pt-0">{{__('To')}}:</legend></strong>
+                            <strong class="centerText">{{__('Payment Type')}}:</strong>
                             <div class="col">
-                                <div class="form-check-inline">
+                                <!--<div class="form-check-inline">
                                     <input id="radioInSitu" onclick="updateDelivery(false,{{$branch->delivery_price}});" class="form-check-input" type="radio" name="toWhere" id="toWhere1" value="table" required>
                                     <label class="form-check-label" for="toWhere1">{{__('Table')}}</label>
                                 </div>
@@ -167,13 +167,23 @@
                                     <input id="radioDelivery" onclick="updateDelivery(true,{{$branch->delivery_price}});" class="form-check-input" type="radio" name="toWhere" id="toWhere2" value="delivery" required>
                                     <label class="form-check-label" for="toWhere2">{{__('Delivery')}}</label>
                                 </div>
+                                -->
                                 <!-- <div class="form-check-inline">
                                     <input class="form-check-input" type="radio" name="toWhere" id="toWhere3" value="takeAway" required>
                                     <label class="form-check-label" for="toWhere3">{{__('Take away')}}</label>
                                 </div> -->
+                                <div id="comboPaymentType" class="form-group mt-3 ">
+                                    <select name="paymentType" id="paymentType" class="form-control" required>
+                                        <option value="">Seleccionar</option>
+                                        @foreach($paymentTypeArray as $key => $paymentType)
+                                            <option value="{{$key}}">{{$paymentType}}</option>            
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
+                    
                     <div id="descriptionOrderDiv" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                         <textarea style="resize: none; width: 80%;" id="descriptionOrder" placeholder="Ingresa aquí tus comentarios adicionales.." rows="4" cols="50"></textarea>
                     </div>
