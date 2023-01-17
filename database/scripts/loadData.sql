@@ -57,3 +57,6 @@ INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VAL
 INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Friday', '1', '08:00:00', '2:00:00');
 INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Saturday', '1', '08:00:00', '2:00:00');
 INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Sunday', '1', '08:00:00', '2:00:00');
+
+#Payment_Type 
+INSERT INTO `mezamu`.`payment_type` (`id`, `branch_id`, `online`, `online_description`, `checkout`, `checkout_description`, `efectivo`, `efectivo_description`, `datafono`, `datafono_description`) VALUES ('1', '1', '1', 'Pago online', '1', 'Añadir a cuenta', '1', 'Efectivo', '1', 'Datafono');

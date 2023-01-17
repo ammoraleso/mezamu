@@ -14,8 +14,8 @@ class CreatePaymentTypeTable extends Migration
     public function up()
     {
         Schema::create('payment_type', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('branch_id');//foreign
+            $table->id()->unique();
+            $table->unsignedBigInteger('branch_id')->unique();//foreign
             $table->boolean('online')->default(0);
             $table->string('online_description', 45);
             $table->boolean('checkout')->default(0);
