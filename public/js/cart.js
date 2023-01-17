@@ -89,6 +89,7 @@ function reloadSummary() {
 }
 
 async function checkout() {
+    // TODO MODIFTY TO GET PAYMENT TYPE INPUT
     //we will send data and get data fom our AjaxController
     if (typeof $("input[name='toWhere']:checked").val() === "undefined") {
         return;
@@ -103,8 +104,26 @@ async function checkout() {
         }
     }
     switch (selectedPlace) {
+        // TODO VALIDATE PAYMENT TYPE
         case "table":
-            $("#modalTableToken").modal("show");
+            try {
+                await $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                    },
+                    url: checkOutUrl,
+                    data: {
+                        total: document.getElementById('totalPrice').value,
+                        description: document.getElementById("descriptionOrder").value,
+                    },
+                    type: "post"
+                });
+            } catch (error) {
+                console.log("Error goCheckout put headers" + error);
+                continueScanning = true;
+                return
+            }
+            window.location.replace("successfulPurchase");
             break;
         case "delivery":
             $("#modalDelivery").modal("show");

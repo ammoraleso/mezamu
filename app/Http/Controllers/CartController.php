@@ -16,7 +16,8 @@ class CartController extends Controller
 
     public function showCart()
     {
-        return view('cart');
+        $paymentType = Session::get('paymentType');
+        return view('cart', compact('paymentType'));
     }
 
     /*This method is called by ajax*/
@@ -108,12 +109,9 @@ class CartController extends Controller
     }
 
     public function checkOut(){
-        $token = request()->token;
-        if(Utils::isTokenValid($token)) {
-            NotificationController::notify('in-situ','Mesa '.Token::where('token',$token)->first()->table_number, request()->total,request()->description);
-        }else{
-            return response()->json(['error' => 'Invalid token'], 500); // Status code here
-        }
+        // TODO CHANGE IN SITU TO PAYMENT TYPE
+        $habitacion = "1";
+       NotificationController::notify('in-situ','Habitación '.$habitacion,request()->total,request()->description);
     }
 
     public function checkOutDelivery(){

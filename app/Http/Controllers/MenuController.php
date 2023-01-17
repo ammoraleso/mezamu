@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
+use App\Models\PaymentType;
 use App\Utils\Utils;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Session;
@@ -20,10 +21,13 @@ class MenuController extends BaseController
         $categories = $this->loadCategories($dishes,$branch);
         $branchDishes = $branch->branchDishes;
         $urlMenu = $this->generate_url($restaurant->slug, $branchName);
+        // Singleton Pattern to avoid have a lot of connections in BD ? 
         $isScheduleValid = Utils::validateSchedule($branch);
+        $paymentType = $this->loadPaymentType($branch);
         Session::put('urlMenu', $urlMenu);
+        Session::put('paymentType', $paymentType);
         Session::save();
-        return view('menu', compact('restaurant','branchDishes', 'categories','isScheduleValid'));
+        return view('menu', compact('restaurant', 'branchDishes', 'categories','isScheduleValid'));
     }
 
     public function showAdmin()
@@ -50,6 +54,10 @@ class MenuController extends BaseController
         $categories = array_unique($categories);
         usort($categories, array($this,'sort_objects_by_id'));
         return $categories;
+    }
+
+    public function loadPaymentType($branch){
+        return $branch->getPaymetType($branch->id);
     }
 
     public function generate_url($restaurantName, $branchName)

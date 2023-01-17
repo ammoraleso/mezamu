@@ -21,6 +21,10 @@ class Branch extends Model
         return $this->hasMany(PaymentType::class);
     }
 
+    public function getPaymetType($branch_id) {
+        return $this->PaymentType()->where('branch_id', '=', $branch_id)->get()->first();
+    }
+
 
     public function branchDishes(){
         return $this->hasMany(DishBranch::class)->where('disable','=', 0);

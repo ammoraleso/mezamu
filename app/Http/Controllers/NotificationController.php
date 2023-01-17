@@ -31,7 +31,7 @@ class NotificationController extends Controller
             }
             Session::put('deliveryPrice', Arr::first(Session::get('cart'))['item']->branch->delivery_price);
         }else{
-            $order->payment_type = 'in-situ';
+            $order->payment_type = $type;
         }
         $order->save();
 
@@ -41,6 +41,7 @@ class NotificationController extends Controller
             $orderDish->order_id = $order->id;
             $orderDish->dish_branch_id = $item['item']->id;
             $orderDish->quantity = $item['quantity'];
+            $orderDish->delivered = 0;
             $orderDish->save();
         }
         Arr::first(Session::get('cart'))['item']->branch->notify(new Order($order));

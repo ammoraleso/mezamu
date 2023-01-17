@@ -17,9 +17,13 @@ class CreatePaymentTypeTable extends Migration
             $table->id();
             $table->unsignedBigInteger('branch_id');//foreign
             $table->boolean('online')->default(0);
+            $table->string('online_description', 45);
             $table->boolean('checkout')->default(0);
+            $table->string('checkout_description', 45);
             $table->boolean('efectivo')->default(0);
+            $table->string('efectivo_description', 45);
             $table->boolean('datafono')->default(0);
+            $table->string('datafono_description', 45);
         });
     }
 
