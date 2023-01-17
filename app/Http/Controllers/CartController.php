@@ -17,7 +17,22 @@ class CartController extends Controller
     public function showCart()
     {
         $paymentType = Session::get('paymentType');
-        return view('cart', compact('paymentType'));
+        $paymentTypeArray=array();
+        if (!is_null($paymentType)) {
+            if ($paymentType->online == 1) {
+                array_push($paymentTypeArray, $paymentType->online_description);
+            }
+            if ($paymentType->checkout  == 1) {
+                array_push($paymentTypeArray, $paymentType->checkout_description);
+            }
+            if ($paymentType->efectivo  == 1) {
+                array_push($paymentTypeArray, $paymentType->efectivo_description);
+            }
+            if ($paymentType->datafono  == 1) {
+                array_push($paymentTypeArray, $paymentType->datafono_description);
+            }
+        }
+        return view('cart', compact('paymentTypeArray'));
     }
 
     /*This method is called by ajax*/

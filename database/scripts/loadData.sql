@@ -50,13 +50,13 @@ INSERT INTO `mezamu`.`dish_branch` (`branch_id`, `dish_id`) VALUES ('1', '9');
 INSERT INTO `mezamu`.`dish_branch` (`branch_id`, `dish_id`) VALUES ('1', '10');
 
 #Dish schedule_branch
-INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Monday', '1', '08:00:00', '2:00:00');
-INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Tuesday', '1', '08:00:00', '2:00:00');
-INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Wednesday', '1', '08:00:00', '2:00:00');
-INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Thursday', '1', '08:00:00', '2:00:00');
-INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Friday', '1', '08:00:00', '2:00:00');
-INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Saturday', '1', '08:00:00', '2:00:00');
-INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Sunday', '1', '08:00:00', '2:00:00');
+INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Monday', '1', '08:00:00', '23:00:00');
+INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Tuesday', '1', '08:00:00', '23:00:00');
+INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Wednesday', '1', '08:00:00', '23:00:00');
+INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Thursday', '1', '08:00:00', '23:00:00');
+INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Friday', '1', '08:00:00', '23:00:00');
+INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Saturday', '1', '08:00:00', '23:00:00');
+INSERT INTO `mezamu`.`schedule_branch` (`day`, `branch_id`, `open`, `close`) VALUES ('Sunday', '1', '08:00:00', '23:00:00');
 
 #Payment_Type 
 INSERT INTO `mezamu`.`payment_type` (`id`, `branch_id`, `online`, `online_description`, `checkout`, `checkout_description`, `efectivo`, `efectivo_description`, `datafono`, `datafono_description`) VALUES ('1', '1', '1', 'Pago online', '1', 'Añadir a cuenta', '1', 'Efectivo', '1', 'Datafono');
