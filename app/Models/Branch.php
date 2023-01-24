@@ -18,7 +18,7 @@ class Branch extends Model
     }
 
     public function PaymentType(){
-        return $this->hasMany(PaymentType::class);
+        return $this->hasOne(PaymentType::class);
     }
 
     public function getPaymetType($branch_id) {

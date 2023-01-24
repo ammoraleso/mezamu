@@ -56,7 +56,7 @@ class MenuController extends BaseController
         return $categories;
     }
 
-    public function loadPaymentType($branch){
+    public function loadPaymentType($branch) {
         return $branch->getPaymetType($branch->id);
     }
 

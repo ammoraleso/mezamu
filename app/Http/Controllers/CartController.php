@@ -124,7 +124,7 @@ class CartController extends Controller
     }
 
     public function checkOut(){
-        // TODO CHANGE IN SITU TO PAYMENT TYPE
+        // TODO CHANGE TO REQUEST HABITACION
         $habitacion = "1";
        NotificationController::notify(request()->paymentType,'Habitación '.$habitacion,request()->total,request()->description);
     }

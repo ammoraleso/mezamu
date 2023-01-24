@@ -89,7 +89,6 @@ function reloadSummary() {
 }
 
 async function checkout() {
-    // TODO MODIFTY TO GET PAYMENT TYPE INPUT
     //we will send data and get data fom our AjaxController
     paymentTypeSelected = $("#paymentType").val();
     paymentTypeSelectedText = $("#paymentType :selected").text();
