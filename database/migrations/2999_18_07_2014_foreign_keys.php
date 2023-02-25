@@ -27,7 +27,6 @@ class ForeignKeys extends Migration
         });
 
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreign('customer_id')->references('id')->on('customer');
             $table->foreign('branch_id')->references('id')->on('branches');
         });
 
@@ -80,8 +79,6 @@ class ForeignKeys extends Migration
         });
 
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign('customer_id');
-            $table->dropColumn('customer_id');
             $table->dropForeign('branch_id');
             $table->dropColumn('branch_id');
         });

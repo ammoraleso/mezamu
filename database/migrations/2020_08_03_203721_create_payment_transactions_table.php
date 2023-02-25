@@ -21,8 +21,6 @@ class CreatePaymentTransactionsTable extends Migration
             $table->longText('data');
             $table->longText('cart');
             $table->string('delivery_name');
-            $table->integer('city');
-            $table->string('address');
             $table->unsignedInteger('status')->nullable();//0 campaign cancelled ,1 payed, 2 pending delivery, 3 sent, 4 delivered. No need for pending transaction status (null) because those transactions are stored in pending_transactions tables
             $table->timestamps();
         });

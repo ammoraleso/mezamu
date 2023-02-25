@@ -6,10 +6,10 @@
 
 
 @push('stylesAndScripts')
-    <script src="{{asset('js/order.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
-    <link rel="stylesheet" href="{{asset('css/cart.css')}}">
-    <link rel="stylesheet" href="{{asset('css/orders.css')}}">
+    <script src="{{ Vite::asset('resources/js/order.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/cart.js')}}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/cart.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/orders.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="text/javascript">
     </script>
@@ -21,7 +21,7 @@
 
     <form id="myForm" method="GET" action="{{ route('orders') }}" onsubmit="return loadOrders()">
         <div class="input-group search-box">
-            
+
                 <label style="margin-top: auto;" class="control-label">{{__('general.Date')}}
                     <!--<small>({{__('general.required')}})</small>-->
                 </label>
@@ -33,9 +33,9 @@
         <div id="ordersList">
             <div>
                 @if(isset($orders) && count($orders))
-                    
+
                     <input class="fa fa-search" type="text" id="myInput" onkeyup="myFunction('myInput',0)" placeholder="Buscar Registro.." title="Type in a name">
-                    
+
                     <table id="myTable">
                         <tr class="header">
                             <th style="width:auto;">Orden</th>
@@ -48,9 +48,9 @@
                             <th style="width:auto;">Tipo Pago</th>
                             <th style="width:20%;">Fecha Creación</th>
                         </tr>
-                    
+
                         @foreach ($orders as $order)
-                    
+
                             <tr>
                                 <td>{{$order['order']->id}}</td>
                                 <td>
@@ -61,16 +61,16 @@
                                 <td>{{$order['order']->type}}</td>
                                 @if($order['order']->customer_id)
                                     <td> <p style="color: #2196f3; text-decoration:underline;" onclick="showDetails({{$order['order']->customer}})" type="button">{{$order['order']->customer->nombre}} <p></td>
-                                @else 
+                                @else
                                     <td>-</td>
                                 @endif
                                 @if($order['order']->customer_id && $order['order']->type == 'delivery')
                                     @if($order['order']->customer->direccion_adicional != null && $order['order']->customer->direccion_adicional != "")
                                         <td>{{$order['order']->place}} - {{$order['order']->customer->direccion_adicional}}</td>
-                                    @else 
+                                    @else
                                         <td>{{$order['order']->place}}</td>
                                     @endif
-                                @else 
+                                @else
                                     <td>{{$order['order']->place}}</td>
                                 @endif
                                 <td>{{$order['order']->annotations}}</td>
@@ -85,11 +85,11 @@
                 @endif
             </div>
         </div>
-        
+
 
         <div id="back" class="pt-3"style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
             <a class="btn btn-danger" href="{{ url('/') }}">Volver</a>
         </div>
     </form>
-   
+
 @endsection

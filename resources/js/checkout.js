@@ -4,8 +4,6 @@ async function showPayModal(branch) {
     }
     data.amount = document.getElementById("totalPrice").value;
     data.extra1 = "{!! json_encode($paymentCart)!!}".replace(/"/g, "'");
-    data.extra2 = $city;
-    data.extra3 = $address;
     data.extra4 = $name;
     data.extra5 = document.getElementById("descriptionOrder").value;
     //Atributos cliente

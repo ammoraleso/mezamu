@@ -15,6 +15,6 @@
     </div>
 </div>
 @push('finalScripts')
-    <script src="{{asset('js/html5-qrcode.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/qrreader.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/html5-qrcode.min.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/qrreader.js')}}" type="text/javascript"></script>
 @endpush

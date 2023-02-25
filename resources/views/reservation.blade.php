@@ -5,18 +5,18 @@
 @endsection
 
 @push('stylesAndScripts')
-    <link rel="stylesheet" href="{{asset('css/cart.css')}}">
-    <link rel="stylesheet" href="{{asset('css/menu.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/cart.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/menu.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{asset('css/input_number_spinner.css')}}">
-    <script src="{{asset('js/datePicker.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/input_number_spinner.css')}}">
+    <script src="{{ Vite::asset('resources/js/datePicker.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/input_number_spinner.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/cart.js')}}" type="text/javascript"></script>
     <script>
         //Route used in menu.js to call the post method addItem.
         var findEmailUrl = '{{route('findEmail')}}';
     </script>
-    
+
 @endpush
 
 @section('content')
@@ -33,7 +33,7 @@
                 </div>
                 <div class="modal-body m-auto">
                     <form id="myForm">
-    
+
                         <div class="input-group">
                             <div class="form-group flex-grow-1">
                                 <label class="control-label">{{__('general.Email')}}
@@ -41,7 +41,7 @@
                                 </label>
                                 <input id="email" class="modal-input" type="text" placeholder="Search.." name="search">
                                 <button class="modal-button" type="button" onclick="loadPerfil()"><i class="fa fa-search"></i></button>
-    
+
                             </div>
                         </div>
                         <hr>
@@ -54,7 +54,7 @@
                                     <input id="name" name="name" type="text" class="form-control" required style="background-image: none!important;">
                                 </div>
                             </div>
-    
+
                             <div class="input-group">
                                 <div class="form-group flex-grow-1">
                                     <label class="control-label">{{__('general.Address')}}
@@ -63,7 +63,7 @@
                                     <input id="address" name="address" type="text" class="form-control" required style="background-image: none!important;">
                                 </div>
                             </div>
-    
+
                             <div class="input-group">
                                 <div class="form-group flex-grow-1">
                                     <label class="control-label">{{__('general.Phone')}}
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="input-group">
                                 <div class="form-group flex-grow-1">
                                     <label class="control-label">Fecha
@@ -110,12 +110,12 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
     <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
         <a class="btn btn-danger" href={{Session::get('urlMenu')}}>{{__('general.GoBack')}}</a>
     </div>
-    
+
     <script>
         let today = new Date();
             let dd = today.getDate();
@@ -123,13 +123,13 @@
             let yyyy = today.getFullYear();
             if(dd<10){
                     dd='0'+dd
-                } 
+                }
                 if(mm<10){
                     mm='0'+mm
-                } 
+                }
 
             today = yyyy+'-'+mm+'-'+dd;
             document.getElementById("datefield").setAttribute("min", today);
-    </script>    
+    </script>
 
 @endsection

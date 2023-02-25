@@ -5,9 +5,9 @@
 @endsection
 
 @push('stylesAndScripts')
-  <link rel="stylesheet" href="{{asset('css/successfulPurchase.css')}}">
-  <script src="{{asset('js/checkout.js')}}" type="text/javascript"></script>
-  <link rel="stylesheet" href="{{asset('css/cart.css')}}">
+  <link rel="stylesheet" href="{{ Vite::asset('resources/css/successfulPurchase.css')}}">
+  <script src="{{ Vite::asset('resources/js/checkout.js')}}" type="text/javascript"></script>
+  <link rel="stylesheet" href="{{ Vite::asset('resources/css/cart.css')}}">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
 

@@ -27,24 +27,14 @@
               </div>
             </div>
             <div class="card-footer" style="white-space: initial">
-              <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
-                Domicilio
-              </p>
               <p
-                v-if="order.order.customer && order.order.customer.direccion_adicional && order.order.type == 'delivery'"
+                v-if="order.order.type == 'delivery'"
                 class="font-weight-bold"
               >
                 Lugar: {{ order.order.place }} -
-                {{ order.order.customer.direccion_adicional }}
               </p>
               <p v-else class="font-weight-bold">
                 Lugar: {{ order.order.place }}
-              </p>
-              <p v-if="order.order.customer" class="font-weight-bold">
-                Cliente: {{ order.order.customer.nombre }}
-              </p>
-              <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
-                Telefono: {{ order.order.customer.telefono }}
               </p>
               <p v-if="order.order.annotations != ''" class="font-weight-bold">
                 Anotaciones: {{ order.order.annotations }}
@@ -106,9 +96,6 @@
               </p>
               <p v-if="order.order.customer" class="font-weight-bold">
                 Cliente: {{ order.order.customer.nombre }}
-              </p>
-              <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
-                Telefono: {{ order.order.customer.telefono }}
               </p>
               <p v-if="order.order.annotations != ''" class="font-weight-bold">
                 Anotaciones: {{ order.order.annotations }}
@@ -174,9 +161,6 @@
               <p v-if="order.order.customer" class="font-weight-bold">
                 Cliente: {{ order.order.customer.nombre }}
               </p>
-              <p v-if="order.order.type == 'delivery'" class="font-weight-bold">
-                Telefono: {{ order.order.customer.telefono }}
-              </p>
               <p v-if="order.order.annotations != ''" class="font-weight-bold">
                 Anotaciones: {{ order.order.annotations }}
               </p>
@@ -212,10 +196,10 @@ export default {
     };
   },
   mounted() {
-    console.log("Component mounted.");
-    Echo.private("App.Models.Branch." + this.branchid).notification(
+      console.log("Component mounted, listening: " + this.branchid);
+      Echo.private("App.Models.Branch." + this.branchid).notification(
       (notification) => {
-        //console.log(notification.items[0].dishBranch);//For debug
+        console.log("notification listened" + notification.items[0].dishBranch);//For debug
         this.orders.push(notification);
       }
     );

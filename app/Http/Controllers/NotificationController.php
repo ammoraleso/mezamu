@@ -4,7 +4,6 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Customer;
 use App\Models\OrderDish;
 use App\Notifications\Order;
 use App\Utils\Utils;
@@ -23,7 +22,6 @@ class NotificationController extends Controller
         $order->annotations = $description;
         $total = 0;
         if($type === 'delivery'){
-            $order->customer_id = Session::get('customer')->id;
             if($disableEpay === "1"){
                 $order->payment_type = 'efectivo';
             }else{

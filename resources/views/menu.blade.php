@@ -5,12 +5,12 @@
 @endsection
 
 @push('stylesAndScripts')
-    <link rel="stylesheet" href="{{asset('css/menu.css')}}">
-    <link rel="stylesheet" href="{{asset('css/cart.css')}}">
-    <link rel="stylesheet" href="{{asset('css/input_number_spinner.css')}}">
-    <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/menu.js')}}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/menu.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/cart.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/input_number_spinner.css')}}">
+    <script src="{{ Vite::asset('resources/js/input_number_spinner.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/cart.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/menu.js')}}" type="text/javascript"></script>
     <script>
         //Route used in menu.js to call the post method addItem.
         var addItemUrl = '{{ route('addItem') }}';
@@ -24,7 +24,7 @@
     <div class="pt-4 div-logo">
         <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/{{$restaurant->slug}}/{{$restaurant->logo}}">
     </div>
-    
+
     @if (!$isScheduleValid)
         <h3 style="color: white; background-color: red;padding: 2%">{{__('general.No_valid_Schedule')}}</h3>
     @endif

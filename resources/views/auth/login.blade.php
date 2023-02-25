@@ -6,7 +6,7 @@
 
 
 @section('content')
-    <link rel="stylesheet" href="{{asset('css/login.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/login.css')}}">
 
     <div class="container">
         <div class="row justify-content-center loginDiv">

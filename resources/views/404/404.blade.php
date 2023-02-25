@@ -1,6 +1,6 @@
 <html>
 <head>
-    <link rel="stylesheet" href="{{asset('css/404.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/404.css')}}">
 </head>
 <body>
 <h1 class="main_title">Page Not Found</h1>

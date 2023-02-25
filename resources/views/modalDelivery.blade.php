@@ -90,43 +90,13 @@
             distance = 100000;
         }
     </script>
-    <link rel="stylesheet" href="{{asset('css/maps.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/maps.css')}}">
 
-    <script type="application/javascript" src="https://checkout.epayco.co/checkout.js"></script>
+
     <!-- Script to use Input Email pattern Property -->
     <script type="application/javascript">
         function myGeeks() {
             var em = document.getElementById("email").pattern;
         }
     </script>
-
-    <!--PAYMENT-->
-    <script type="application/javascript">
-        var handler = ePayco.checkout.configure({
-            key:'f2896c38764f97526a193f24de170b96',
-            //key: '71c83236ba0231c2d3e4048be66fc298',//intraining
-            test: false
-        });
-        var data={
-            //Parametros compra (obligatorio)
-            name: "{{__('general.transaction_name')}}",
-            description: "{{__('general.transaction_name')}}",
-            invoice: "",
-            currency: "cop",
-            tax_base: "0",
-            tax: "0",
-            country: "co",
-            lang: "es",
-
-            //Onpage="false" - Standard="true"
-            external: "true",
-
-            //Atributos opcionales
-            response: '{{\App\Utils\Utils::generateUrl()}}'+'/api/response_payment',
-
-            //atributo deshabilitación metodo de pago
-            methodsDisable: ["SP","CASH"],
-        };
-    </script>
-    <!--PAYMENT-->
 

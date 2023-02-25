@@ -5,13 +5,13 @@
 @endsection
 
 @push('stylesAndScripts')
-    <link rel="stylesheet" href="{{asset('css/input_number_spinner.css')}}">
-    <link rel="stylesheet" href="{{asset('css/cart.css')}}">
-    <link rel="stylesheet" href="{{asset('css/menu.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/input_number_spinner.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/cart.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/menu.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="{{asset('js/cart.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/checkout.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/input_number_spinner.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/cart.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/checkout.js')}}" type="text/javascript"></script>
+    <script src="{{ Vite::asset('resources/js/input_number_spinner.js')}}" type="text/javascript"></script>
     <!--Script for change and remove items from the cart-->
     <script type="text/javascript">
         var changeQuantityUrl = '{{route('changeQuantity')}}';
@@ -32,7 +32,7 @@
                     $branch = Arr::first(Session::get('cart'))['item']->branch;
                     $restaurant = $branch->restaurant
                 @endphp
-                
+
                 <div class="grid">
                     <div class="accordion" id="accordionExample">
                         <div class="card" style="border-color: white">
@@ -176,14 +176,14 @@
                                     <select name="paymentType" id="paymentType" class="form-control" required>
                                         <option value="">Seleccionar</option>
                                         @foreach($paymentTypeArray as $key => $paymentType)
-                                            <option value="{{$key}}">{{$paymentType}}</option>            
+                                            <option value="{{$key}}">{{$paymentType}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
-                    
+
                     <div id="descriptionOrderDiv" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
                         <textarea style="resize: none; width: 80%;" id="descriptionOrder" placeholder="Ingresa aquí tus comentarios adicionales.." rows="4" cols="50"></textarea>
                     </div>
@@ -199,7 +199,6 @@
                 </form>
 
                 @include('modalConfirmRequest')
-                @include('modalDelivery')
                 @include('modalTerms')
             @else
                 <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
@@ -213,3 +212,35 @@
         </span>
     </div>
 @endsection
+
+@push('finalScripts')
+    <script type="application/javascript" src="https://checkout.epayco.co/checkout.js"></script>
+    <!--PAYMENT-->
+    <script type="application/javascript">
+        var handler = ePayco.checkout.configure({
+            key:"{{env('EPAYCO_PUBLIC_KEY')}}",
+            test: Boolean({{env('EPAYCO_TEST')}})
+        });
+        var data={
+            //Parametros compra (obligatorio)
+            name: "{{__('general.transaction_name')}}",
+            description: "{{__('general.transaction_name')}}",
+            invoice: "",
+            currency: "cop",
+            tax_base: "0",
+            tax: "0",
+            country: "co",
+            lang: "es",
+
+            //Onpage="false" - Standard="true"
+            external: "true",
+
+            //Atributos opcionales
+            response: '{{\App\Utils\Utils::generateUrl()}}'+'/api/response_payment',
+
+            //atributo deshabilitación metodo de pago
+            methodsDisable: ["SP","CASH"],
+        };
+    </script>
+    <!--PAYMENT-->
+@endpush

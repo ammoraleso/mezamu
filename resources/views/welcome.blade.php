@@ -5,11 +5,11 @@
 @endsection
 
 @push('stylesAndScripts')
-    <link rel="stylesheet" href="{{asset('css/footer/footer-distributed-with-address-and-phones.css')}}">
-    <link rel="stylesheet" href="{{asset('css/utils.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/footer/footer-distributed-with-address-and-phones.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/utils.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="{{asset('css/flip.css')}}">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/flip.css')}}">
 @endpush
 
 @section('content')
@@ -85,7 +85,7 @@
 
     </footer>
 
-    <script type="application/javascript" src="{{asset('js/qrRotation.js')}}"></script>
+    <script type="application/javascript" src="{{ Vite::asset('resources/js/qrRotation.js')}}"></script>
 
     <!--subscribers-->
     <script type="application/javascript">

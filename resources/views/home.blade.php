@@ -6,9 +6,9 @@
 
 
 @push('stylesAndScripts')
-    <link rel="stylesheet" href="{{asset('css/orders.css')}}">
-    <script src="{{asset('js/order.js')}}" type="text/javascript"></script>
-    
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/orders.css')}}">
+    <script src="{{ Vite::asset('resources/js/order.js')}}" type="text/javascript"></script>
+
     <script type="text/javascript">
         var updateStatusUrl = '{{route('uploadOrder')}}';
         var updateDeliveredUrl = '{{route('updateDelivered')}}';

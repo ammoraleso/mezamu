@@ -40,8 +40,8 @@ class PaymentController extends Controller
 
     //ADD DESCRIPTION FROM DATA. data.description
     private function processPayment($data){
-        $p_cust_id_cliente = '42053';
-        $p_key = '03418afb5ef473a13f6f7c132ca9d139a258bb08';
+        $p_cust_id_cliente = env('EPAYCO_P_CUST_ID_CLIENTE');
+        $p_key = env('EPAYCO_P_KEY');
         $x_ref_payco = $data->x_ref_payco;
         $x_transaction_id = $data->x_transaction_id;
         $x_amount = $data->x_amount;
@@ -76,8 +76,6 @@ class PaymentController extends Controller
             'data' => json_encode($data),
             'cart' => $data->x_extra1,
             'delivery_name' => $data->x_extra4,
-            'city' => $data->x_extra2,
-            'address' => $data->x_extra3,
             'status' => $data->x_cod_response == 1 ? 1 : null,//if 1 accepted transaction
         ])->id;
         // Cuando esta pendiente

@@ -54,7 +54,7 @@ class Utils
         // Current time is less than yesterday close schedule
         if($scheduleYesterday->close >="00:00:00" & $scheduleYesterday->close <="11:59:59"  & $currentTime <= $scheduleYesterday->close ){
             $openDate = new DateTime($yesterday . " " . $scheduleYesterday->open );
-            // Use current day because is the begin of the new day
+            // Use current day because is the beginning of the new day
             $closeDate =  new DateTime($currentDay . " " . $scheduleYesterday->close );
             $useScheduleYesterday = true;
         }
