@@ -43,7 +43,7 @@
         <div style="height: 97px"><!--We need the hide to move content at the end of navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img alt="Mezamu Logo" class="custom-logo" src="https://mezamublobstorage.blob.core.windows.net/images/logo_blanco_sin_fondo.png">
+                <img alt="Mezamu Logo" class="custom-logo" src="{{Vite::asset('resources/images/logo_blanco_sin_fondo.png')}}">
             </a>
             <div class="d-flex">
                 <div class="d-sm-inline-block d-lg-none">
@@ -51,14 +51,14 @@
                         <div id="cartIconSmall" class="mr-3 d-sm-inline-block d-lg-none">
                             @if(Session::has('cart') && Session::get('totalQuantity') > 0)
                                 <a href="{{route('cart')}}">
-                                    <img class="icon" alt="user" src="https://mezamublobstorage.blob.core.windows.net/images/full_cart_icon.png">
+                                    <img class="icon" alt="user" src="{{Vite::asset('resources/images/full_cart_icon.png')}}">
                                 </a>
                                 <span id="cartBadgeSmall">
                                     <div  class="icon-badge badge-danger">{{Session::get('totalQuantity')}}</div>
                                 </span>
                             @else
                                 <a href="{{route('cart')}}">
-                                    <img class="icon" width="100%" height="100%" alt="user" src="https://mezamublobstorage.blob.core.windows.net/images/empty_cart_icon.png">
+                                    <img class="icon" width="100%" height="100%" alt="user" src="{{Vite::asset('resources/images/empty_cart_icon.png')}}">
                                 </a>
                             @endif
                         </div>
@@ -80,14 +80,14 @@
                             <div id="cartIconLarge" class="mr-3 d-none d-lg-inline-block">
                                 @if(Session::has('cart') && Session::get('totalQuantity') > 0)
                                     <a href="{{route('cart')}}">
-                                        <img class="icon" alt="user" src="https://mezamublobstorage.blob.core.windows.net/images/full_cart_icon.png">
+                                        <img class="icon" alt="user" src="{{Vite::asset('resources/images/full_cart_icon.png')}}">
                                     </a>
                                     <span id="cartBadgeLarge">
                                         <div  class="icon-badge badge-danger">{{Session::get('totalQuantity')}}</div>
                                     </span>
                                 @else
                                     <a href="{{route('cart')}}">
-                                        <img class="icon" width="100%" height="100%" alt="user" src="https://mezamublobstorage.blob.core.windows.net/images/empty_cart_icon.png">
+                                        <img class="icon" width="100%" height="100%" alt="user" src="{{Vite::asset('resources/images/empty_cart_icon.png')}}">
                                     </a>
                                 @endif
                             </div>

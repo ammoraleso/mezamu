@@ -8,8 +8,7 @@ function showDetails(dishToDetail, restaurant) {
         "<strong>Descripción: </strong>" + dish.description;
     let divImage = document.getElementById("product-image");
     imageUrl =
-        '{{ env('NAME') }}'
-        "https://mezamublobstorage.blob.core.windows.net/" +
+        "http://127.0.0.1:5173/resources/images/" +
         restaurant.slug +
         "/" +
         dish.photo;

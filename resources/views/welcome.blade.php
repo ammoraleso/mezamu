@@ -28,14 +28,14 @@
                 <div id="flip-card" class="flip-card m-auto">
                     <div id="flip-card-inner" class="flip-card-inner">
                         <div class="flip-card-front d-flex">
-                            <img class="store m-auto" src="https://mezamublobstorage.blob.core.windows.net/images/store.png">
+                            <img class="store m-auto" src="{{Vite::asset('resources/images/store.png')}}">
                         </div>
                         <div id="flip-card-back" class="flip-card-back">
                             <div class="m-auto">{!!QrCode::size(200)->generate('https://mezamu.com')!!}</div>
                         </div>
                     </div>
                 </div>
-                <img class="cellphone" src="https://mezamublobstorage.blob.core.windows.net/images/cellphone.png">
+                <img class="cellphone" src="{{Vite::asset('resources/images/cellphone.png')}}">
             </div>
         </div>
     </div>

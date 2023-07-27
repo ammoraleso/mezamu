@@ -40,7 +40,7 @@
                                 <h5 class="mb-0">
                                <button class="btn btn-link tab-category" onclick="collapseTab()" type="button">
                                     {{__('general.Edit_Order')}}
-                                    <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
+                                    <img class="arrow-img" src="{{Vite::asset('resources/images/arrow.png')}}">
                                 </button>
                                 </h5>
                             </div>
@@ -55,7 +55,7 @@
                                                 @endphp
                                                 <span id="cartItem{{$dish['id']}}">
                                                     <div class="d-flex p-3 ">
-                                                    <img alt="{{$dish->name}}" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/{{$restaurant->slug}}/{{$dish->photo}}">
+                                                    <img alt="{{$dish->name}}" class="product-img" src="{{Vite::asset('resources/'.$restaurant->slug.'/'.$dish->photo)}}">
                                                         <div class="ml-3 w-100 d-flex flex-column">
                                                             <div>
                                                                 <strong>
@@ -202,7 +202,7 @@
                 @include('modalTerms')
             @else
                 <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">
-                    <img alt="empty_cart" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/empty-cart.png">
+                    <img alt="empty_cart" class="product-img" src="{{Vite::asset('resources/images/empty-cart.png')}}">
                 </div>
                 <h3 class="m-4" style="font-style: oblique; text-align: justify;"><b>{{__('general.empty_cart_message')}}</b></h3>
                 <div id="back" class="pt-3" style="justify-content: space-evenly; display: flex; padding-bottom: 1%;">

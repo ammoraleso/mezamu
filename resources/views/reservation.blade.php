@@ -22,7 +22,7 @@
 @section('content')
 
     <div class="pt-4 div-logo">
-        <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/images/{{$restaurant->logo}}">
+        <img alt="Mezamu Logo" class="product-img" src="{{Vite::asset('resources/images/'.$restaurant->logo)}}">
     </div>
     <div class="panel-group">
 

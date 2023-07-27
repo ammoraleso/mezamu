@@ -22,7 +22,7 @@
     @include('modalDetails')
 
     <div class="pt-4 div-logo">
-        <img alt="Mezamu Logo" class="product-img" src="https://mezamublobstorage.blob.core.windows.net/{{$restaurant->slug}}/{{$restaurant->logo}}">
+        <img alt="Mezamu Logo" class="product-img" src="{{Vite::asset('resources/images/'.$restaurant->slug.'/'.$restaurant->logo)}}">
     </div>
 
     @if (!$isScheduleValid)
@@ -37,7 +37,7 @@
                         <h5 class="mb-0">
                         <button class="btn btn-link tab-category" onclick="collapseTab({{$categories[$i]->id}})" type="button">
                             {{$categories[$i]->description }}
-                            <img class="arrow-img" src="https://mezamublobstorage.blob.core.windows.net/images/arrow.png">
+                            <img class="arrow-img" src="{{Vite::asset('resources/images/arrow.png')}}">
                         </button>
 
                         </h5>
@@ -52,7 +52,7 @@
                                 @if($dish->category ==$categories[$i])
 
                                     <div class="d-flex p-3 ">
-                                        <img onclick="showDetails({{$dish}},{{$restaurant}})" alt="{{$dish->name}}" class="product-img" type="button" src="https://mezamublobstorage.blob.core.windows.net/{{$restaurant->slug}}/{{$dish->photo}}">
+                                        <img onclick="showDetails({{$dish}},{{$restaurant}})" alt="{{$dish->name}}" class="product-img" type="button" src="{{Vite::asset('resources/images/'.$restaurant->slug.'/'.$dish->photo)}}">
                                         <div class="ml-3 w-100 d-flex flex-column">
                                             <div>
                                                 <strong><p class="mb-0 d-inline-block">{{$dish->name}}
@@ -101,3 +101,4 @@
         <a class="btn btn-success" href="{{route('cart')}}">{{__('general.GoToCart')}}</a>
     </div>
 @endsection
+
